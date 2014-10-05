@@ -172,3 +172,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2014-10-05 19:12:11
+
+/* Manually added to create the user */
+GRANT ALL ON cs673.* TO cs673_user@localhost IDENTIFIED BY 'cs673';
