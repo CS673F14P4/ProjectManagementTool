@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Bootstrap 3</title>
+		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		<link href = "css/bootstrap.min.css" rel = "stylesheet">
+		<link href = "css/styles.css" rel = "stylesheet">
+	</head>
+	<body>
+		<!-- header -->
+		<div class = "navbar navbar-inverse navbar-static-top">
+			<div class = "container">
+
+				<a href = "home.html" class = "navbar-brand">ProManage</a>
+
+				<!-- header menu -->
+				<div class = "collapse navbar-collapse navHeaderCollapse">
+					<ul class = "nav navbar-nav navbar-right">
+
+						<!--<li><a href = "#">Home</a></li>-->
+						<li><a href = "#"><span class="glyphicon glyphicon-off"></span> </a></li>
+
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+		<div class = "container">
+
+			<a href = "newproject.html" class = "navbar-button btn btn-large btn-primary pull-right" type="button">New Project</a>
+			<br></br><h3>Projects</h3><br></br>	
+
+			<!-- the data inside this div will come from the server and js will generate this html -->
+			<div id = "projects">
+				<div class="list-group">
+        			<a href="#" class="list-group-item"><h4 class="list-group-item-heading">Project A</h4>
+            			<p class="list-group-item-text">Project description bla bla bla</p>
+        			</a>
+
+        			<a href="#" class="list-group-item"><h4 class="list-group-item-heading">Project B</h4>
+            			<p class="list-group-item-text">Project description bla bla bla</p>
+        			</a>
+
+        			<a href="#" class="list-group-item"><h4 class="list-group-item-heading">Project C</h4>
+            			<p class="list-group-item-text">Project description bla bla bla</p>
+        			</a>
+        
+    			</div>
+			</div>
+		</div>
+
+		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src = "js/bootstrap.js"></script>
+	</body>
+</html>
