@@ -9,18 +9,15 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 /**
  * 
- * Deprecating this class. Use SessionFactorySingleton instead.
- * 
  * @author Luis Marion
  */
-@Deprecated
-public class DAOSingleton 
+public class SessionFactorySingleton 
 {
 
-	private static DAOSingleton INSTANCE;
+	private static SessionFactorySingleton INSTANCE;
 	private static SqlSessionFactory sqlSessionFactory;
 	
-	private DAOSingleton()
+	private SessionFactorySingleton()
 	{
 
 	}
@@ -43,11 +40,11 @@ public class DAOSingleton
 		return sqlSessionFactory;
 	}
 	
-	public static DAOSingleton getInstance()
+	public static SessionFactorySingleton getInstance()
 	{
 		if (INSTANCE == null)
 		{
-			INSTANCE = new DAOSingleton();
+			INSTANCE = new SessionFactorySingleton();
 			sqlSessionFactory = createSessionFactory();
 		}
 		
