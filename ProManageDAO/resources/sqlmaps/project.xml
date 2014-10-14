@@ -6,25 +6,34 @@
   	<id property="id" column="idproject" />
   	<result property="name" column="name"/>
   	<result property="description" column="description"/>
-  	<result property="start_date" column="start_date"/>
-  	<result property="end_date" column="end_date"/>
-  	<result property="create_date" column="create_date"/>
-  	<result property="create_user" column="create_user"/>
-  	<result property="last_modified_date" column="last_modified_date"/>
-  	<result property="last_modified_user" column="last_modified_user"/>
+  	<result property="startDate" column="start_date"/>
+  	<result property="endDate" column="end_date"/>
+  	<result property="createDate" column="create_date"/>
+  	<result property="createUser" column="create_user"/>
+  	<result property="lastModifiedDate" column="last_modified_date"/>
+  	<result property="lastModifiedUser" column="last_modified_user"/>
   </resultMap>
 
   
-  <select id="getProject" resultMap="projectMap">
-	  	select * from Project where idproject = #{id}
-  </select>
+	<select id="getProject" resultMap="projectMap">
+		select * from Project where idproject = #{id}
+	</select>
 
-    <select id="getProjectsByUser" resultMap="projectMap">
-	  	select * 
-	  	from Project project
-	  	join User user on 
-	  	where iduser = #{id}
-  	</select>
+	<select id="getProjectsByUser" resultMap="projectMap">
+		select * 
+		from Project project
+		join User user on 
+		where iduser = #{id}
+	</select>
+	
+	<insert id="insertProject" useGeneratedKeys="true" keyProperty="id" keyColumn="idproject">
+	    insert into Project (name, description, start_date, end_date, create_date, create_user, last_modified_date, last_modified_user) 
+	    values (#{name}, #{description}, #{startDate}, #{endDate}, now(), #{createUser}, now(), #{lastModifiedUser}) 
+	</insert>
+	
+	<delete id="deleteProject">
+	    delete from Project where idproject = #{id}
+	</delete>
   
 </mapper>
 
