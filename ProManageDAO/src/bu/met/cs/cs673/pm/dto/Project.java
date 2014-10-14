@@ -10,12 +10,12 @@ public class Project
 	private int id;
 	private String name;
 	private String description;
-	private Date start_date;
-	private Date end_date;
-	private Date create_date;
-	private int create_user;
-	private Date last_modified_date;
-	private int last_modified_user;
+	private Date startDate;
+	private Date endDate;
+	private Date createDate;
+	private int createUser;
+	private Date lastModifiedDate;
+	private int lastModifiedUser;
 	
 	public int getId() {
 		return id;
@@ -35,40 +35,40 @@ public class Project
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getStart_date() {
-		return start_date;
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getEnd_date() {
-		return end_date;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
-	public Date getCreate_date() {
-		return create_date;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	public int getCreate_user() {
-		return create_user;
+	public int getCreateUser() {
+		return createUser;
 	}
-	public void setCreate_user(int create_user) {
-		this.create_user = create_user;
+	public void setCreateUser(int createUser) {
+		this.createUser = createUser;
 	}
-	public Date getLast_modified_date() {
-		return last_modified_date;
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
 	}
-	public void setLast_modified_date(Date last_modified_date) {
-		this.last_modified_date = last_modified_date;
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
-	public int getLast_modified_user() {
-		return last_modified_user;
+	public int getLastModifiedUser() {
+		return lastModifiedUser;
 	}
-	public void setLast_modified_user(int last_modified_user) {
-		this.last_modified_user = last_modified_user;
+	public void setLastModifiedUser(int lastModifiedUser) {
+		this.lastModifiedUser = lastModifiedUser;
 	}
 }
