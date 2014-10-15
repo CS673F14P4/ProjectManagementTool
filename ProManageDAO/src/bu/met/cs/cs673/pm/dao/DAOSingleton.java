@@ -11,8 +11,11 @@ import org.apache.ibatis.session.*;
 
 /**
  * 
+ * Deprecating this class. Use SessionFactorySingleton instead.
+ * 
  * @author Luis Marion
  */
+@Deprecated
 public class DAOSingleton 
 {
 
