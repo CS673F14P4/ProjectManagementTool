@@ -1,25 +1,20 @@
 package bu.met.cs.cs673.pm.dao;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Reader;
 
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.session.*;
-//import org.apache.ibatis.session.SqlSessionFactory;
-//import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-/**
- * 
- * @author Luis Marion
- */
-public class DAOSingleton 
-{
 
-	private static DAOSingleton INSTANCE;
+public class MyBatisConnectionFactoryUser {
+	
+	private static MyBatisConnectionFactoryUser INSTANCE;
 	private static SqlSessionFactory sqlSessionFactory;
 	
-	private DAOSingleton()
+	private MyBatisConnectionFactoryUser()
 	{
 
 	}
@@ -30,10 +25,7 @@ public class DAOSingleton
 		
 		try
 		{
-			//String resource = "ProManageDAO/resources/properties/mybatis-local-config.xml";
 			String resource = "bu/met/cs/cs673/pm/dao/mapper/Myconfig.xml";
-			//String resource = "com/vaibhav/mybatis/xml/config.xml";
-			//InputStream inputStream = Resources.getResourceAsStream(resource);
 			Reader inputStream = Resources.getResourceAsReader(resource);
 			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			System.out.println("Ok");
@@ -46,11 +38,11 @@ public class DAOSingleton
 		return sqlSessionFactory;
 	}
 	
-	public static DAOSingleton getInstance()
+	public static MyBatisConnectionFactoryUser getInstance()
 	{
 		if (INSTANCE == null)
 		{
-			INSTANCE = new DAOSingleton();
+			INSTANCE = new MyBatisConnectionFactoryUser();
 			sqlSessionFactory = createSessionFactory();
 		}
 		
@@ -62,9 +54,4 @@ public class DAOSingleton
 		return sqlSessionFactory;
 	}
 	
-	public static void main(String[] args) {
-			// TODO Auto-generated method stub
-		
-		SqlSessionFactory factory = DAOSingleton.getInstance().getSqlSessionFactory();
-	}
 }
