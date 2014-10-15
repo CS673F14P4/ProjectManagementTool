@@ -14,9 +14,37 @@ import bu.met.cs.cs673.pm.dto.Project;
 public class ProjectDAO 
 {
 
-	public int createProject()
+	public int createProject(Project project)
 	{
-		return -1;
+		int success = -1;
+		
+		if (project == null)
+		{
+			success = -1;
+		}
+		else
+		{
+			SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+			SqlSession session = factory.openSession();
+			
+			try 
+			{
+				success = session.insert("insertProject", project);
+				session.commit();
+			} 
+			finally 
+			{
+			  session.close();
+			}
+		}
+	
+	
+		if (success > 0)
+		{
+			success = project.getId();
+		}
+		
+		return success;
 	}
 	
 	public Project getProject(int projectId)
@@ -24,7 +52,7 @@ public class ProjectDAO
 		System.out.println("getProject");
 		Project project = new Project();
 		
-		SqlSessionFactory factory = DAOSingleton.getInstance().getSqlSessionFactory();
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 		
 		try 
@@ -43,7 +71,7 @@ public class ProjectDAO
 	{
 		List<Project> projects = null;
 		
-		SqlSessionFactory factory = DAOSingleton.getInstance().getSqlSessionFactory();
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 		
 		try 
@@ -63,9 +91,31 @@ public class ProjectDAO
 		return false;
 	}
 	
-	public boolean deleteProject()
+	public boolean deleteProject(int projectId)
 	{
-		return false;
+		boolean success = false;
+		
+		int rows = -1;
+		
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		try 
+		{
+			rows = session.delete("deleteProject", projectId);
+			session.commit();
+		} 
+		finally 
+		{
+		  session.close();
+		}
+		
+		if (rows > 0)
+		{
+			success = true;
+		}
+		
+		return success;
 	}
 	
 }
