@@ -29,7 +29,7 @@ public class ProjectDAO
 		
 		try 
 		{
-			project = session.selectOne("getProject", projectId);
+			project = (Project) session.selectOne("getProject", projectId);
 		} 
 		finally 
 		{
