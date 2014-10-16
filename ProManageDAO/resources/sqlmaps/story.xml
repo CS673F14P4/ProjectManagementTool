@@ -26,7 +26,7 @@
 	</insert>
 	
 	<delete id="deleteStory">
-	    delete from Project where idStory = #{id}
+	    delete from Story where idStory = #{id}
 	</delete>
   
 </mapper>
