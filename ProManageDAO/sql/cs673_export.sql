@@ -59,6 +59,12 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
   `idstory` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `create_date` timestamp NULL DEFAULT NULL,
+  `create_user` int(11) DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `last_modified_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`idstory`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
