@@ -59,7 +59,7 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
   `idstory` int(11) NOT NULL,
-  `name` varchar(45) DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
