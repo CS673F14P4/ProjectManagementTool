@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bu.met.cs.cs673.pm.dto.Story">
     
-  <resultMap id="projectMap" type="bu.met.cs.cs673.pm.dto.Project">
+  <resultMap id="storyMap" type="bu.met.cs.cs673.pm.dto.Story">
   	<id property="id" column="idstory" />
   	<result property="title" column="title"/>
   	<result property="description" column="description"/>
