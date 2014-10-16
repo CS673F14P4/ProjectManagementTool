@@ -13,7 +13,7 @@ import bu.met.cs.cs673.pm.dto.Story;
  */
 public class StoryDAO {
 	
-	public int createProject(Story story)
+	public int createStory(Story story)
 	{
 		int success = -1;
 		
@@ -48,7 +48,7 @@ public class StoryDAO {
 	
 }
 	
-	public Story getProject(int id)
+	public Story getStory(int id)
 	{
 		Story selected=null;
 		

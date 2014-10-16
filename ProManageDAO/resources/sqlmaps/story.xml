@@ -25,7 +25,7 @@
 	    values (#{title}, #{description}, now(), #{createUser}, now(), #{lastModifiedUser}) 
 	</insert>
 	
-	<delete id="deleteProject">
+	<delete id="deleteStory">
 	    delete from Project where idStory = #{id}
 	</delete>
   
