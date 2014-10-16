@@ -4,7 +4,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar - jars shouldn't be ignored blindly as we need them for third-party libraries.
 *.war
 *.ear
 

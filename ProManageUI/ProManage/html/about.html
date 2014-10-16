@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ProManage.com</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- Add jQuery library -->
+	<script type="text/javascript" src="../js/lib/jquery-1.10.1.min.js"></script>
+
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="../js/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="../source/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="../source/jquery.fancybox.css?v=2.1.5" media="screen" />
+
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="../source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="../source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+	
+	<!-- Banner -->
+	<!-- Bootstrap Core CSS  -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS 
+    <link href="../../landing-page/css/landing-page.css" rel="stylesheet">  -->
+
+    <!-- Custom Fonts
+    <link href="../../landing-page/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">    -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			 *  Simple image gallery. Uses default settings
+			 */
+
+			$('.fancybox').fancybox();
+
+			/*
+			 *  Different effects
+			 */
+
+			// Change title type, overlay closing speed
+			$(".fancybox-effects-a").fancybox({
+				helpers: {
+					title : {
+						type : 'outside'
+					},
+					overlay : {
+						speedOut : 0
+					}
+				}
+			});
+
+			// Disable opening and closing animations, change title type
+			$(".fancybox-effects-b").fancybox({
+				openEffect  : 'none',
+				closeEffect	: 'none',
+
+				helpers : {
+					title : {
+						type : 'over'
+					}
+				}
+			});
+
+			// Set custom style, close if clicked, change title type and overlay color
+			$(".fancybox-effects-c").fancybox({
+				wrapCSS    : 'fancybox-custom',
+				closeClick : true,
+
+				openEffect : 'none',
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					overlay : {
+						css : {
+							'background' : 'rgba(238,238,238,0.85)'
+						}
+					}
+				}
+			});
+
+			// Remove padding, set opening and closing animations, close if clicked and disable overlay
+			$(".fancybox-effects-d").fancybox({
+				padding: 0,
+
+				openEffect : 'elastic',
+				openSpeed  : 150,
+
+				closeEffect : 'elastic',
+				closeSpeed  : 150,
+
+				closeClick : true,
+
+				helpers : {
+					overlay : null
+				}
+			});
+
+			/*
+			 *  Button helper. Disable animations, hide close button, change title type and content
+			 */
+
+			$('.fancybox-buttons').fancybox({
+				openEffect  : 'none',
+				closeEffect : 'none',
+
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+
+				helpers : {
+					title : {
+						type : 'inside'
+					},
+					buttons	: {}
+				},
+
+				afterLoad : function() {
+					this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+				}
+			});
+
+
+			/*
+			 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+			 */
+
+			$('.fancybox-thumbs').fancybox({
+				prevEffect : 'none',
+				nextEffect : 'none',
+
+				closeBtn  : false,
+				arrows    : false,
+				nextClick : true,
+
+				helpers : {
+					thumbs : {
+						width  : 50,
+						height : 50
+					}
+				}
+			});
+
+			
+
+		});
+	</script>
+	<style type="text/css">
+		.fancybox-custom .fancybox-skin {
+			box-shadow: 0 0 50px #222;
+		}
+		body {
+		margin: 0;
+		afont-size:23px;
+		afont-weight: normal;
+		color: gray;
+		font-family: Cambria, Georgia, serif;
+		}
+		img {
+		width  : 250px;
+		height : 250px; 
+		}
+		#cont {
+			max-width: 1100px;
+			margin: 0 auto;
+		}
+		#intro {
+		font-size: 20px;
+		}
+		
+		th {
+			border: 2px solid white;
+			width: 200px;
+			background: white;
+			color: gray;
+			
+		}
+		table {
+			
+		}
+		#imgtxt{
+			width:1025px;
+		}
+		#tsize {
+			font-size: 23px;
+		}
+		.banner {
+			padding: 100px 0;
+			color: #f8f8f8;
+			background: url(../images/banner-bg.jpg) no-repeat center center;
+			background-size: cover;
+		}
+		h1 {
+			font-weight: normal;
+			font-size: 45px;
+			color: #7FB5DA;
+		}
+		h2 {
+			font-size: 50px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>ProManage</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="signin.html" class="btn btn-default btn-lg"> <span class="network-name">Sign in</span></a>
+                        </li>
+                        <li>
+                            <a href="signup.html" class="btn btn-default btn-lg"> <span class="network-name">Register</span></a>
+                        </li>
+                     <!--   <li>
+                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner <header><h1> ProManage </h1> </header> -->
+
+
+	<div id="cont"> <h1>Meet the Team</h1>
+
+	<p id="intro">ProManage was founded with the goal of building revolutionary Project Management App with technologies to empower millions of people to do better in their everyday lives.</p>
+<br>
+	<p>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="4_b.jpg"><img src="../images/boy.jpg" alt="" /></a>
+
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="3_b.jpg"><img src="../images/13.jpg" alt="" /></a>
+
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="2_b.jpg"><img src="../images/girl.jpg" alt="" /></a>
+
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="1_b.jpg"><img src="../images/boy.jpg" alt="" /></a><br>
+		<table id="imgtxt" align="center"><tr>
+		<th><span id="tsize">Luis Marion</span><br>PROJECT LEADER</th><th><span id="tsize">Nethra Balasundaram</span><br>BACK-UP PROJECT LEAD</th><th><span id="tsize">Mariana Arantes</span><br>REQUIREMENTS LEAD</th><th><span id="tsize">Daniel Abramowitz</span><br>DESIGN LEAD</th>
+		</tr></table><br><p>
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="4_b.jpg"><img src="../images/boy.jpg" alt="" /></a>
+
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="3_b.jpg"><img src="../images/boy.jpg" alt="" /></a>
+
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="2_b.jpg"><img src="../images/boy.jpg" alt="" /></a>
+
+		<a class="fancybox-thumbs" data-fancybox-group="thumb" href="1_b.jpg"><img src="../images/boy.jpg" alt="" /></a>
+		<table id="imgtxt" align="center"><tr>
+		<th><span id="tsize">Roberto Reyes</span><br>INTEGRATION LEAD</th><th><span id="tsize">Daniel Carlos</span><br>CONFIGURATION LEAD</th><th><span id="tsize">Ray Gborsongu</span><br>DESIGN ENGINEER</th><th><span id="tsize">Olufemi Odegbile</span><br>QA LEADER</th>
+		</tr></table><br>
+	</p>
+<hr>
+	</div>
+	<!-- Footer -->
+    <footer align="center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#home">Home</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li class="footer-menu-divider">&sdot;</li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Your Company 2014. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
