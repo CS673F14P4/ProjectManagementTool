@@ -1,0 +1,231 @@
+@font-face {
+	font-family: pmFont;
+	src: url("font/Gorilla Black.ttf");
+}
+
+#pmicon {
+	height: 50px;
+	width: 50px;
+	float: left;
+	margin-left: 10px;
+}
+
+#pmheader {
+	height: 52px;
+	awidth: 1368px;
+	background-size: cover;
+	background-color: #D3D3D3;
+	margin: -10px -10px 0px -10px;
+}
+
+#pmtitle {
+	margin-top: -5px;
+	margin-left: 70px;
+	afont-family: pmFont;
+	font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 700;
+	color: #333;
+	font-size: 20px;
+}
+/* ---------dropdown in header---------- */
+.click-nav {
+	margin: -65px 10px;
+	width: 200px;
+	float: right;
+}
+
+.click-nav ul {
+	position: relative;
+	font-weight: 900;
+}
+
+.click-nav ul li {
+	position: relative;
+	list-style: none;
+	cursor: pointer;
+}
+
+.click-nav ul li ul {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.click-nav ul .clicker {
+	position: relative;
+	background: #2284B5;
+	color: #FFF;
+}
+
+.click-nav ul .clicker:hover, .click-nav ul .active {
+	background: #196F9A;
+}
+
+.click-nav img {
+	position: absolute;
+	top: 9px;
+	left: 12px;
+}
+
+.click-nav ul li a {
+	transition: background-color 0.2s ease-in-out;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-moz-transition: background-color 0.2s ease-in-out;
+	display: block;
+	padding: 8px 10px 8px 40px;
+	background: #C9C9C9;
+	color: #333;
+	text-decoration: none;
+}
+
+.click-nav ul li a:hover {
+	background: #F2F2F2;
+}
+
+/* Fallbacks */
+.click-nav .no-js ul {
+	display: none;
+}
+
+.click-nav .no-js:hover ul {
+	display: block;
+}
+
+/* -------tabs------- */
+.tabs {
+	width: 100%;
+	display: inline-block;
+}
+
+/*----- Tab Links -----*/
+/* Clearfix */
+.tab-links:after {
+	display: block;
+	clear: both;
+	content: '';
+}
+
+.tab-links li {
+	margin: 0px 5px;
+	float: left;
+	list-style: none;
+}
+
+.tab-links a {
+	padding: 9px 15px;
+	display: inline-block;
+	border-radius: 3px 3px 0px 0px;
+	background: #7FB5DA;
+	font-size: 16px;
+	font-weight: 600;
+	color: #4c4c4c;
+	transition: all linear 0.15s;
+}
+
+.tab-links a:hover {
+	background: #a7cce5;
+	text-decoration: none;
+}
+
+li.active a, li.active a:hover {
+	background: #fff;
+	color: #4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+	padding: 15px;
+	border-radius: 3px;
+	box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+	background: #c9c9c9;
+}
+
+.tab {
+	display: none;
+}
+
+.tab.active {
+	display: block;
+}
+
+.tactive {
+	background: #c9c9c9;
+}
+
+form {
+	background: -webkit-gradient(linear, bottom, left 175px, from(#CCCCCC),
+		to(#EEEEEE));
+	background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+	amargin: auto;
+	position: relative;
+	width: 550px;
+	height: 450px;
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: bold;
+	text-decoration: none;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding: 10px;
+	border: 1px solid #999;
+	border: inset 1px solid #333;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+input#pmtxt {
+	width: 500px;
+	height: 35px;
+}
+
+input#pmtxta {
+	width: 500px;
+}
+
+#pmtxt, #pmtxta {
+	display: block;
+	border: 1px solid #999;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+input#pmbtn {
+	width: 100px;
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	background: #09C;
+	color: #fff;
+	font-family: Tahoma, Geneva, sans-serif;
+	height: 30px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	border: 1p solid #999;
+}
+
+input#pmbtn:hover {
+	background: #fff;
+	color: #09C;
+}
+
+iframe {
+	border: none;
+	width: 1000px;
+	height: 500px;
+}
+
+tr {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.pmtd {
+	font-size: 15px;
+	font-weight: normal;
+}
