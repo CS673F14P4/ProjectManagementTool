@@ -5,9 +5,8 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import bu.met.cs.cs673.pm.dao.MyBatisConnectionFactoryUser;
 
-
-//import com.hmkcode.vo.Person;
 import java.sql.Timestamp;
 import java.util.Date;
 import bu.met.cs.cs673.pm.dto.User;
