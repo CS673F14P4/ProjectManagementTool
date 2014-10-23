@@ -1,56 +1,90 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Bootstrap 3</title>
+		<title> Home </title>
 		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		<link href = "../../css/bootstrap.min.css" rel = "stylesheet">
-		<link href = "../../css/styles.css" rel = "stylesheet">
+		<link href = "../css/bootstrap.min.css" rel = "stylesheet">
+		<link href = "../css/home.css" rel = "stylesheet">
+		<style>
+			#pmicon {
+				height: 40px;
+				width: 40px;
+			}
+			#pmtit {
+				margin-top: -10px;
+			}
+		</style>
 	</head>
 	<body>
 		<!-- header -->
-		<div class = "navbar navbar-inverse navbar-static-top">
-			<div class = "container">
+		<div class="navbar navbar-default navbar-static-top" role="navigation">
+        	<div class="container">
 
-				<a href = "home.html" class = "navbar-brand">ProManage</a>
+            	<!-- Brand and toggle get grouped for better mobile display -->
+            	<div class="navbar-header">
+                	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    	<span class="sr-only">Toggle navigation</span>
+                    	<span class="icon-bar"></span>
+                    	<span class="icon-bar"></span>
+                    	<span class="icon-bar"></span>
+                	</button>
+                	<a id="pmtit" class="navbar-brand" href="#"><img src="../images/promanage.gif" id="pmicon" />&nbsp;ProManage</a>
+           		</div>
 
-				<!-- header menu -->
-				<div class = "collapse navbar-collapse navHeaderCollapse">
-					<ul class = "nav navbar-nav navbar-right">
+            	<!-- Collect the nav links, forms, and other content for toggling -->
+            	<div class="collapse navbar-collapse navHeaderCollapse" id="bs-example-navbar-collapse-1">
 
-						<!--<li><a href = "#">Home</a></li>-->
-						<li><a href = "#"><span class="glyphicon glyphicon-off"></span> </a></li>
+                	<ul class="nav navbar-nav navbar-right">
+                        <li><a href = "#"><span class="glyphicon glyphicon-off"></span> </a></li>
+                	</ul>
 
-					</ul>
-				</div>
+            	</div>
+        	</div>
+    	</div>			
 
-			</div>
-		</div>
+      <!-- list projects -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="projects">
+          <div class="container">
 
-		<div class = "container">
+            <a href = "newproject.html" class = "navbar-button btn btn-large btn-primary pull-right" type="button">New Project</a>
+            <br></br>
 
-			<a href = "newproject.html" class = "navbar-button btn btn-large btn-primary pull-right" type="button">New Project</a>
-			<br></br><h3>Projects</h3><br></br>	
-
-			<!-- the data inside this div will come from the server and js will generate this html -->
-			<div id = "projects">
-				<div class="list-group">
-        			<a href="#" class="list-group-item"><h4 class="list-group-item-heading">Project A</h4>
-            			<p class="list-group-item-text">Project description bla bla bla</p>
-        			</a>
-
-        			<a href="#" class="list-group-item"><h4 class="list-group-item-heading">Project B</h4>
-            			<p class="list-group-item-text">Project description bla bla bla</p>
-        			</a>
-
-        			<a href="#" class="list-group-item"><h4 class="list-group-item-heading">Project C</h4>
-            			<p class="list-group-item-text">Project description bla bla bla</p>
-        			</a>
-        
-    			</div>
-			</div>
-		</div>
+            <div class="content-container clearfix">
+               <div class="col-md-12">               
+                           <h2 class="content-title">Projects</h2>
+    
+                   <ul class="list">
+                       <li>
+                           <a href="">
+                               <span class="title">Project A</span>
+                               <span class="content">Description of the project, bla bla bla...</span>
+                               <span class="date">Last time edited</span>
+                           </a>
+                       </li>
+                       <li>
+                           <a href="">
+                               <span class="title">Project B</span>
+                               <span class="content">Description of the project, bla bla bla...</span>
+                               <span class="date">Last time edited</span>
+                           </a>
+                       </li>
+                       <li>
+                           <a href="">
+                               <span class="title">Project C</span>
+                               <span class="content">Description of the project, bla bla bla...</span>
+                               <span class="date">Last time edited</span>
+                           </a>
+                       </li>
+                   </ul>
+               </div>
+           </div>
+       </div>
+    </div>
+  </div>
 
 		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src = "js/bootstrap.js"></script>
+
 	</body>
 </html>
