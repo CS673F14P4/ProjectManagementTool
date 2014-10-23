@@ -8,7 +8,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
@@ -30,7 +29,7 @@ public class ProjectResource
 
 	@GET
 	@Path("{id}")
-	public Response getProject(@PathParam("id") String id)
+	public Project getProject(@PathParam("id") String id)
 	{
 		System.out.println(">>> getProject");
 		
@@ -44,7 +43,7 @@ public class ProjectResource
 		
 		System.out.println("<<< getProject");
 		
-		return Response.ok(project).type("text/xml").build();
+		return project;
 	}
 	
 	@PUT

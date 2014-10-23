@@ -10,7 +10,7 @@ public class ProjectMapper
 		Project project = new Project();
 		
 		project.setName(projectDTO.getName());
-		project.setDescription(projectDTO.getName());
+		project.setDescription(projectDTO.getDescription());
 		project.setStartDate(projectDTO.getStartDate());
 		project.setEndDate(projectDTO.getEndDate());
 		//project.setOwner(projectDTO.getCreateUser());
@@ -18,11 +18,15 @@ public class ProjectMapper
 		return project;
 	}
 	
-	public static bu.met.cs.cs673.pm.dto.Project mapProject(Project project)
+	public static bu.met.cs.cs673.pm.dto.Project mapProject(Project projectWS)
 	{
-		bu.met.cs.cs673.pm.dto.Project projectDTO = new bu.met.cs.cs673.pm.dto.Project();
+		bu.met.cs.cs673.pm.dto.Project project = new bu.met.cs.cs673.pm.dto.Project();
+
+		project.setName(projectWS.getName());
+		project.setDescription(projectWS.getDescription());
+		project.setStartDate(projectWS.getStartDate());
+		project.setEndDate(projectWS.getEndDate());
 		
-		return projectDTO;
-		
+		return project;
 	}
 }

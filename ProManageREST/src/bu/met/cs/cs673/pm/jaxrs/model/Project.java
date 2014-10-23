@@ -2,6 +2,9 @@ package bu.met.cs.cs673.pm.jaxrs.model;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="project")
 public class Project 
 {
 	private String name;
