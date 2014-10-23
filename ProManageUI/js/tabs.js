@@ -67,7 +67,7 @@ window.pmform = function() {
 	var pmstory = document.getElementById("pmtxt").value;
 	var pmdate = document.getElementById("pmdate").value;
 	for(var x=0; x<counter; x++)
-	document.getElementById("display").innerHTML = "<td>" + pmstory + '</td><td class="pmtd">Due:' + pmdate + "</td></tr>";
+	document.getElementById("display").innerHTML = '<td><a href="createTask.html">' + pmstory + '</a></td><td class="pmtd">Due:' + pmdate + "</td></tr>";
 	document.getElementById("display").style.display = "block";
 	document.getElementById("pmform").reset(); 
 }
