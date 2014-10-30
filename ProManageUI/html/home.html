@@ -1,90 +1,73 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title> Home </title>
-		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		<link href = "../css/bootstrap.min.css" rel = "stylesheet">
-		<link href = "../css/home.css" rel = "stylesheet">
-		<style>
-			#pmicon {
-				height: 40px;
-				width: 40px;
-			}
-			#pmtit {
-				margin-top: -10px;
-			}
-		</style>
-	</head>
-	<body>
-		<!-- header -->
-		<div class="navbar navbar-default navbar-static-top" role="navigation">
-        	<div class="container">
 
-            	<!-- Brand and toggle get grouped for better mobile display -->
-            	<div class="navbar-header">
-                	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    	<span class="sr-only">Toggle navigation</span>
-                    	<span class="icon-bar"></span>
-                    	<span class="icon-bar"></span>
-                    	<span class="icon-bar"></span>
-                	</button>
-                	<a id="pmtit" class="navbar-brand" href="#"><img src="../images/promanage.gif" id="pmicon" />&nbsp;ProManage</a>
-           		</div>
+<head>
+	<title> Home </title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+		
+	<!--  css source -->
+	<link href = "../css/bootstrap.min.css" rel = "stylesheet">
+	<link href = "../css/home.css" rel = "stylesheet">
+		
+	<!--  js source -->
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src = "../js/bootstrap.js"></script>
+	<script src = "../js/projectsController.js"></script>		
+</head>
 
-            	<!-- Collect the nav links, forms, and other content for toggling -->
-            	<div class="collapse navbar-collapse navHeaderCollapse" id="bs-example-navbar-collapse-1">
+<body>
+	<!-- header -->
+	<div class="navbar navbar-default navbar-static-top" role="navigation">
+		<div class="container">
+		
+			<!--  promanage icon and name -->
+			<div class="navbar-header">
+				<a id="pmtit" class="navbar-brand" href="#"><img src="../images/promanage.gif" id="pmicon" />&nbsp;ProManage</a>        	
+			</div>
+			
+			<!--  logout icon -->
+			<div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href = "#"><span class="glyphicon glyphicon-off"></span> </a></li>
+				</ul>
+			</div>
+			
+		</div>
+	</div>			
 
-                	<ul class="nav navbar-nav navbar-right">
-                        <li><a href = "#"><span class="glyphicon glyphicon-off"></span> </a></li>
-                	</ul>
+	<!-- body -->
+	<div class="tab-content">
+		<div class="tab-pane active" id="projects">
+			<div class="container">
 
-            	</div>
-        	</div>
-    	</div>			
+				<!--  button to create new project -->
+				<a href = "newproject.html" class = "navbar-button btn btn-large btn-primary pull-right" type="button">New Project</a>
+				<br></br>
 
-      <!-- list projects -->
-      <div class="tab-content">
-        <div class="tab-pane active" id="projects">
-          <div class="container">
-
-            <a href = "newproject.html" class = "navbar-button btn btn-large btn-primary pull-right" type="button">New Project</a>
-            <br></br>
-
-            <div class="content-container clearfix">
-               <div class="col-md-12">               
-                           <h2 class="content-title">Projects</h2>
+				<!--  box to show projects -->
+				<div class="content-container clearfix" ng-app="" ng-controller="projectsController">
+					<div class="col-md-12">   
+					
+						<!--  title -->            
+						<h2 class="content-title">Projects</h2>
     
-                   <ul class="list">
-                       <li>
-                           <a href="">
-                               <span class="title">Project A</span>
-                               <span class="content">Description of the project, bla bla bla...</span>
-                               <span class="date">Last time edited</span>
-                           </a>
-                       </li>
-                       <li>
-                           <a href="">
-                               <span class="title">Project B</span>
-                               <span class="content">Description of the project, bla bla bla...</span>
-                               <span class="date">Last time edited</span>
-                           </a>
-                       </li>
-                       <li>
-                           <a href="">
-                               <span class="title">Project C</span>
-                               <span class="content">Description of the project, bla bla bla...</span>
-                               <span class="date">Last time edited</span>
-                           </a>
-                       </li>
-                   </ul>
-               </div>
-           </div>
-       </div>
-    </div>
-  </div>
+    					<!--  list projects -->
+ 						<ul class="list">
+							<li ng-repeat="project in projects">
+                   				<a href="">
+									<span class="title">{{project.name}}</span>
+									<span class="content">{{project.description}}</span>
+									<!-- <span class="date">Last time edited</span> -->
+								</a>
+							<li>
+						</ul>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</body>
 
-		<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src = "js/bootstrap.js"></script>
-
-	</body>
 </html>
