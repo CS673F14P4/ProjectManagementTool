@@ -5,20 +5,11 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-
-
-//import com.hmkcode.vo.Person;
-import java.sql.Timestamp;
-import java.util.Date;
 import bu.met.cs.cs673.pm.dto.User;
 
-public class UserDAO {
+public class UserDAO 
+{
 	
-	private SqlSessionFactory sqlSessionFactory = null;
-	 
-    public UserDAO(){
-    	
-    }
     
     /**
      * Returns the list of all User instances from the database.
@@ -28,7 +19,7 @@ public class UserDAO {
     @SuppressWarnings("unchecked")
     public  List<User> selectAll(){
         List<User> list = null;
-        SqlSessionFactory factory = MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory();
+        SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
         SqlSession session = factory.openSession();
  
         try {
@@ -59,7 +50,7 @@ public class UserDAO {
     
     public int insert(User user){
         int id = -1;
-        SqlSessionFactory factory = MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory();
+        SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
         SqlSession session = factory.openSession();
   
          try {
@@ -76,7 +67,7 @@ public class UserDAO {
      */
     public void delete(String username){
     	 
-    	SqlSessionFactory factory = MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory();
+    	SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
         SqlSession session = factory.openSession();
  
         try {
@@ -93,7 +84,7 @@ public class UserDAO {
      */
       public void update(User user){
          int id = -1;
-         SqlSessionFactory factory = MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory();
+         SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
          SqlSession session = factory.openSession();
    
         try {
@@ -111,7 +102,7 @@ public class UserDAO {
       public User selectById(String username){
           User user = null;
           
-          SqlSessionFactory factory = MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory();
+          SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
           SqlSession session = factory.openSession();
           try {
               user = (User) session.selectOne("User.selectById", username);
