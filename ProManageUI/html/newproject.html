@@ -1,48 +1,71 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Bootstrap 3</title>
-		<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		<link href = "../css/bootstrap.min.css" rel = "stylesheet">
-	</head>
-	<body>
-		<!-- header -->
-		<div class = "navbar navbar-inverse navbar-static-top">
-			<div class = "container">
+	
+<head>
+	<title> Projects </title>
+	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+	
+	<!-- css source --> 
+	<link href = "../css/bootstrap.min.css" rel = "stylesheet">
+	<link href = "../css/home.css" rel = "stylesheet">
 
-				<a href = "home.html" class = "navbar-brand">ProManage</a>
+	<!--  js source -->
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+	<script src = "../js/bootstrap.js"></script>
+	<script src = "../js/formController.js"></script>
+	<script src="../js/jquery-1.11.0.js"></script>
+	
+	<script>
+	$(function() {
+		$("#header").load("header.html");
+	});
+	</script>
+</head>
 
-				<!-- header menu -->
-				<div class = "collapse navbar-collapse navHeaderCollapse">
-					<ul class = "nav navbar-nav navbar-right">
+<body>
+	
+	<div id="header"></div>
 
-						<!--<li><a href = "#">Home</a></li>-->
-						<li><a href = "#"><span class="glyphicon glyphicon-off"></span> </a></li>
+	<!-- form to create a new project -->
+	<div class="container">
+		<div ng-app="" ng-controller="formController">
 
-					</ul>
+			<h2>Create a Project</h2>
+			<form role="form">
+			
+				<!--  name field -->
+				<div class="form-group">
+ 					<label>Name:</label>
+					<input type="text" ng-model="user.name" class="form-control" id="id">
 				</div>
-
-			</div>
+		
+				<!--  description field -->
+				<div class="form-group">
+					<label>Description:</label>
+					<textarea type="text" ng-model="user.description" class="form-control" id="descpt"></textarea>
+				</div>
+		
+				<!--  start date field -->
+				<div class="form-group">
+					<label>Start Date:</label>
+					<input type="date" ng-model="user.startDate" class="form-control" id="descpt">
+				</div>
+				
+				<!-- end date field -->
+				<div class="form-group">
+					<label>End Date:</label>
+					<input type="date" ng-model="user.endDate" class="form-control" id="descpt">
+				</div>
+		
+				<!--  submit button -->
+				<button type="submit" ng-click="submit()" class="btn btn-default">Submit</button>
+		
+				<!--  cancel button -->
+				<a href = "home.html" class = "btn btn-default" type="button">Cancel</a>
+			</form>	
 		</div>
+	</div>
+		
+</body>
 
-		<!-- form to create a new project -->
-		<div class="container">
-
-      		<h2>Create a Project</h2>
-
-      		<form role="form">
-       			<div class="form-group">
-          			<label for="id">Name:</label>
-          			<input type="text" class="form-control" id="id">
-        		</div>
-        		<div class="form-group">
-          			<label for="descpt">Description:</label>
-          			<textarea type="text" class="form-control" id="descpt"></textarea>
-       			</div>
-        		<button type="submit" class="btn btn-default"><a href="../header.html">Submit</a></button>
-      		</form>
-
-    </div>
-
-	</body>
 </html>
