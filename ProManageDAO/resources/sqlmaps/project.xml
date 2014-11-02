@@ -16,7 +16,7 @@
 
   
 	<select id="getProject" resultMap="projectMap">
-		select * from Project where idproject = #{id}
+		select * from Project where idproject = #{projectId}
 	</select>
 
 	<select id="getProjectsByUser" resultMap="projectMap">

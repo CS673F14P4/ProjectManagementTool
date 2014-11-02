@@ -1,11 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bu.met.cs.cs673.pm.dto.User">
  
-<mapper namespace="User">
- 
-    <resultMap id="result" type="User">
+    <resultMap id="result" type="bu.met.cs.cs673.pm.dto.User">
         <result property="userid" column="userid"/>
         <result property="email" column="email"/>
         <result property="username" column="username"/> 
@@ -23,12 +20,12 @@
         SELECT * FROM User WHERE id = #{id}
     </select>
  
-    <insert id="insert" >    //parameterType="User" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert">  <!-- parameterType="User" useGeneratedKeys="true" keyProperty="id" -->
         insert into user (userid, email, username, password, firstname,lastname)
   		values (#{userid},#{email},#{username},#{password},#{firstname}, #{lastname})
     </insert>
  
-    <update id="update" parameterType="User">
+    <update id="update" parameterType="bu.met.cs.cs673.pm.dto.User">
         UPDATE User
         SET name = #{name}
         WHERE id = #{id} 
