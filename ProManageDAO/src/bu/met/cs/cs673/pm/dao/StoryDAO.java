@@ -28,7 +28,7 @@ public class StoryDAO {
 			
 			try 
 			{
-				success = session.insert("insertStory", story);
+				success = session.insert("createStory", story);
 				session.commit();
 			} 
 			finally 
@@ -40,7 +40,7 @@ public class StoryDAO {
 	
 		if (success > 0)
 		{
-			success = story.getId();
+			success = story.getIdstory();
 		}
 		
 		return success;
