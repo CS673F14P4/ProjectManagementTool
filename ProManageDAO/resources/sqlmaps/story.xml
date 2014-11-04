@@ -3,8 +3,9 @@
 <mapper namespace="bu.met.cs.cs673.pm.dto.Story">
     
   <resultMap id="storyMap" type="bu.met.cs.cs673.pm.dto.Story">
-  	<id property="idstory" column="idstory" />
-  	<result property="title" column="title"/>
+  	<id property="id" column="idstory" />
+  	<result property="projectId" column = "idproject"/>
+  	<result property="name" column="name"/>
   	<result property="description" column="description"/>
   	<result property="startDate" column="start_date"/>
   	<result property="priority" column="priority"/>
@@ -16,14 +17,15 @@
 
   
 	<select id="getStory" resultMap="storyMap">
-		select * from Project where idstory = #{id}
+		select * from Story where idstory = #{id}
 	</select>
-
 	
-	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">
-	    insert into Project (title, description, create_date, create_user, last_modified_date, last_modified_user) 
-	    values (#{title}, #{description}, now(), #{createUser}, now(), #{lastModifiedUser}) 
-	</insert>
+	<select id="storyByProject" resultMap="storyMap">
+		select * from Story order by idproject
+	</select>
+	
+	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">insert into Story (name, description, create_date, create_user, last_modified_date, last_modified_user) 
+	    values (#{name}, #{description}, now(), #{createUser}, now(), #{lastModifiedUser})</insert>
 	
 	<delete id="deleteStory">
 	    delete from Story where idstory = #{id}

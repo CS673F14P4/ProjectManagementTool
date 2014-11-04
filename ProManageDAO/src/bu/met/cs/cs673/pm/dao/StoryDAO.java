@@ -1,7 +1,10 @@
 package bu.met.cs.cs673.pm.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
 
 
 import bu.met.cs.cs673.pm.dto.Story;
@@ -57,7 +60,7 @@ public class StoryDAO {
 		
 		try 
 		{
-			selected = session.selectOne("selectStory", id);
+			selected = session.selectOne("getStory", id);
 			session.commit();
 		} 
 		finally 
@@ -91,5 +94,22 @@ public class StoryDAO {
 			delete=true;
 		
 		return delete;
+	}
+
+	public List<Story> storyByProject() {
+		List<Story> storyList=null; 
+		
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		try
+		{
+			storyList= session.selectList("storyByProject");
+		}
+		finally
+		{
+			session.close();
+		}
+		return storyList;
 	}
 }

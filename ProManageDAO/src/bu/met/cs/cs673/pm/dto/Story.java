@@ -9,8 +9,9 @@ import java.util.Date;
 
 public class Story {
 	
-	private int idstory;
-	private String title;
+	private int id;
+	private int projectid;
+	private String name;
 	private int priority;
 	private String description;
 	private int createUser;
@@ -19,16 +20,17 @@ public class Story {
 	private int lastModifiedUser;
 	
 	public int getIdstory() {
-		return idstory;
+		return id;
 	}
-	public void setId(int idstory) {
-		this.idstory = idstory;
+	
+	public void setIdstory(int id){
+		this.id=id;
 	}
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitle(String name) {
+		this.name = name;
 	}
 	public int getPriority() {
 		return priority;
@@ -66,6 +68,14 @@ public class Story {
 	}
 	public void setLastModifiedUser(int lastModifiedUser) {
 		this.lastModifiedUser = lastModifiedUser;
+	}
+
+	public int getProjectid() {
+		return projectid;
+	}
+
+	public void setProjectid(int projectid) {
+		this.projectid = projectid;
 	}
 
 }

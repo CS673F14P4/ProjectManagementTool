@@ -58,8 +58,8 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
-  `idstory` int(11) NOT NULL,
-  `title` varchar(45) DEFAULT NULL,
+  `idstory` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
