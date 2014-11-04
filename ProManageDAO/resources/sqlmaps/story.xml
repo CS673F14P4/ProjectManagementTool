@@ -3,7 +3,7 @@
 <mapper namespace="bu.met.cs.cs673.pm.dto.Story">
     
   <resultMap id="storyMap" type="bu.met.cs.cs673.pm.dto.Story">
-  	<id property="id" column="idstory" />
+  	<id property="idstory" column="idstory" />
   	<result property="title" column="title"/>
   	<result property="description" column="description"/>
   	<result property="startDate" column="start_date"/>
@@ -20,13 +20,13 @@
 	</select>
 
 	
-	<insert id="insertStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">
+	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">
 	    insert into Project (title, description, create_date, create_user, last_modified_date, last_modified_user) 
 	    values (#{title}, #{description}, now(), #{createUser}, now(), #{lastModifiedUser}) 
 	</insert>
 	
 	<delete id="deleteStory">
-	    delete from Story where idStory = #{id}
+	    delete from Story where idstory = #{id}
 	</delete>
   
 </mapper>

@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Story {
 	
-	private int id;
+	private int idstory;
 	private String title;
 	private int priority;
 	private String description;
@@ -18,11 +18,11 @@ public class Story {
 	private Date lastModifiedDate;
 	private int lastModifiedUser;
 	
-	public int getId() {
-		return id;
+	public int getIdstory() {
+		return idstory;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int idstory) {
+		this.idstory = idstory;
 	}
 	public String getTitle() {
 		return title;
