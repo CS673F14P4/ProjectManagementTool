@@ -4,9 +4,13 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar - jars shouldn't be ignored blindly as we need them for third-party libraries.
 *.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# ignore build directories
+build/
+bin/
