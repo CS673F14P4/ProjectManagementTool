@@ -4,6 +4,7 @@
     
   <resultMap id="storyMap" type="bu.met.cs.cs673.pm.dto.Story">
   	<id property="id" column="idstory" />
+  	<result property="projectId" column = "idproject"/>
   	<result property="name" column="name"/>
   	<result property="description" column="description"/>
   	<result property="startDate" column="start_date"/>
@@ -18,7 +19,10 @@
 	<select id="getStory" resultMap="storyMap">
 		select * from Story where idstory = #{id}
 	</select>
-
+	
+	<select id="storyByProject" resultMap="storyMap">
+		select * from Story order by idproject
+	</select>
 	
 	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">insert into Story (name, description, create_date, create_user, last_modified_date, last_modified_user) 
 	    values (#{name}, #{description}, now(), #{createUser}, now(), #{lastModifiedUser})</insert>
