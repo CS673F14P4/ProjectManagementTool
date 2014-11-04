@@ -57,7 +57,7 @@ public class StoryDAO {
 		
 		try 
 		{
-			selected = session.selectOne("selectStory", id);
+			selected = session.selectOne("getStory", id);
 			session.commit();
 		} 
 		finally 

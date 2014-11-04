@@ -9,10 +9,7 @@ import bu.met.cs.cs673.pm.dao.StoryDAO;
 import bu.met.cs.cs673.pm.dto.Story;
 
 /**
- * ProjectDAOTest
- * 
- * 
- * @author Luis Marion
+ * Daniel Abramowitz
  */
 public class StoryDAOTest extends TestCase 
 {
@@ -26,7 +23,6 @@ public class StoryDAOTest extends TestCase
         
         story.setTitle("storyTest");
         story.setCreateUser(1);
-        story.setId(1);
         story.setPriority(1);
         story.setLastModifiedUser(1);
         story.setLastModifiedDate(new java.util.Date());
@@ -35,12 +31,13 @@ public class StoryDAOTest extends TestCase
     }
 
 	@Test
-	public void testCreateProject()
+	public void testCreateStory()
 	{
 		StoryDAO dao = new StoryDAO();
 		int storyId = dao.createStory(story);
 		
 		System.out.println("id: " + storyId);
+		
 		
 		assertTrue(storyId > 0);
 		
@@ -50,12 +47,12 @@ public class StoryDAOTest extends TestCase
 	
 
 	@Test
-	public void testGetProject()
+	public void testGetStory()
 	{
 		StoryDAO dao = new StoryDAO();
 		Story story = dao.getStory(1);
 		
-		System.out.println("project: " + story.getTitle());
+		System.out.println("story: " + story.getName());
 		
 		assertNotNull(story);
 	}
