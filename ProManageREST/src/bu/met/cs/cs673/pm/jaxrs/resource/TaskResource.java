@@ -14,10 +14,10 @@ import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
 
 
-@Path("/project")
+@Path("/task")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProjectResource 
+public class TaskResource 
 {
 	
 	@GET
