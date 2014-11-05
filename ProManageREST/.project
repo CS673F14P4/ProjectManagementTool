@@ -3,6 +3,7 @@
 	<name>ProManageREST</name>
 	<comment></comment>
 	<projects>
+		<project>ProManageDAO</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
