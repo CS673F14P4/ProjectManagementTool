@@ -1,3 +1,5 @@
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="../js/usersController.js"></script>
 
 <div class="modal-dialog">
 	<form class="form-horizontal" role="form" action="projectview.html">
@@ -9,9 +11,6 @@
 				<h4 class="modal-title" id="myModalLabel">New Story</h4>
 			</div>
 			<div class="modal-body">
-
-
-
 				<div class="form-group">
 					<label for="name" class="col-sm-2 control-label">Name</label>
 					<div class="col-sm-10">
@@ -27,6 +26,7 @@
 					</div>
 				</div>
 
+
 				<div class="form-group">
 					<label for="duedate" class="col-sm-2 control-label">Due
 						date</label>
@@ -36,34 +36,26 @@
 					</div>
 				</div>
 
-
-				<div class="form-group">
-					<label for="assigned" class="col-sm-2 control-label">Assign
-						to</label>
-					<div class="col-sm-10">
-						<select class="form-control" id="assigned">
-							<option value="mem0" selected>NoBody</option>
-							<option value="mem1">Member 1</option>
-							<option value="mem2">Member 2</option>
-							<option value="mem3">Member 3</option>
-							<option value="mem4">Member 4</option>
-							<option value="mem5">Member 5</option>
-						</select>
+				<!--Can only make one reference to the same controller it appears-->
+				<div ng-app="" ng-controller="usersController">
+					<div class="form-group">
+						<label for="asignee" class="col-sm-2 control-label">Assign
+							Task to: </label>
+						<div class="col-sm-10">
+							<select class="form-controlled" id="assigned"
+								ng-model="selected_item"
+								ng-options="user.id as (user.name) for user in users"></select>
+						</div>
 					</div>
-				</div>
-
-
-				<div class="form-group">
-					<label for="notify" class="col-sm-2 control-label">Notify</label>
-					<div class="col-sm-10">
-						<select class="form-control" id="notify">
-							<option value="user0" selected>NoBody</option>
-							<option value="user1">User 1</option>
-							<option value="user2">User 2</option>
-							<option value="user3">User 3</option>
-							<option value="user4">User 4</option>
-							<option value="user5">User 5</option>
-						</select>
+				
+				
+					<div class="form-group">
+						<label for="notify" class="col-sm-2 control-label">Notify</label>
+						<div class="col-sm-10">
+							<select class="form-controlled" id="notify"
+								ng-model="selected_item"
+								ng-options="user.id as (user.name) for user in users"></select>
+						</div>
 					</div>
 				</div>
 
