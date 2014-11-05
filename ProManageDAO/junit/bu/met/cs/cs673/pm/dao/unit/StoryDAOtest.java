@@ -11,7 +11,7 @@ import bu.met.cs.cs673.pm.dto.Story;
 /**
  * Daniel Abramowitz
  */
-public class StoryDAOTest extends TestCase 
+public class StoryDAOtest extends TestCase 
 {
 
 	private Story story;
