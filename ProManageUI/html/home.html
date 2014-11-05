@@ -12,7 +12,8 @@
 	<!--  js source -->
 	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 	<script src = "../js/bootstrap.js"></script>
-	<script src = "../js/projectsController.js"></script>		
+	<script src = "../js/projectsController.js"></script>	
+	<script src = "../js/mainController.js"></script>			
 	<script src="../js/jquery-1.11.0.js"></script>
 	
 	<script>
@@ -36,22 +37,18 @@
 				<br></br>
 
 				<!--  box to show projects -->
-				<div class="content-container clearfix" ng-app="" ng-controller="projectsController">
+				<div class="content-container clearfix" ng-app="mainController" ng-controller="projectsController">
 					<div class="col-md-12">   
 					
 						<!--  title -->            
-						<h2 class="content-title">Projects</h2>
-    
-    					<!--  message when the user does not have projects-->
-    					<h2 class="content-title">{{message}}</h2>
+						<h2 class="content-title">{{message}}</h2>
     					
     					<!--  list projects -->
- 						<ul class="list">
+ 						<ul class="list" id = "list">
 							<li ng-repeat="project in projects">
-                   				<a href="">
+                   				<a href="" data="{{project.idproject}}" ng-click = "getProject($event)">
 									<span class="title">{{project.name}}</span>
 									<span class="content">{{project.description}}</span>
-									<!-- <span class="date">Last time edited</span> -->
 								</a>
 							<li>
 						</ul>
@@ -62,6 +59,7 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 
 </html>
