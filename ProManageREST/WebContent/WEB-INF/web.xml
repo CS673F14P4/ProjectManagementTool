@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	
+	 <display-name>ProManage</display-name>
+	 
+	 <welcome-file-list>
+	   <welcome-file>index.jsp</welcome-file>
+	 </welcome-file-list>
+
+	 
+	<servlet>
+		<servlet-name>ProManageApp</servlet-name>
+		<servlet-class>org.apache.wink.server.internal.servlet.RestServlet</servlet-class>
+		<init-param>
+			<param-name>propertiesLocation</param-name>
+			<param-value>/WEB-INF/handlers.properties</param-value>
+		</init-param>
+		<init-param>
+    		<param-name>applicationConfigLocation</param-name>
+    		<param-value>/WEB-INF/resources.properties</param-value>
+  		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ProManageApp</servlet-name>
+		<url-pattern>/jaxrs/*</url-pattern>
+	</servlet-mapping>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected</web-resource-name>
+            <url-pattern>/jaxrs/*</url-pattern>
+            <http-method>GET</http-method>
+        	<http-method>POST</http-method>
+	        <http-method>PUT</http-method>
+	        <http-method>DELETE</http-method> 
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>project_leader</role-name>
+			<role-name>customer</role-name>
+			<role-name>admin</role-name>
+			<role-name>teammate</role-name>
+		</auth-constraint>
+		<!-- 
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+		 -->
+	</security-constraint>    
+    
+    
+    
+    <login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>ProManageSecurityRealm</realm-name>
+    </login-config>
+    
+	<security-role>
+		<description>Project Leader Role</description>
+		<role-name>project_leader</role-name>
+	</security-role>
+	<security-role>
+		<description>Team Member Role</description>
+		<role-name>teammate</role-name>
+	</security-role>	
+	<security-role>
+		<description>Administrator Role</description>
+		<role-name>admin</role-name>
+	</security-role>
+	<security-role>
+		<description>Customer Role</description>
+		<role-name>customer</role-name>
+	</security-role>	
+    
+    
+</web-app>

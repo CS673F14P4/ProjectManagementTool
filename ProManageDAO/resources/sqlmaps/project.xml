@@ -16,14 +16,13 @@
 
   
 	<select id="getProject" resultMap="projectMap">
-		select * from Project where idproject = #{id}
+		select * from Project where idproject = #{projectId}
 	</select>
 
 	<select id="getProjectsByUser" resultMap="projectMap">
-		select * 
-		from Project project
-		join User user on 
-		where iduser = #{id}
+		select * from Project
+		join Member on member.idproject = project.idproject
+		where member.iduser = #{userId}
 	</select>
 	
 	<insert id="insertProject" useGeneratedKeys="true" keyProperty="id" keyColumn="idproject">
