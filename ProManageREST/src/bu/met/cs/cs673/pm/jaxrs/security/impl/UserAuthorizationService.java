@@ -43,9 +43,11 @@ public class UserAuthorizationService
             
 			List<Project> projects = pdao.getProjects(user.getUserId());
             
+			int id = Integer.parseInt(projectId);
+			
 			for (Project p : projects)
 			{
-				if (projectId.equals(p.getId()))
+				if (id == p.getId())
 				{
 					isAuthorized = true;
 					break;
@@ -57,6 +59,8 @@ public class UserAuthorizationService
             //logger.error("Error authorizing user '" + username + "' for project [" + projectId + "].", ex);
         }
             
+        System.out.println("user: " + username + ", isAuthorized: " + isAuthorized + ", project: "+ projectId);
+        
         return isAuthorized;
     }
 }

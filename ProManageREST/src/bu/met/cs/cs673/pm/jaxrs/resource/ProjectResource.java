@@ -21,15 +21,15 @@ public class ProjectResource
 {
 	
 	@GET
-	@Path("{id}")
-	public Project getProject(@PathParam("id") String id)
+	@Path("{projectid}")
+	public Project getProject(@PathParam("projectid") int projectid)
 	{
 		System.out.println(">>> getProject");
 		
 		Project project = null;
 		
 		ProjectDAO dao = new ProjectDAO();
-		bu.met.cs.cs673.pm.dto.Project projectDTO = dao.getProject(Integer.parseInt(id));
+		bu.met.cs.cs673.pm.dto.Project projectDTO = dao.getProject(projectid);
 		
 		
 		project = ProjectMapper.mapProject(projectDTO); 
