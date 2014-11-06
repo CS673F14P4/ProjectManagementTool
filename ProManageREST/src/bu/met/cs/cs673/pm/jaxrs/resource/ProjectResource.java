@@ -38,6 +38,7 @@ public class ProjectResource {
 	@GET
 	@Path("{projectid}")
 	public Project getProject(@PathParam("projectid") int projectid) {
+
 		System.out.println(">>> getProject");
 
 		Project project = null;
