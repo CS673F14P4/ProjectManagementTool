@@ -1,0 +1,80 @@
+<script	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="../js/usersController.js"></script>
+
+<div class="modal-dialog">
+	<form class="form-horizontal" role="form" action="projectview.html">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">New Story</h4>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" required focus id="name"
+							placeholder="Name">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" rows="5" id="description" placeholder="Description"></textarea>
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="duedate" class="col-sm-2 control-label">Due
+						date</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" required id="duedate"
+							placeholder="Due date">
+					</div>
+				</div>
+
+				<!--Can only make one reference to the same controller it appears-->
+				<div ng-app="" ng-controller="usersController">
+					<div class="form-group">
+						<label for="asignee" class="col-sm-2 control-label">Assign
+							Task to: </label>
+						<div class="col-sm-10">
+							<select class="form-controlled" id="assigned"
+								ng-model="selected_asignee"
+								ng-options="user.id as (user.name) for user in users"></select>
+						</div>
+					</div>
+				
+				
+					<div class="form-group">
+						<label for="notify" class="col-sm-2 control-label">Notify</label>
+						<div class="col-sm-10">
+							<select class="form-controlled" id="notify"
+								ng-model="selected_notify"
+								ng-options="user.id as (user.name) for user in users"></select>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputFile" class="col-sm-2 control-label">Attach
+						file</label>
+					<div class="col-sm-10">
+						<input type="file" class="form-control" id="inputFile">
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</form>
+</div>
