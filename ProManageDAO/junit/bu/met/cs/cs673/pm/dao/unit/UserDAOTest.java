@@ -16,6 +16,7 @@ public class UserDAOTest extends TestCase {
 		UserDAO dao = new UserDAO();
 		User user = dao.getUserByName("cyclops");
 		
+		System.out.println("user: cyclops " + user.getUserId());
 		assertNotNull(user);
 	}
 }

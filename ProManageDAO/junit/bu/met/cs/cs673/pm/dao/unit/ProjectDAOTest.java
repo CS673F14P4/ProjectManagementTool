@@ -63,11 +63,11 @@ public class ProjectDAOTest extends TestCase
 	public void testGetProjectsByUser()
 	{
 		ProjectDAO dao = new ProjectDAO();
-		List<Project> projects = dao.getProjects(1);
+		List<Project> projects = dao.getProjects(3);
 		
 		for (Project p : projects)
 		{
-			System.out.println("project: " + project.getName());
+			System.out.println("project: " + p.getName());
 		}
 		
 		assertNotNull(projects);
