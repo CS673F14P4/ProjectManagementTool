@@ -14,8 +14,9 @@ public class UserDAOTest extends TestCase {
 	public void testGetProject()
 	{
 		UserDAO dao = new UserDAO();
-		User user = dao.selectById("femgodim2");
+		User user = dao.getUserByName("cyclops");
 		
+		System.out.println("user: cyclops " + user.getUserId());
 		assertNotNull(user);
 	}
 }

@@ -1,17 +1,19 @@
 package bu.met.cs.cs673.pm.jaxrs.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name="project")
 public class Project 
 {
+	private static final String OWNER = "project_leader";
 	private String name;
 	private String description;
 	private Date startDate;
 	private Date endDate;
-	private String owner;
+	private List<Member> members;
 	
 	public String getName() {
 		return name;
@@ -37,12 +39,28 @@ public class Project
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public String getOwner() {
+	
+	public List<Member> getMembers() {
+		return members;
+	}
+	public void setMembers(List<Member> members) {
+		this.members = members;
+	}
+	public String getOwner() 
+	{
+		String owner = null;
+		
+		if (members != null)
+		{
+			for (Member m : members)
+			{
+				if (OWNER.equals(m.getRoleName()))
+				{
+					owner = m.getUserName();
+				}
+			}
+		}
+		
 		return owner;
 	}
-	public void setOwner(String owner) {
-		this.owner = owner;
-	}
-	
-	
 }

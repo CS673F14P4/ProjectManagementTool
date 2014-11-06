@@ -14,22 +14,22 @@ import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
 
 
-@Path("/project")
+@Path("/task")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProjectResource 
+public class TaskResource 
 {
 	
 	@GET
-	@Path("{projectid}")
-	public Project getProject(@PathParam("projectid") int projectid)
+	@Path("{id}")
+	public Project getProject(@PathParam("id") String id)
 	{
 		System.out.println(">>> getProject");
 		
 		Project project = null;
 		
 		ProjectDAO dao = new ProjectDAO();
-		bu.met.cs.cs673.pm.dto.Project projectDTO = dao.getProject(projectid);
+		bu.met.cs.cs673.pm.dto.Project projectDTO = dao.getProject(Integer.parseInt(id));
 		
 		
 		project = ProjectMapper.mapProject(projectDTO); 

@@ -16,7 +16,7 @@ public class UserDAO
      * @return the list of all User instances from the database.
      */
     
-    @SuppressWarnings("unchecked")
+    
     public  List<User> selectAll(){
         List<User> list = null;
         SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
@@ -99,60 +99,17 @@ public class UserDAO
        * Select instance of User from the database.
        * @param person the instance to be persisted.
        */
-      public User selectById(String username){
+      public User getUserByName(String username){
           User user = null;
           
           SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
           SqlSession session = factory.openSession();
           try {
-              user = (User) session.selectOne("User.selectById", username);
+              user = (User) session.selectOne("selectByName", username);
    
           } finally {
               session.close();
           }
           return user;
-      }
-      
-
-	public static void main(String[] args) {
-		
-		/* How to insert user into the table
-		///User femi = new User(1002, "ffemgodim2@gmail.com", "ffemgodim2", "2234", "OOlufemi", "OOdegbile");
-		//User femi = new User(1002, "ffemgodim2@gmail.com", "ffemgodim2", "2234", "OOlufemi", "OOdegbile", new Timestamp(date.getTime()));
-		Date date = new Date();
-		User femi = new User(1003, "fffemgodim2@gmail.com", "fffemgodim2", "3234", "Olufemii", "Odegbilee", new Timestamp(date.getTime()));
-		
-		SqlSessionFactory factory = MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory();
-		int id = new UserDAO(MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory()).insert(femi);
-		/*/
-		
-		/*How to delete user in the table
-		String usernameToDelete = "ffemgodim2";
-		new UserDAO(MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory()).delete(usernameToDelete);
-		*/
-		
-		/*How to update user profile
-		 User femi = new User(1002, "ffemgodim2@gmail.com", "ffemgodim2", "2234", "OUOolufemi", "OOodegbile");
-		new UserDAO(MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory()).update(femi);
-		//*/
-		
-		//*How to select one user from table
-		String usernameToSelect= "fffemgodim2";
-		 User femi = new UserDAO().selectById(usernameToSelect);
-		 if (femi == null){
-	          System.out.println("Such username does not exist: "+usernameToSelect);
-		 } else {
-			 System.out.println("Such username does exist: "+usernameToSelect);
-		 }
-		// */
-		
-		/*How to print all users in the table
-		
-		 //List list = new UserDAO(MyBatisConnectionFactoryUser.getInstance().getSqlSessionFactory()).selectAll();
-		 List list = new UserDAO().selectAll();
-	     	System.out.println("The number of users: "+ list.size());
-		// */
-}
-	
-	
+      }	
 }
