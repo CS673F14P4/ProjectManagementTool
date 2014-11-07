@@ -1,12 +1,20 @@
 (function() {
 
-	var app = angular.module('promanage', []);
+	var app = angular.module('promanage', [ 'ngRoute' ]);
 
-	
-	app.controller('ApplicationController', function($scope, USER_ROLES,$rootScope,
+	app.config(function($routeProvider) {
+		$routeProvider.when('/project', {
+			templateUrl : 'home.html',
+			controller : 'ApplicationController'
+		}).when('/signin', {
+			templateUrl : 'signin.html',
+			controller : 'ApplicationController'
+		})
+	})
+
+	app.controller('ApplicationController', function($scope, USER_ROLES,
 			AuthService) {
-
-		$scope.currentUser = $rootScope.currentUser ;
+		$scope.currentUser = null;
 		$scope.userRoles = USER_ROLES;
 		$scope.isAuthorized = AuthService.isAuthorized;
 
@@ -16,16 +24,21 @@
 	})
 
 	app.controller('LoginController', function($scope, $rootScope, $location,
-			AUTH_EVENTS, AuthService) {
+			AUTH_EVENTS, AuthService, $window) {
 		$scope.credentials = {
 			username : '',
 			password : ''
 		};
 		$scope.login = function(credentials) {
+			console.log('login');
 			AuthService.login(credentials).then(function(user) {
 				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-			    $rootScope.currentUser = user; 
 				$scope.setCurrentUser(user);
+				$rootScope.blau=user;
+				console.log(user);
+				$window.location.href = 'home.html';
+
+				//$location.path("/project");
 			}, function() {
 				$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 			});
@@ -51,7 +64,7 @@
 
 		authService.login = function(credentials) {
 			return $http.post(
-					'http://localhost:8080/ProManageREST/jaxrs/project',
+					'http://localhost:8080/ProManageREST/jaxrs/user',
 					credentials).then(
 					function(res) {
 						Session.create(res.data.id, res.data.user.id,

@@ -36,26 +36,23 @@
 	<div class="container">
 
 		<form class="form-signin" name="loginForm"
-			ng-controller="LoginController" ng-submit="login(credentials)"
-			novalidate>
+			ng-controller="LoginController" class="ng-dirty ng-invalid"
+			ng-submit="loginForm.$valid && login(credentials)" novalidate>
 
 
 			<h2 class="form-signin-heading">Sign in</h2>
 
 			<input type="email" class="form-control" placeholder="Email address"
-				required autofocus ng-model="credentials.username">
+				autofocus ng-model="credentials.username" required>
 			<!-- 				 -->
 			<input type="password" class="form-control" placeholder="Password"
-				required ng-model="credentials.password">
+				ng-model="credentials.password" required>
 			<!-- 				 -->
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">SignIn
 			</button>
 
 		</form>
-		<a href="home.html">aqui</a>
-
-		<div ng-if="currentUser">Welcome, {{ currentUser.name }}</div>
 
 	</div>
 	<!-- /container -->

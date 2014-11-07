@@ -2,6 +2,7 @@ package bu.met.cs.cs673.pm.jaxrs.resource;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
+import bu.met.cs.cs673.pm.jaxrs.model.User;
 
 
 @Path("/user")
@@ -38,6 +40,19 @@ public class UserResource
 		
 		return project;
 	}
+	/**
+	 * Just a test to use something in the web page
+	 * @return
+	 */
+	@POST
+	public User login() {
+		User user = new User();
+		user.setId(1);
+		user.setRole("admin");
+		user.setName("Jão");
+		return user;
+	}
+	
 	
 	@PUT
 	public boolean addProject(
