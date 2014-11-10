@@ -1,65 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="promanage">
 
 <head>
-	<title> Home </title>
-	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-		
-	<!--  css source -->
-	<link href = "../css/bootstrap.min.css" rel = "stylesheet">
-	<link href = "../css/home.css" rel = "stylesheet">
-		
-	<!--  js source -->
-	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-	<script src = "../js/bootstrap.js"></script>
-	<script src = "../js/projectsController.js"></script>	
-	<script src = "../js/mainController.js"></script>			
-	<script src="../js/jquery-1.11.0.js"></script>
-	
-	<script>
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--  css source -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/home.css" rel="stylesheet">
+
+<!--  js source -->
+<script
+	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="../js/jquery-1.11.0.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+
+
+<script>
 	$(function() {
 		$("#header").load("header.html");
 	});
-	</script>
+</script>
 </head>
 
 <body>
+
 	<!-- header -->
-	<div id = "header"></div>	
+	<div id="header"></div>
 
-	<!-- body -->
-	<div class="tab-content">
-		<div class="tab-pane active" id="projects">
-			<div class="container">
 
-				<!--  button to create new project -->
-				<a href = "newproject.html" class = "navbar-button btn btn-large btn-primary pull-right" type="button">New Project</a>
-				<br></br>
+	<div ng-view></div>
 
-				<!--  box to show projects -->
-				<div class="content-container clearfix" ng-app="mainController" ng-controller="projectsController">
-					<div class="col-md-12">   
-					
-						<!--  title -->            
-						<h2 class="content-title">{{message}}</h2>
-    					
-    					<!--  list projects -->
- 						<ul class="list" id = "list">
-							<li ng-repeat="project in projects">
-                   				<a href="" data="{{project.idproject}}" ng-click = "getProject($event)">
-									<span class="title">{{project.name}}</span>
-									<span class="content">{{project.description}}</span>
-								</a>
-							<li>
-						</ul>
-						
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-	
+
+
 </body>
 
 </html>

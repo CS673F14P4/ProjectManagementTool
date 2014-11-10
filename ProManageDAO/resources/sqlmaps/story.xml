@@ -4,13 +4,12 @@
     
   <resultMap id="storyMap" type="bu.met.cs.cs673.pm.dto.Story">
   	<id property="id" column="idstory" />
-  	<result property="projectId" column = "idproject"/>
+  	<result property="projectid" column="idproject"/>
   	<result property="name" column="name"/>
+  	<result property="dueDate" column="due_date"/>
   	<result property="description" column="description"/>
-  	<result property="startDate" column="start_date"/>
-  	<result property="priority" column="priority"/>
-  	<result property="createDate" column="create_date"/>
   	<result property="createUser" column="create_user"/>
+  	<result property="createDate" column="create_date"/>
   	<result property="lastModifiedDate" column="last_modified_date"/>
   	<result property="lastModifiedUser" column="last_modified_user"/>
   </resultMap>
@@ -24,8 +23,9 @@
 		select * from Story order by idproject
 	</select>
 	
-	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">insert into Story (name, description, create_date, create_user, last_modified_date, last_modified_user) 
-	    values (#{name}, #{description}, now(), #{createUser}, now(), #{lastModifiedUser})</insert>
+	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">
+		insert into Story (idproject,name,due_date,description,create_user,create_date,last_modified_date,last_modified_user) 
+	    values (#{projectid},#{name},#{dueDate},#{description},#{createUser},now(), now(),#{lastModifiedUser})</insert>
 	
 	<delete id="deleteStory">
 	    delete from Story where idstory = #{id}

@@ -21,15 +21,19 @@ public class StoryDAOtest extends TestCase
     {
         story = new Story();
         
-        story.setTitle("storyTest");
+        story.setProjectid(1);
+        story.setName("StoryTest");
+        story.setDescription("HelloEverybody");
+        story.setDueDate(new java.util.Date());
         story.setCreateUser(1);
-        story.setPriority(1);
         story.setLastModifiedUser(1);
-        story.setLastModifiedDate(new java.util.Date());
-        story.setCreateDate(new java.util.Date());
+        
+        StoryDAO dao = new StoryDAO();
+		dao.createStory(story);
         
     }
 
+	/*
 	@Test
 	public void testCreateStory()
 	{
@@ -44,18 +48,29 @@ public class StoryDAOtest extends TestCase
 		boolean success = dao.deleteStory(storyId);
 		assertTrue(success);
 	}
+	*/
 	
-
+	
 	@Test
 	public void testGetStory()
 	{
+		Story getStory=new Story();
+		
 		StoryDAO dao = new StoryDAO();
-		Story story = dao.getStory(1);
 		
-		System.out.println("story: " + story.getName());
+		getStory=dao.getStory(4);
 		
-		assertNotNull(story);
+		System.out.println("Name:"+ getStory.getName());
+		System.out.println("Description:"+ getStory.getDescription());
+		System.out.println("projectId:"+ getStory.getProjectid());
+		
 	}
+	
+	public void testGetByProject()
+	{
+		
+	}
+	
 	
 	
 }
