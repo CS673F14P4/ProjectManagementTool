@@ -12,7 +12,7 @@ public class Story {
 	private int id;
 	private int projectid;
 	private String name;
-	private int priority;
+	private Date dueDate;
 	private String description;
 	private int createUser;
 	private Date createDate;
@@ -29,15 +29,11 @@ public class Story {
 	public String getName() {
 		return name;
 	}
-	public void setTitle(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	public int getPriority() {
-		return priority;
-	}
-	public void setPriority(int priority) {
-		this.priority = priority;
-	}
+
+	
 	public int getCreateUser() {
 		return createUser;
 	}
@@ -68,6 +64,18 @@ public class Story {
 	}
 	public void setLastModifiedUser(int lastModifiedUser) {
 		this.lastModifiedUser = lastModifiedUser;
+	}
+
+	
+
+	
+
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	public int getProjectid() {
