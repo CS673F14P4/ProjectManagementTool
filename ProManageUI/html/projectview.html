@@ -1,298 +1,94 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<!-- Bootstrap core CSS -->
-<link href="../css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom styles for this template -->
-<script src="../js/jquery-1.11.0.js"></script>
-
-<script>
-	$(function() {
-		$("#header").load("header.html");
-		$("#modalNewStory").load("modalNewStory.html");
-		$("#modalNewTask").load("modalNewTask.html");
-
-	});
-</script>
-
-<title>Project</title>
-
-</head>
-
-<body>
-
-	<div id="header"></div>
-
-	<!-- Modal  Story -->
-	<div class="modal fade" id="modalNewStory" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
 
-	<!-- Modal  Task -->
-	<div class="modal fade" id="modalNewTask" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel2" aria-hidden="true"></div>
 
-	<div class="container">
+<!-- Modal  Story -->
+<div class="modal fade modalNewStory" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
-		<div class="page-header">
-			<h1>
-				Project 1 <a href="#"><span
-					class="btn btn-default btn-lg pull-right" data-toggle="modal"
-					data-target="#modalNewStory">New Story</span> </a>
-			</h1>
+
+<!-- Modal  Task -->
+<div class="modal fade modalNewTask" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel2" aria-hidden="true"></div>
+
+<div class="container">
+
+
+	<div class="page-header">
+		<h1>
+			Project 1 <a href=""><span
+				class="btn btn-default btn-lg pull-right" data-toggle="modal"
+				data-target=".modalNewStory">New Story</span> </a>
+		</h1>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-md-4" ng-repeat="stat in project.status">
+			<fieldset>
+				<legend>{{stat.name}}</legend>
+
+				<div class="panel-group" id="{{stat.name}}accordion"
+					ng-repeat="userStory in stat.userStories">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#{{stat.name}}accordion"
+									href=".{{stat.name}}userStory{{$index}}">{{userStory.name}}
+									( 11/22/14 )</a> <a href=""><span
+									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
+									class="glyphicon  pull-right"></span></a>
+
+
+							</h4>
+						</div>
+						<div
+							class="{{stat.name}}userStory{{$index}} panel-collapse collapse">
+							<div class="panel-body">
+								<p>{{userStory.description}}</p>
+
+
+
+								<div class="panel-group" id="{{stat.name}}accordionTask"
+									ng-repeat="task in userStory.tasks">
+									<div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title">
+												<a data-toggle="collapse"
+													data-parent="#{{stat.name}}accordionTask"
+													href=".{{stat.name}}task{{$index}}">{{task.name}} -
+													User 1 - (11/22/14)</a>
+											</h4>
+										</div>
+										<div
+											class="{{stat.name}}task{{$index}} panel-collapse collapse">
+											<div class="panel-body">
+												<p>{{task.description}}</p>
+												<button ng-show="{{stat.name!='Done'}}" type="button"
+													class="btn btn-default btn-sm pull-right">Edit</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="pull-right">
+
+									<button ng-show="{{stat.name!='Done'}}" type="button"
+										class="btn btn-default ">Edit Story</button>
+									<button ng-show="{{stat.name=='Backlog'}}" type="button"
+										class="btn btn-default" data-toggle="modal"
+										data-target=".modalNewTask">New Task</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</fieldset>
+
 		</div>
-
-
-
-		<div class="row">
-			<div class="col-md-4">
-				<fieldset>
-					<legend>Backlog</legend>
-
-					<div class="panel-group" id="accordion">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseOne">User Story 1 ( 11/22/14 )</a> <a href="#"><span
-										class="glyphicon glyphicon-play pull-right"></span></a>
-
-
-								</h4>
-							</div>
-							<div id="collapseOne" class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>HTML stands for HyperText Markup Language. HTML is the
-										main markup language for describing the structure of Web
-										pages.</p>
-
-
-
-									<div class="panel-group" id="accordionTask">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="panel-title">
-													<a data-toggle="collapse" data-parent="#accordionTask"
-														href="#taskOne">Task 1 - User 1 - (11/22/14)</a>
-												</h4>
-											</div>
-											<div id="taskOne" class="panel-collapse collapse">
-												<div class="panel-body">
-													<p>HTML stands for HyperText Markup Language. HTML is
-														the main markup language for describing the structure of
-														Web pages.</p>
-													<button type="button"
-														class="btn btn-default btn-sm pull-right">Edit</button>
-
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="pull-right">
-
-										<button type="button" class="btn btn-default ">Edit
-											Story</button>
-										<button type="button" class="btn btn-default"
-											data-toggle="modal" data-target="#modalNewTask">New
-											Task</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordion"
-											href="#collapseTwo">User Story 2 ( 12/22/14 )</a> <a href="#"><span
-											class="glyphicon glyphicon-play pull-right"></span></a>
-									</h4>
-
-								</div>
-								<div id="collapseTwo" class="panel-collapse collapse">
-									<div class="panel-body">
-										<p>HTML stands for HyperText Markup Language. HTML is the
-											main markup language for describing the structure of Web
-											pages.</p>
-										<div class="pull-right">
-
-											<button type="button" class="btn btn-default ">Edit
-												Story</button>
-											<button type="button" class="btn btn-default">New
-												Task</button>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-
-				</fieldset>
-
-			</div>
-			<div class="col-md-4">
-				<fieldset>
-					<legend>Current</legend>
-
-					<div class="panel-group" id="accordionCurrent">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordionCurrent"
-										href="#collapseCurrentOne">User Story 1 ( 11/22/14 )</a> <a
-										href="#"><span class="glyphicon glyphicon-ok pull-right"></span></a>
-
-
-								</h4>
-							</div>
-							<div id="collapseCurrentOne" class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>HTML stands for HyperText Markup Language. HTML is the
-										main markup language for describing the structure of Web
-										pages.</p>
-
-									<div class="panel-group" id="accordionCurrentTask">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="panel-title">
-													<a data-toggle="collapse"
-														data-parent="#accordionCurrentTask" href="#taskCurrentOne">Task
-														1 - User 1 - (11/22/14)</a> <a href="#"><span
-														class="glyphicon glyphicon-ok pull-right"></span></a>
-												</h4>
-											</div>
-											<div id="taskCurrentOne" class="panel-collapse collapse">
-												<div class="panel-body">
-													<p>HTML stands for HyperText Markup Language. HTML is
-														the main markup language for describing the structure of
-														Web pages.</p>
-													<button type="button"
-														class="btn btn-default btn-sm pull-right">Edit</button>
-
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="pull-right">
-
-										<button type="button" class="btn btn-default ">Edit
-											Story</button>
-										<button type="button" class="btn btn-default"
-											data-toggle="modal" data-target="#modalNewTask">New
-											Task</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordionCurrent"
-											href="#collapseCurrentTwo">User Story 2 ( 12/22/14 )</a> <a
-											href="#"><span class="glyphicon glyphicon-ok pull-right"></span></a>
-									</h4>
-
-								</div>
-								<div id="collapseCurrentTwo" class="panel-collapse collapse">
-									<div class="panel-body">
-										<p>HTML stands for HyperText Markup Language. HTML is the
-											main markup language for describing the structure of Web
-											pages.</p>
-										<div class="pull-right">
-											<button type="button" class="btn btn-default ">Edit
-												Story</button>
-											<button type="button" class="btn btn-default">New
-												Task</button>
-										</div>
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-
-				</fieldset>
-
-			</div>
-			<div class="col-md-4">
-				<fieldset>
-					<legend>Done</legend>
-
-					<div class="panel-group" id="accordionDone">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordionDone"
-										href="#collapseDoneOne">User Story 1 ( 11/22/14 )</a>
-
-								</h4>
-							</div>
-							<div id="collapseDoneOne" class="panel-collapse collapse">
-								<div class="panel-body">
-									<p>HTML stands for HyperText Markup Language. HTML is the
-										main markup language for describing the structure of Web
-										pages.</p>
-
-									<div class="panel-group" id="accordionDoneTask">
-										<div class="panel panel-default">
-											<div class="panel-heading">
-												<h4 class="panel-title">
-													<a data-toggle="collapse" data-parent="#accordionDoneTask"
-														href="#taskDoneOne">Task 1 - User 1 - (11/22/14)</a>
-												</h4>
-											</div>
-											<div id="taskDoneOne" class="panel-collapse collapse">
-												<div class="panel-body">
-													<p>HTML stands for HyperText Markup Language. HTML is
-														the main markup language for describing the structure of
-														Web pages.</p>
-
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordionDone"
-											href="#collapseDoneTwo">User Story 2 ( 12/22/14 )</a>
-									</h4>
-
-								</div>
-								<div id="collapseDoneTwo" class="panel-collapse collapse">
-									<div class="panel-body">
-										<p>HTML stands for HyperText Markup Language. HTML is the
-											main markup language for describing the structure of Web
-											pages.</p>
-									</div>
-
-								</div>
-
-							</div>
-
-						</div>
-					</div>
-
-				</fieldset>
-			</div>
-		</div>
-
 
 	</div>
 
-</body>
-</html>
+</div>
