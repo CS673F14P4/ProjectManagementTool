@@ -32,13 +32,13 @@
 		};
 	})
 
-	app.controller("ProjectViewCtrl", function($scope) {
+	app.controller("ProjectViewCtrl", function($scope,$routeParams) {
 		$(".modalNewStory").load("modalNewStory.html");
 		$(".modalNewTask").load("modalNewTask.html");
 		$scope.test = "Oi gente";
 		$scope.project = {
 			"description" : "Bla bla bla about projetc A",
-			"name" : "Project A",
+			"name" : "Project "+$routeParams.projectId,
 			"idproject" : "1",
 			"status" : [ {
 				"name" : "Backlog",
