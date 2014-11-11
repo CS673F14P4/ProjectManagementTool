@@ -9,7 +9,7 @@
         <result property="password" column="password"/> 
         <result property="firstname" column="firstname"/> 
         <result property="lastname" column="lastname"/> 
-        <result property="create_date" column="create_date"/>
+        <result property="createDate" column="createDate"/>
     </resultMap>
  
     <select id="selectAll" resultMap="result">

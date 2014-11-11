@@ -2,6 +2,10 @@ package bu.met.cs.cs673.pm.dto;
 
 import java.util.Date;
 
+/*
+ * Olufemi Odegbile
+ */
+
 public class User {
 
 	private int userid;

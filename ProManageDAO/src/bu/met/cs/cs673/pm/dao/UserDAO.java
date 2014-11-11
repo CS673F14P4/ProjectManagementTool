@@ -7,6 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import bu.met.cs.cs673.pm.dto.User;
 
+/*
+ * Olufemi Odegbile
+ */
+
 public class UserDAO 
 {
 	
