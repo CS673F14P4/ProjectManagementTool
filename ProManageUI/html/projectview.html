@@ -46,9 +46,6 @@
 							class="{{stat.name}}userStory{{$index}} panel-collapse collapse">
 							<div class="panel-body">
 								<p>{{userStory.description}}</p>
-
-
-
 								<div class="panel-group" id="{{stat.name}}accordionTask"
 									ng-repeat="task in userStory.tasks">
 									<div class="panel panel-default">
@@ -56,12 +53,13 @@
 											<h4 class="panel-title">
 												<a data-toggle="collapse"
 													data-parent="#{{stat.name}}accordionTask"
-													href=".{{stat.name}}task{{$index}}">{{task.name}} -
-													User 1 - (11/22/14)</a>
+													href=".{{stat.name}}{{$parent.$index}}{{$index}}task">{{task.name}}
+													- User 1 - (11/22/14)</a>
 											</h4>
 										</div>
+
 										<div
-											class="{{stat.name}}task{{$index}} panel-collapse collapse">
+											class="{{stat.name}}{{$parent.$index}}{{$index}}task panel-collapse collapse">
 											<div class="panel-body">
 												<p>{{task.description}}</p>
 												<button ng-show="{{stat.name!='Done'}}" type="button"
