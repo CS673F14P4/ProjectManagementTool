@@ -13,6 +13,7 @@ public class StoryMapper {
 		Story story= new Story();
 		
 		story.setDueDate(storyDTO.getDueDate());
+		story.setProjectid(storyDTO.getProjectid());
 		story.setDescription(storyDTO.getDescription());
 		story.setName(storyDTO.getName());
 		
@@ -25,6 +26,7 @@ public class StoryMapper {
 		bu.met.cs.cs673.pm.dto.Story story = new bu.met.cs.cs673.pm.dto.Story();
 		
 		story.setDueDate(storyWS.getDueDate());
+		story.setProjectid(storyWS.getProjectid());
 		story.setDescription(storyWS.getDescription());
 		story.setName(storyWS.getName());
 		

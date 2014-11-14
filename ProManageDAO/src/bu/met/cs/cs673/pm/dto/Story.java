@@ -85,5 +85,10 @@ public class Story {
 	public void setProjectid(int projectid) {
 		this.projectid = projectid;
 	}
+	
+	public String toString()
+	{
+		return ("Name: "+ this.getName()+ " Description: "+this.getDescription()+ " ProjectId: " +this.getProjectid());
+	}
 
 }

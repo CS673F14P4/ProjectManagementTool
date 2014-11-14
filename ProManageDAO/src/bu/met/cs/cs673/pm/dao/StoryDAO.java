@@ -50,7 +50,7 @@ public class StoryDAO {
 	
 	
 }
-	
+	//retrieves story at certain value
 	public Story getStory(int id)
 	{
 		Story selected=null;
@@ -71,6 +71,7 @@ public class StoryDAO {
 		return selected;
 	}
 	
+	//should remove specific story
 	public boolean deleteStory(int id)
 	{
 		int deleted=-1;
@@ -96,7 +97,8 @@ public class StoryDAO {
 		return delete;
 	}
 
-	public List<Story> storyByProject() {
+	//Should return list of stories by project id#
+	public List<Story> storyByProject(int idproject) {
 		List<Story> storyList=null; 
 		
 		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
@@ -104,7 +106,7 @@ public class StoryDAO {
 		
 		try
 		{
-			storyList= session.selectList("storyByProject");
+			storyList= session.selectList("storyByProject", idproject);
 		}
 		finally
 		{
@@ -112,4 +114,6 @@ public class StoryDAO {
 		}
 		return storyList;
 	}
+
+	
 }

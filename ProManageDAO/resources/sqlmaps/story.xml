@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="storyByProject" resultMap="storyMap">
-		select * from Story order by idproject
+		select * from Story where idproject=#{idproject}
 	</select>
 	
 	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">

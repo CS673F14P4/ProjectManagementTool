@@ -1,8 +1,16 @@
 package bu.met.cs.cs673.pm.dao.unit;
 
+
+
+
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
+
+
+
 
 
 import bu.met.cs.cs673.pm.dao.StoryDAO;
@@ -50,7 +58,7 @@ public class StoryDAOtest extends TestCase
 	}
 	*/
 	
-	
+	/*
 	@Test
 	public void testGetStory()
 	{
@@ -58,7 +66,7 @@ public class StoryDAOtest extends TestCase
 		
 		StoryDAO dao = new StoryDAO();
 		
-		getStory=dao.getStory(4);
+		getStory=dao.getStory(1);
 		
 		System.out.println("Name:"+ getStory.getName());
 		System.out.println("Description:"+ getStory.getDescription());
@@ -66,11 +74,27 @@ public class StoryDAOtest extends TestCase
 		
 	}
 	
+	*/
+	@Test
 	public void testGetByProject()
 	{
+		StoryDAO dao = new StoryDAO();
+		List <Story> stories=null;
 		
+		stories=dao.storyByProject(1);
+		
+	
+		
+		for(int x=0; x< stories.size();x++)
+		System.out.println(stories.get(x).toString());
+												
 	}
 	
-	
+	@Test
+	public void testDelete()
+	{
+		StoryDAO dao = new StoryDAO();
+		assertTrue(dao.deleteStory(1));
+	}
 	
 }
