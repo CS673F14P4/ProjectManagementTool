@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package bu.met.cs.cs673.pm.jaxrs.model;
 
 import java.util.Date;
@@ -113,5 +113,5 @@ public class Story
 
 		
 }
->>>>>>> origin/dan_develop
+
 	

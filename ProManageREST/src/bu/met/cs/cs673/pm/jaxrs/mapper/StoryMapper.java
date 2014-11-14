@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package bu.met.cs.cs673.pm.jaxrs.mapper;
 
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
@@ -68,4 +68,4 @@ public class StoryMapper {
 		return story;
 	}
 }
->>>>>>> origin/dan_develop
+

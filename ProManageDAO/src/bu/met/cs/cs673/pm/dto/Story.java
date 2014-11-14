@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package bu.met.cs.cs673.pm.dto;
 
 import java.util.Date;
@@ -183,4 +183,4 @@ public class Story {
 	}
 
 }
->>>>>>> origin/dan_develop
+

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package bu.met.cs.cs673.pm.dao;
 
 import java.util.List;
@@ -234,4 +234,4 @@ public class StoryDAO {
 
 	
 }
->>>>>>> origin/dan_develop
+
