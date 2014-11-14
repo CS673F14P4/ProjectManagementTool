@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
   `idstory` int(11) NOT NULL AUTO_INCREMENT,
-  `idproject` int(11) DEFAULT NULL,
+  `idproject` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `due_date` DATE DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
@@ -97,7 +97,16 @@ CREATE TABLE `story` (
   `last_modified_date` timestamp NULL DEFAULT NULL,
   `last_modified_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`idstory`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  INDEX `id_project_idx` (`idproject` ASC),
+  CONSTRAINT `id_project`
+    FOREIGN KEY (`idproject`)
+    REFERENCES `project` (`idproject`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +127,10 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task` (
   `idtask` int(11) NOT NULL,
-  PRIMARY KEY (`idtask`)
+  `idstory` int(11) NOT NULL,
+  PRIMARY KEY (`idtask`),
+  KEY `fk_story` (`idstory`),
+  CONSTRAINT `fk_story` FOREIGN KEY (`idstory`) REFERENCES `story` (`idstory`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

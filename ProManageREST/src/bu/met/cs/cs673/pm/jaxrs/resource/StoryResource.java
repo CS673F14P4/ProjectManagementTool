@@ -9,42 +9,43 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import bu.met.cs.cs673.pm.dao.ProjectDAO;
-import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
-import bu.met.cs.cs673.pm.jaxrs.model.Project;
+
+import bu.met.cs.cs673.pm.dao.StoryDAO;
+import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
+import bu.met.cs.cs673.pm.jaxrs.model.Story;
 
 
 @Path("/story")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+
 public class StoryResource 
 {
 	
 	@GET
 	@Path("{id}")
-	public Project getProject(@PathParam("id") String id)
+	public Story getStory(@PathParam("id") String id)
 	{
-		System.out.println(">>> getProject");
+		System.out.println(">>> getStory");
 		
-		Project project = null;
+		Story story = null;
 		
-		ProjectDAO dao = new ProjectDAO();
-		bu.met.cs.cs673.pm.dto.Project projectDTO = dao.getProject(Integer.parseInt(id));
+		StoryDAO dao = new StoryDAO();
+		bu.met.cs.cs673.pm.dto.Story StoryDTO = dao.getStory(Integer.parseInt(id));
 		
 		
-		project = ProjectMapper.mapProject(projectDTO); 
+		story = StoryMapper.mapStory(StoryDTO); 
 		
-		System.out.println("<<< getProject");
+		System.out.println("<<< getGet");
 		
-		return project;
+		return story;
 	}
 	
 	@PUT
-	public boolean addProject(
+	public boolean addStory(
 			@QueryParam("name") String name, 
 			@QueryParam("description") String description, 
-			@QueryParam("startdate") String startDate, 
-			@QueryParam("enddate") String endDate)
+			@QueryParam("dueDate") String dueDate)
 	{
 		boolean success = false;
 		
