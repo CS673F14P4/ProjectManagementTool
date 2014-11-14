@@ -27,21 +27,30 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular-cookies.js"></script>
 
 </head>
 
 <body ng-app="promanage" ng-controller="ApplicationController">
 
-	<div class="container">
 
-		<form class="form-signin" name="loginForm"
-			ng-controller="LoginController" class="ng-dirty ng-invalid"
+
+	<div class="container" ng-controller="LoginController">
+
+		<div class="alert alert-danger" role="alert" ng-show="errorlogin">
+			<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			<span class="sr-only">Error:</span> Username and password do not
+			match.
+		</div>
+
+		<form class="form-signin" name="loginForm" class="ng-dirty ng-invalid"
 			ng-submit="loginForm.$valid && login(credentials)" novalidate>
 
 
 			<h2 class="form-signin-heading">Sign in</h2>
 
-			<input type="email" class="form-control" placeholder="Email address"
+			<input type="text" class="form-control" placeholder="User name"
 				autofocus ng-model="credentials.username" required>
 			<!-- 				 -->
 			<input type="password" class="form-control" placeholder="Password"
