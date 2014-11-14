@@ -18,15 +18,15 @@ import bu.met.cs.cs673.pm.jaxrs.model.User;
  * Olufemi Odegbile
  */
 
-@Path("/user")
+@Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource {
 
 	@GET
-	// @Path("{id}")
 	@Path("{username}")
-	public User getUser(@PathParam("username") String username) {
+	public User getUser(@PathParam("username") String username)
+	{
 		System.out.println(">>> getUser");
 
 		User user = null;
