@@ -1,109 +1,70 @@
-<!DOCTYPE html>
-<html>
+
+<!-- form to create a new project -->
+<div class="container">
+
+	<h2>Create a Project</h2>
+	<form role="form">
+		<table class="newproject">
+		<tr>
+			<td>
+				<!--  name field -->
+				<div class="form-group">
+ 					<label>Name:</label>
+					<input type="text" ng-model="user.name" class="form-control">
+				</div>
+			</td>
+			<td>
+				<p>{{nameMsg}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<!--  description field -->
+				<div class="form-group">
+					<label>Description:</label>
+					<textarea type="text" ng-model="user.description" class="form-control"></textarea>
+				</div>
+			</td>
+			<td>
+				<p>{{descriptionMsg}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<!--  start date field -->
+				<div class="form-group">
+					<label>Start Date:</label>
+					<input type="text" placeholder="mm/dd/yyyy" ng-model="user.startdate" class="form-control">
+				</div>
+			</td>
+			<td>
+				<p>{{startDateMsg}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td> 
+				<!-- end date field -->
+				<div class="form-group">
+					<label>End Date:</label>
+					<input type="text" placeholder="mm/dd/yyyy" ng-model="user.enddate" class="form-control">
+				</div>
+			</td>
+			<td>
+				<p>{{endDateMsg}}</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<!--  submit button -->
+				<button type="submit" ng-click="submit()" class="btn btn-default">Submit</button>
 	
-<head>
-	<title> New Project </title>
-	<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-	
-	<!-- css source --> 
-	<link href = "../css/bootstrap.min.css" rel = "stylesheet">
-	<link href = "../css/home.css" rel = "stylesheet">
+				<!--  reset button -->
+				<button type="button" ng-click="reset()" class="btn btn-default">Reset</button>
 
-	<!--  js source -->
-	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
-	<script src = "../js/bootstrap.js"></script>
-	<script src = "../js/formController.js"></script>
-	<script src = "../js/dateValidation.js"></script>	
-	<script src="../js/jquery-1.11.0.js"></script>
-	
-	<script>
-	$(function() {
-		$("#header").load("header.html");
-	});
-	</script>
-	
-	<style type="text/css">
-		table {width:100%; border:0;}
-		table td {width:50%;}
-		table p {color:red; margin:5%;}
-	</style>
-</head>
-
-<body>
-	
-	<div id="header"></div>
-
-	<!-- form to create a new project -->
-	<div class="container">
-		<div ng-app="" ng-controller="formController">
-
-			<h2>Create a Project</h2>
-			<form role="form">
-				<table>
-				<tr>
-					<td>
-						<!--  name field -->
-						<div class="form-group">
- 							<label>Name:</label>
-							<input type="text" ng-model="user.name" class="form-control">
-						</div>
-					</td>
-					<td>
-						<p>{{nameMsg}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!--  description field -->
-						<div class="form-group">
-							<label>Description:</label>
-							<textarea type="text" ng-model="user.description" class="form-control"></textarea>
-						</div>
-					</td>
-					<td>
-						<p>{{descriptionMsg}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!--  start date field -->
-						<div class="form-group">
-						<label>Start Date:</label>
-						<input type="text" placeholder="mm/dd/yyyy" ng-model="user.startdate" class="form-control">
-						</div>
-					</td>
-					<td>
-						<p>{{startDateMsg}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td> 
-						<!-- end date field -->
-						<div class="form-group">
-							<label>End Date:</label>
-							<input type="text" placeholder="mm/dd/yyyy" ng-model="user.enddate" class="form-control">
-						</div>
-					</td>
-					<td>
-						<p>{{endDateMsg}}</p>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<!--  submit button -->
-						<button type="submit" ng-click="submit()" class="btn btn-default">Submit</button>
-
-						<!--  reset button -->
-						<button type="button" ng-click="reset()" class="btn btn-default">Reset</button>
-
-						<!--  cancel button -->
-						<a href = "home.html" class = "btn btn-default" type="button">Cancel</a>
-					</td>
-				</tr>
-			</form>	
-		</div>
-	</div>
-		
-</body>
-
-</html>
+				<!--  cancel button -->
+				<a href = "home.html" class = "btn btn-default" type="button">Cancel</a>
+			</td>
+		</tr>
+		</table>
+	</form>	
+</div>

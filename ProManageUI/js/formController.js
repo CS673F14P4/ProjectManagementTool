@@ -2,7 +2,10 @@
  * author: Mariana Arantes 
  */
 
-function formController ($scope, $window) {
+
+angular.module('promanage').controller("FormController",
+		function($scope, $window) {
+//function formController ($scope, $window) {
 	
 	$scope.user = {};
 	
@@ -67,7 +70,7 @@ function formController ($scope, $window) {
     		
     		// just to present iteration 2, temporary
     		window.alert("Project created.");
-	        $window.location.href = '../html/projectview.html';
+	        $window.location.href = '';
     	}
     	
     	return 0;
@@ -84,4 +87,4 @@ function formController ($scope, $window) {
     	
     });
     
-}
+})

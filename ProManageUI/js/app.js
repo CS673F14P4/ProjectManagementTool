@@ -15,7 +15,7 @@
 		}).when('/newproject', {
 			templateUrl : 'newproject.html',
 			// change this
-			controller : 'ApplicationController'
+			controller : 'FormController'
 		}).otherwise({
 			templateUrl : 'projectList.html',
 			controller : 'ProjectsController'
