@@ -1,11 +1,12 @@
 /**
  * 
  */
-angular.module('promanage').controller("ProjectViewCtrl", function($scope, $routeParams) {
+angular.module('promanage').controller("ProjectViewCtrl", function($scope, $routeParams, $http) {
 	
 	$(".modalNewStory").load("modalNewStory.html");
 	$(".modalNewTask").load("modalNewTask.html");
 	
+	$scope.projectId = $routeParams.projectId;
 
 	$scope.acord = function(storyId) {
 		// Get the tasks by StoryId
@@ -64,18 +65,7 @@ angular.module('promanage').controller("ProjectViewCtrl", function($scope, $rout
 
 		}, {
 			"name" : "Current",
-			"userStories" : [ {
-				id : 3,
-				"name" : "Story X",
-				"description" : "Desc 1",
-				"tasks" : [ {
-					"name" : "task1",
-					"description" : "description task1",
-				}, {
-					"name" : "task1",
-					"description" : "description task1",
-				} ]
-			} ]
+			"userStories" : {}
 		}, {
 			"name" : "Done",
 			"userStories" : [ {
@@ -90,5 +80,16 @@ angular.module('promanage').controller("ProjectViewCtrl", function($scope, $rout
 		} ]
 
 	};
+
+	 $http({
+				method : 'Get',
+				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$scope.projectId+'/stories'
+			}).success(function(data) {
+				//test
+				console.log(data);
+				$scope.project.status[1].userStories = data.wrapper.stories;
+			}).error(function(data, status, headers, config) {
+				console.log('error');
+			});
 
 })

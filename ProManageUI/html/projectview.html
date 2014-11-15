@@ -33,9 +33,11 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#{{stat.name}}accordion"
-									href=".{{stat.name}}userStory{{$index}}">{{userStory.name}}
-									( 11/22/14 )</a> <a href=""><span
+								<a id="title{{userStory.id}}" data-toggle="collapse"
+									data-parent="#{{stat.name}}accordion"
+									href=".{{stat.name}}userStory{{$index}}"
+									ng-click="acord(userStory.id)" class="collapsed">{{userStory.name}}
+									( 11/22/14 )</a> <a href=""> <span
 									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
 									class="glyphicon  pull-right"></span></a>
 
@@ -46,6 +48,8 @@
 							class="{{stat.name}}userStory{{$index}} panel-collapse collapse">
 							<div class="panel-body">
 								<p>{{userStory.description}}</p>
+								<img id="spinner{{userStory.id}}" ng-src="../images/loader.gif"
+									style="display: none;" height="100" width="100">
 								<div class="panel-group" id="{{stat.name}}accordionTask"
 									ng-repeat="task in userStory.tasks">
 									<div class="panel panel-default">
