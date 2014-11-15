@@ -40,9 +40,11 @@ angular.module('promanage').controller("ProjectViewCtrl", function($scope, $rout
 	}
 
 	$scope.project = {
-		"description" : "Bla bla bla about projetc A",
-		"name" : "Project " + $routeParams.projectId,
+		"description" : "",
+		"name" : "",
 		"idproject" : "1",
+		"startDate" : "",
+		"endDate" : "",
 		"status" : [ {
 			"name" : "Backlog",
 			"userStories" : [ {
@@ -81,6 +83,23 @@ angular.module('promanage').controller("ProjectViewCtrl", function($scope, $rout
 
 	};
 
+	//get project 
+	 $http({
+				method : 'Get',
+				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$scope.projectId
+			}).success(function(data) {
+				//test
+				console.log(data);
+				$scope.project.name = data.project.name;
+				$scope.project.description = data.project.description;
+				$scope.project.startDate = data.project.startDate;
+				$scope.project.endDate = data.project.endDate;
+
+			}).error(function(data, status, headers, config) {
+				console.log('error');
+			});
+
+	//get stories
 	 $http({
 				method : 'Get',
 				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$scope.projectId+'/stories'
