@@ -18,6 +18,10 @@
 			templateUrl : 'newproject.html',
 			// change this
 			controller : 'FormController'
+		}).when('/members/:projectId', {
+			templateUrl : 'members.html',
+			// change this
+			controller : 'MembersController'
 		}).otherwise({
 			templateUrl : 'projectList.html',
 			controller : 'ProjectsController'

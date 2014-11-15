@@ -42,7 +42,7 @@ angular.module('promanage').controller("ProjectViewCtrl", function($scope, $rout
 	$scope.project = {
 		"description" : "",
 		"name" : "",
-		"idproject" : "1",
+		"idproject" : $routeParams.projectId,
 		"startDate" : "",
 		"endDate" : "",
 		"status" : [ {
