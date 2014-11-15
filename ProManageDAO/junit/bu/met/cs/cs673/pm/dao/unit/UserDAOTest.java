@@ -1,5 +1,7 @@
 package bu.met.cs.cs673.pm.dao.unit;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -22,5 +24,15 @@ public class UserDAOTest extends TestCase {
 		
 		System.out.println("user: " + user.getUsername() + "  " + user.getUserId());
 		assertNotNull(user);
+	}
+	
+	@Test
+	public void testGetUserByProject(){
+		UserDAO dao = new UserDAO();
+		List<User> userByProject = dao.getUserByProject(1);
+		for (User user : userByProject) {
+			System.out.println(user.getUserId());
+		}
+		assertNotNull(userByProject);
 	}
 }

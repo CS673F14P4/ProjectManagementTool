@@ -14,10 +14,14 @@ import javax.ws.rs.core.MediaType;
 
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.dao.StoryDAO;
+import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
 import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
+import bu.met.cs.cs673.pm.jaxrs.mapper.UserMapper;
+import bu.met.cs.cs673.pm.jaxrs.mapper.UserWrapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
+import bu.met.cs.cs673.pm.jaxrs.model.User;
 import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
 
 @Path("/project")
@@ -69,6 +73,29 @@ public class ProjectResource {
 		storyWrapper.setStories(stories);
 
 		return storyWrapper;
+
+	}
+
+	@GET
+	@Path("{projectid}/members")
+	public UserWrapper getMembersProject(@PathParam("projectid") int projectid) {
+
+		List<User> users = new ArrayList<User>();
+
+		UserDAO userDAO = new UserDAO();
+		List<bu.met.cs.cs673.pm.dto.User> usersByProject = userDAO
+				.getUserByProject(projectid);
+		System.out.println(usersByProject.size());
+		for (bu.met.cs.cs673.pm.dto.User userDTO : usersByProject) {
+			User user = UserMapper.mapUser(userDTO);
+			users.add(user);
+		}
+
+		UserWrapper userWrapper = new UserWrapper();
+
+		userWrapper.setUsers(users);
+
+		return userWrapper;
 
 	}
 

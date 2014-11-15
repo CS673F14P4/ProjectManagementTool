@@ -8,7 +8,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 
 import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.UserMapper;
@@ -25,8 +27,7 @@ public class UserResource {
 
 	@GET
 	@Path("{username}")
-	public User getUser(@PathParam("username") String username)
-	{
+	public User getUser(@PathParam("username") String username) {
 		System.out.println(">>> getUser");
 
 		User user = null;
@@ -49,7 +50,8 @@ public class UserResource {
 	 * @return
 	 */
 	@POST
-	public User login() {
+	public User login(@Context SecurityContext sc) {
+		sc.getUserPrincipal().getName();
 		User user = new User();
 		user.setUserId(1);
 		user.setUsername("John");

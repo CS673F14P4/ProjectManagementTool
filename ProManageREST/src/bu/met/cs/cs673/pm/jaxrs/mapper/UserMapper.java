@@ -17,7 +17,8 @@ public class UserMapper {
 		user.setFirstname(userDTO.getFirstname());
 		user.setLastname(userDTO.getLastname());
 		user.setEmail(userDTO.getEmail());
-		user.setPassword(userDTO.getPassword());
+		// should not show the password for the service
+		//	user.setPassword(userDTO.getPassword());
 		user.setCreateDate(userDTO.getCreateDate());
 		
 		return user;
