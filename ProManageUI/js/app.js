@@ -9,7 +9,7 @@
 		// controller : 'ApplicationController'
 		// })
 		.when('/project/:projectId', {
-			templateUrl : 'projectView.html',
+			templateUrl : 'projectview.html',
 			controller : 'ProjectViewCtrl'
 		}).when('/signin', {
 			templateUrl : 'signin.html',
