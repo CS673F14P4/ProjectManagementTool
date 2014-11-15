@@ -18,7 +18,9 @@
  */
 
 angular.module('promanage').controller("ProjectsController",
-		function($scope, $window) {
+		function($scope, $window, $rootScope) {
+
+			$rootScope.pageTitle = "Project List";
 
 			$scope.projects = [ {
 				"description" : "Bla bla bla about projetc A",

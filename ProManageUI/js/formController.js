@@ -4,8 +4,10 @@
 
 
 angular.module('promanage').controller("FormController",
-		function($scope, $window) {
-//function formController ($scope, $window) {
+		function($scope, $window, $rootScope) {
+
+	$rootScope.pageTitle = "New Project";
+
 	
 	$scope.user = {};
 	

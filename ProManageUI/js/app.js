@@ -2,6 +2,7 @@
 
 	var app = angular.module('promanage', [ 'ngRoute','ngCookies' ]);
 
+	
 	app.config(function($routeProvider) {
 		$routeProvider
 		// .when('/project', {
@@ -16,7 +17,6 @@
 			controller : 'ApplicationController'
 		}).when('/newproject', {
 			templateUrl : 'newproject.html',
-			// change this
 			controller : 'FormController'
 		}).when('/members/:projectId', {
 			templateUrl : 'members.html',
@@ -27,6 +27,8 @@
 			controller : 'ProjectsController'
 		})
 	})
+	
+	
 
 	app.controller('ApplicationController', function($scope, USER_ROLES,
 			AuthService) {

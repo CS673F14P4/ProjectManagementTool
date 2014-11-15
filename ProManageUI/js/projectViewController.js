@@ -1,7 +1,11 @@
 /**
  * 
  */
-angular.module('promanage').controller("ProjectViewCtrl", function($scope, $routeParams, $http) {
+angular.module('promanage').controller("ProjectViewCtrl", function($scope, $routeParams, $http,$rootScope) {
+	
+	$rootScope.pageTitle = "Project Detail";
+	console.log($rootScope.pageTitle);
+	
 	
 	$(".modalNewStory").load("modalNewStory.html");
 	$(".modalNewTask").load("modalNewTask.html");
