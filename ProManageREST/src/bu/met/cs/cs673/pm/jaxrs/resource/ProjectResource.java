@@ -1,5 +1,8 @@
 package bu.met.cs.cs673.pm.jaxrs.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -10,8 +13,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
+import bu.met.cs.cs673.pm.dao.StoryDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
+import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
+import bu.met.cs.cs673.pm.jaxrs.model.Story;
+import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
 
 @Path("/project")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -40,6 +47,29 @@ public class ProjectResource {
 		System.out.println("<<< getProject");
 
 		return project;
+	}
+
+	@GET
+	@Path("{projectid}/stories")
+	public StoryWrapper getStoriesByProject(
+			@PathParam("projectid") int projectid) {
+
+		List<Story> stories = new ArrayList<Story>();
+
+		StoryDAO storyDAO = new StoryDAO();
+		List<bu.met.cs.cs673.pm.dto.Story> storiesByProject = storyDAO
+				.storyByProject(projectid);
+		System.out.println(storiesByProject.size());
+		for (bu.met.cs.cs673.pm.dto.Story storyDTO : storiesByProject) {
+			Story story = StoryMapper.mapStory(storyDTO);
+			stories.add(story);
+		}
+
+		StoryWrapper storyWrapper = new StoryWrapper();
+		storyWrapper.setStories(stories);
+
+		return storyWrapper;
+
 	}
 
 	@PUT
