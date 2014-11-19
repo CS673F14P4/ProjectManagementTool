@@ -115,6 +115,23 @@ public class StoryDAO {
 		}
 		return storyList;
 	}
+	public int updateStory(int idstory, Story story) {
+		// TODO Auto-generated method stub
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		int update;
+		
+		try
+		{
+			update=session.update("updateStory", story);
+		}
+		finally
+		{
+			session.close();
+		}
+		
+		return update;
+	}
 
 	
 }

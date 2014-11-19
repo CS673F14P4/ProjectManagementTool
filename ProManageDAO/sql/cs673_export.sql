@@ -91,19 +91,18 @@ CREATE TABLE `story` (
   `idstory` int(11) NOT NULL AUTO_INCREMENT,
   `idproject` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `due_date` DATE DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
+  `due_date` date DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `last_modified_date` timestamp NULL DEFAULT NULL,
   `last_modified_user` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idstory`)
-  INDEX `id_project_idx` (`idproject` ASC),
-  CONSTRAINT `id_project`
-    FOREIGN KEY (`idproject`)
-    REFERENCES `project` (`idproject`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`idstory`),
+  KEY `idproject_idx` (`idproject`),
+  CONSTRAINT `idproject` FOREIGN KEY (`idproject`) REFERENCES `project` (`idproject`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1;
 

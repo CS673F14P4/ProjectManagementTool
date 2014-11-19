@@ -5,7 +5,7 @@ import java.util.Date;
 
 /*
  * Daniel Abramowitz
- * Last Edited 10/15/2014
+ * Last Edited 11/19/2014
  */
 
 public class Story {
@@ -13,6 +13,7 @@ public class Story {
 	private int id;
 	private int projectid;
 	private String name;
+	private int status;
 	private Date dueDate;
 	private String description;
 	private int createUser;
@@ -85,7 +86,15 @@ public class Story {
 	
 	public String toString()
 	{
-		return ("Name: "+ this.getName()+ " Description: "+this.getDescription()+ " ProjectId: " +this.getProjectid());
+		return ("Name: "+ this.getName()+" Status: " +this.getStatus() +" Description: "+this.getDescription()+ " ProjectId: " +this.getProjectid());
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

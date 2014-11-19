@@ -12,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Story {
 	private String name;
 	private int projectid;
+	private int status;
 	private Date dueDate;
 	private String description;
 
@@ -45,6 +46,14 @@ public class Story {
 
 	public void setProjectid(int projectid) {
 		this.projectid = projectid;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 }

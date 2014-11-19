@@ -15,6 +15,7 @@ public class StoryMapper {
 		
 		story.setDueDate(storyDTO.getDueDate());
 		story.setProjectid(storyDTO.getProjectid());
+		story.setStatus(storyDTO.getStatus());
 		story.setDescription(storyDTO.getDescription());
 		story.setName(storyDTO.getName());
 		
@@ -28,6 +29,7 @@ public class StoryMapper {
 		
 		story.setDueDate(storyWS.getDueDate());
 		story.setProjectid(storyWS.getProjectid());
+		story.setStatus(storyWS.getStatus());
 		story.setDescription(storyWS.getDescription());
 		story.setName(storyWS.getName());
 		

@@ -15,7 +15,7 @@ import bu.met.cs.cs673.pm.dto.Story;
 public class StoryDAOtest extends TestCase {
 
 	private Story story;
-
+/*
 	@Override
 	protected void setUp() throws Exception {
 		story = new Story();
@@ -31,6 +31,7 @@ public class StoryDAOtest extends TestCase {
 		dao.createStory(story);
 
 	}
+*/
 
 	/*
 	 * @Test public void testCreateStory() { StoryDAO dao = new StoryDAO(); int
@@ -68,11 +69,30 @@ public class StoryDAOtest extends TestCase {
 			System.out.println(stories.get(x).toString());
 
 	}
-
+/*
 	@Test
 	public void testDelete() {
 		StoryDAO dao = new StoryDAO();
 		assertTrue(dao.deleteStory(1));
 	}
-
+*/
+	@Test
+	public void testUpdate(){
+		Story story= new Story();
+		int updated;
+		StoryDAO dao = new StoryDAO();
+		
+		story=dao.getStory(1);
+		System.out.println("BEFORE CHANGE" +story.toString());
+		story.setStatus(1);
+		story.setName("updated");
+		
+		updated=dao.updateStory(1, story);
+		
+		System.out.println("TEST VARIABLE"+story.toString());
+		System.out.println("After Update "+dao.getStory(1).toString());
+		System.out.println(updated);
+		
+	
+	}
 }
