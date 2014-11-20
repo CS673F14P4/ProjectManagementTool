@@ -3,35 +3,36 @@
 <mapper namespace="bu.met.cs.cs673.pm.dto.User">
  
     <resultMap id="result" type="bu.met.cs.cs673.pm.dto.User">
-        <result property="userid" column="userid"/>
+        <result property="userid" column="iduser"/>
         <result property="email" column="email"/>
         <result property="username" column="username"/> 
-        <result property="password" column="email"/> 
+        <result property="password" column="password"/> 
         <result property="firstname" column="firstname"/> 
         <result property="lastname" column="lastname"/> 
-        <result property="create_time" column="create_time"/>  
+        <result property="create_date" column="create_date"/>
     </resultMap>
  
     <select id="selectAll" resultMap="result">
-        SELECT * FROM User;
+        SELECT * FROM user;
     </select>
  
-    <select id="selectById" parameterType="String" resultMap="result">
-        SELECT * FROM User WHERE id = #{id}
+    <select id="selectByName" parameterType="String" resultMap="result">
+        SELECT * FROM user WHERE username = #{username}
     </select>
  
-    <insert id="insert">  <!-- parameterType="User" useGeneratedKeys="true" keyProperty="id" -->
+    <insert id="insert" > 
         insert into user (userid, email, username, password, firstname,lastname)
   		values (#{userid},#{email},#{username},#{password},#{firstname}, #{lastname})
     </insert>
  
     <update id="update" parameterType="bu.met.cs.cs673.pm.dto.User">
-        UPDATE User
-        SET name = #{name}
-        WHERE id = #{id} 
+        UPDATE user
+        SET firstname = #{firstname}, lastname = #{lastname}
+        WHERE username = #{username} 
     </update>
  
     <delete id="delete" parameterType="String">
-        DELETE from User WHERE id = #{id}
+        DELETE from user WHERE username = #{username}
     </delete>
+    
 </mapper>
