@@ -119,11 +119,13 @@ public class StoryDAO {
 		// TODO Auto-generated method stub
 		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
 		SqlSession session = factory.openSession();
+		
 		int update;
 		
 		try
 		{
 			update=session.update("updateStory", story);
+			session.commit();
 		}
 		finally
 		{

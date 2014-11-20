@@ -57,7 +57,7 @@ public class StoryDAOtest extends TestCase {
 	 * System.out.println("projectId:"+ getStory.getProjectid());
 	 * 
 	 * }
-	 */
+	
 	@Test
 	public void testGetByProject() {
 		StoryDAO dao = new StoryDAO();
@@ -69,6 +69,7 @@ public class StoryDAOtest extends TestCase {
 			System.out.println(stories.get(x).toString());
 
 	}
+	*/
 /*
 	@Test
 	public void testDelete() {
@@ -82,16 +83,22 @@ public class StoryDAOtest extends TestCase {
 		int updated;
 		StoryDAO dao = new StoryDAO();
 		
-		story=dao.getStory(1);
+		story=dao.getStory(3);
 		System.out.println("BEFORE CHANGE" +story.toString());
-		story.setStatus(1);
 		story.setName("updated");
+		story.setLastModifiedUser(5);
+		story.setStatus(3);
+		story.setDueDate(new java.util.Date());
+		story.setDescription("this is updated");
+		story.setLastModifiedDate(new java.util.Date());
 		
-		updated=dao.updateStory(1, story);
 		
-		System.out.println("TEST VARIABLE"+story.toString());
-		System.out.println("After Update "+dao.getStory(1).toString());
-		System.out.println(updated);
+		
+		
+		updated=dao.updateStory(3, story);
+		
+		System.out.println("After Update "+dao.getStory(3).toString());
+		
 		
 	
 	}
