@@ -103,9 +103,6 @@ CREATE TABLE `story` (
   CONSTRAINT `idproject` FOREIGN KEY (`idproject`) REFERENCES `project` (`idproject`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
 
 /*!40101 SET character_set_client = @saved_cs_client */;
 
