@@ -1,5 +1,7 @@
 package bu.met.cs.cs673.pm.dao.unit;
 
+import java.util.List;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -57,5 +59,19 @@ public class ProjectDAOTest extends TestCase
 		assertNotNull(project);
 	}
 	
+	@Test
+	public void testGetProjectsByUser()
+	{
+		ProjectDAO dao = new ProjectDAO();
+		List<Project> projects = dao.getProjects(3);
+		
+		for (Project p : projects)
+		{
+			System.out.println("project: " + p.getName());
+		}
+		
+		assertNotNull(projects);
+		assertTrue(projects.size() > 0);
+	}
 	
 }

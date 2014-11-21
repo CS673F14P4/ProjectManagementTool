@@ -1,0 +1,31 @@
+<div class="tab-content">
+	<div class="tab-pane active" id="projects">
+		<div class="container">
+
+			<!--  button to create new project -->
+			<a href="#newproject" id="newprojectBtn"
+				class="navbar-button btn btn-large btn-primary pull-right"
+				type="button">New Project</a> 
+
+			<!--  box to show projects -->
+			<div class="content-container clearfix">
+				<div class="col-md-12">
+
+					<!--  title -->
+					<h2 class="content-title">{{message}}</h2>
+
+					<!--  list projects -->
+					<ul class="list" id="list">
+						<li ng-repeat="project in projects"><a
+							href="#/project/{{project.idproject}}"> <span class="title">{{project.name}}</span>
+								<span class="content">{{project.description}}</span>
+						</a>
+						<li>
+					</ul>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

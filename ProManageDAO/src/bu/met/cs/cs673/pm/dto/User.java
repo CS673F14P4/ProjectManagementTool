@@ -1,6 +1,10 @@
 package bu.met.cs.cs673.pm.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
+
+/*
+ * Olufemi Odegbile
+ */
 
 public class User {
 
@@ -10,13 +14,13 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
-    private Timestamp create_time;
+    private Date createDate;
 
     public User(){
 		
 	}
     
-	public User(int userid, String email, String username, String password, String firstname, String lastname, Timestamp create_time){
+	public User(int userid, String email, String username, String password, String firstname, String lastname, Date createDate){
 		
 		this.userid = userid;
 		this.email = email;
@@ -24,7 +28,7 @@ public class User {
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
-		this.create_time = create_time;
+		this.createDate = createDate;
 		
 	}
 	
@@ -68,13 +72,20 @@ public class User {
         this.lastname = lastname;
     }	
 	
-    public Timestamp getCreate_Time() {
-        return create_time;
+    public Date getCreateDate() {
+        return createDate;
     }
     
+    public void setCreateDate(Date createDate) {
+    	this.createDate = createDate;
+    }
 
-    public void setCreate_Time(Timestamp create_time) {
-    	this.create_time = create_time;
-    }
-    
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }

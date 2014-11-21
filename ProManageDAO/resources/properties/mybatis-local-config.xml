@@ -21,6 +21,9 @@
     </environment>
   </environments>
   <mappers>
+    <mapper resource="sqlmaps/project.xml"/>
     <mapper resource="sqlmaps/user.xml"/>
+    <mapper resource="sqlmaps/story.xml"/>
+    <mapper resource="sqlmaps/project.xml"/>
   </mappers>
 </configuration>

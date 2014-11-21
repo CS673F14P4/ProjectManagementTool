@@ -1,6 +1,4 @@
 
-CREATE USER test_2@localhost IDENTIFIED BY 'cs673';
-
 CREATE DATABASE  IF NOT EXISTS `cs673` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `cs673`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
@@ -38,7 +36,7 @@ CREATE TABLE `project` (
   `last_modified_date` timestamp NULL DEFAULT NULL,
   `last_modified_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`idproject`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +45,39 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
+INSERT INTO `project` VALUES (1,'ProManage','Groups Tool','2014-09-19','2014-12-04','2015-01-01 04:59:59',1,'2015-01-01 04:59:59',1);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `member`
+--
+
+DROP TABLE IF EXISTS `member`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `member` (
+  `iduser` int(11) NOT NULL,
+  `idproject` int(11) NOT NULL,
+  `rolename` varchar(45) NOT NULL,
+  PRIMARY KEY (`iduser`,`idproject`,`rolename`),
+  KEY `fk_user` (`iduser`),
+  KEY `fk_project` (`idproject`),
+  KEY `fk_role` (`rolename`),
+  CONSTRAINT `fk_project` FOREIGN KEY (`idproject`) REFERENCES `project` (`idproject`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_role` FOREIGN KEY (`rolename`) REFERENCES `roles` (`rolename`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user` FOREIGN KEY (`iduser`) REFERENCES `user` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `member`
+--
+
+LOCK TABLES `member` WRITE;
+/*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (2,1,'member'),(3,1,'project_leader');
+/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -58,9 +88,22 @@ DROP TABLE IF EXISTS `story`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `story` (
-  `idstory` int(11) NOT NULL,
-  PRIMARY KEY (`idstory`)
+  `idstory` int(11) NOT NULL AUTO_INCREMENT,
+  `idproject` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  `status` int(11) DEFAULT 0,
+  `due_date` date DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `create_user` int(11) DEFAULT NULL,
+  `create_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `last_modified_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idstory`),
+  KEY `idproject_idx` (`idproject`),
+  CONSTRAINT `idproject` FOREIGN KEY (`idproject`) REFERENCES `project` (`idproject`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +124,10 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task` (
   `idtask` int(11) NOT NULL,
-  PRIMARY KEY (`idtask`)
+  `idstory` int(11) NOT NULL,
+  PRIMARY KEY (`idtask`),
+  KEY `fk_story` (`idstory`),
+  CONSTRAINT `fk_story` FOREIGN KEY (`idstory`) REFERENCES `story` (`idstory`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -103,6 +149,13 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `iduser` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(128) DEFAULT NULL,
+  `firstname` varchar(100) DEFAULT NULL,
+  `lastname` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `create_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`iduser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -113,6 +166,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'root','57845de6539c1a76be0dfa87f17e069b948e4ff166f99a341c8214bd048c9ca3eb006c8dc02ba3d604cc5d85b98fd05d5edfa1f81f07927fc6b570bfba1f33ac',NULL,NULL,NULL,NULL,NULL),(2,'spiderman','69d508b3aeb65c170e06810b1cb530aeb0f5381a12b775028bbb2d3d5bb32a2794be2e1dc3940cef1920c93f90ab33c7c280546169799ab36ce7017c9627118b',NULL,NULL,NULL,NULL,NULL),(3,'cyclops','7d4b83b002a19d46725716874d17391d2278cd2557cb9744ea9404cb3d90a78ad803331a0de27cb9cba4eaaa72f87503c790721cf7c471c2a119375b9300506a',NULL,NULL,NULL,NULL,NULL),(5,'jean','14e1ea231fcc698eb43f49dbfed6338520c59865ffbb7d10d4845639640382dc8bb87828b7811581c505fc23f84a81c0e3bf949d709fb507704f0b3d161dca6d',NULL,NULL,NULL,NULL,NULL),(6,'venom','106f7a0b246cc638f0e7f52bbc804d7ece63b847001b2f595ff3caf2a780211931f4325333dc17e75d0356c39dd0ee766e571cb8dde44200fc1ad19188b83021',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,10 +178,9 @@ DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
-  `idroles` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idroles`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `rolename` varchar(45) NOT NULL,
+  PRIMARY KEY (`rolename`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +189,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'admin'),(2,'customer'),(3,'project_leader'),(4,'member');
+INSERT INTO `roles` VALUES ('admin'),('customer'),('member'),('project_leader');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,8 +201,9 @@ DROP TABLE IF EXISTS `user_roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_roles` (
-  `iduse_roles` int(11) NOT NULL,
-  PRIMARY KEY (`iduse_roles`)
+  `username` varchar(100) NOT NULL,
+  `rolename` varchar(45) NOT NULL,
+  PRIMARY KEY (`username`,`rolename`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -159,6 +213,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
+INSERT INTO `user_roles` VALUES ('cyclops','customer');
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -171,7 +226,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-05 19:12:11
+-- Dump completed on 2014-11-05 19:07:06
 
 /* Manually added to create the user */
 GRANT ALL ON cs673.* TO cs673_user@localhost IDENTIFIED BY 'cs673';

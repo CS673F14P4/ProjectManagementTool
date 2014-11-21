@@ -67,7 +67,7 @@ public class ProjectDAO
 		return project;
 	}
 	
-	public List<Project> getProjects()
+	public List<Project> getProjects(int userId)
 	{
 		List<Project> projects = null;
 		
@@ -76,7 +76,7 @@ public class ProjectDAO
 		
 		try 
 		{
-			projects = session.selectList("getProjectsByUser");
+			projects = session.selectList("getProjectsByUser", userId);
 		} 
 		finally 
 		{
