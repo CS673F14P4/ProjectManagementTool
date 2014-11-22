@@ -125,6 +125,14 @@ DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `idtask` int(11) NOT NULL,
   `idstory` int(11) NOT NULL,
+   `name` varchar(45) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `start_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  `create_date` timestamp NULL DEFAULT NULL,
+  `create_user` int(11) DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `last_modified_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`idtask`),
   KEY `fk_story` (`idstory`),
   CONSTRAINT `fk_story` FOREIGN KEY (`idstory`) REFERENCES `story` (`idstory`) ON DELETE NO ACTION ON UPDATE NO ACTION
