@@ -3,15 +3,13 @@
 	<head>
 		<title>  </title>
 		<link rel="stylesheet" type="text/css" href="../css/main.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
 		<script src="../js/tabs.js"></script>
 	</head>
 	<body>
-	<div ng-controller="">
 		<table id="display"><tr> </table><br />
 		<form id="pmform">
-			<input type="text" id="pmtxt" placeholder=" Add Story..." ng-model="storyName"/><br />
-			<textarea id="pmtxta" rows="10" cols="68" placeholder="Extended Description..." ng-model="storyDesc"></textarea><br />
+			<input type="text" id="pmtxt" placeholder=" Add Stories..." /><br />
+			<textarea id="pmtxta" rows="10" cols="68" placeholder="Extended Description..."></textarea><br />
 			<label>Assigned to:</label>
 			<select name="promem">
 			<option value="mem0" selected>NoBody</option>
@@ -22,7 +20,7 @@
 			<option value="mem5">Member 5 </option>
 			</select>
 			<label>Due Date:</label>
-			<input type="date" id="pmdate" ng-model="storydd"/> <br><br />
+			<input type="date" id="pmdate"/> <br><br />
 			<label>Notify:</label>
 			<select name="users">
 			<option value="user0" selected>NoBody</option>
@@ -33,8 +31,7 @@
 			<option value="user5">User 5 </option>
 			</select><br><br />
 			<a href="#">Attach Files</a>
-			<input id="pmbtn" onclick="pmform()" type="button" value="Add Story" ng-click="pushStory()" />
+			<input id="pmbtn" onclick="pmform()" type="button" value="Add Story" />
 		</form>
-	</div>
 	</body>
 </html>
