@@ -114,6 +114,8 @@ DEFAULT CHARACTER SET = latin1;
 --
 
 LOCK TABLES `story` WRITE;
+INSERT INTO `story` VALUES (1,1,'test',0,now(),
+'Let me tell you a story about the time my life got flipped opsidedown',1,now(),now(),1);
 /*!40000 ALTER TABLE `story` DISABLE KEYS */;
 /*!40000 ALTER TABLE `story` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -126,8 +128,15 @@ DROP TABLE IF EXISTS `task`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `task` (
-  `idtask` int(11) NOT NULL,
+  `idtask` int(11) NOT NULL AUTO_INCREMENT,
   `idstory` int(11) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `owner` int(11) DEFAULT NULL,
+  `due_date` DATE DEFAULT NULL,
+  `create_date` TIMESTAMP NULL DEFAULT NULL,
+  `last_modified_date` TIMESTAMP NULL DEFAULT NULL,
+  `last_modified_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`idtask`),
   KEY `fk_story` (`idstory`),
   CONSTRAINT `fk_story` FOREIGN KEY (`idstory`) REFERENCES `story` (`idstory`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -139,6 +148,8 @@ CREATE TABLE `task` (
 --
 
 LOCK TABLES `task` WRITE;
+
+INSERT INTO `task` VALUES (1,1,'This is a test Entry','test',1,now(),now(),now(),1);
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
