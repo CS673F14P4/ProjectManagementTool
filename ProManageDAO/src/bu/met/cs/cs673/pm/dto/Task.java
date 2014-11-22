@@ -8,7 +8,7 @@ import java.util.Date;
 public class Task
 {
 	private int id;
-	private int Id;
+	private int taskid;
 	private String name;
 	private String description;
 	private Date startDate;
@@ -21,8 +21,15 @@ public class Task
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getTaskId() {
+		return taskid;
+	}
+	public void setTaskId(int taskid) {
+		this.taskid = taskid;
 	}
 	public String getName() {
 		return name;
