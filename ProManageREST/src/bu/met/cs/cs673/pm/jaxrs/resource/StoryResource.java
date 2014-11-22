@@ -42,16 +42,20 @@ public class StoryResource
 	}
 	
 	@PUT
-	public boolean addStory(
+	@Path("{id}")
+	public boolean addStory( @PathParam("id") String id,
 			@QueryParam("name") String name, 
 			@QueryParam("projectid") int projectid, 
-			@QueryParam("description") String description, 
+			@QueryParam("description") String description,
+			@QueryParam("createUser") int createUser,
 			@QueryParam("dueDate") String dueDate)
 	{
 		boolean success = false;
+		Story story=new Story();
 		
 		
 		
 		return success;
 	}
+	
 }
