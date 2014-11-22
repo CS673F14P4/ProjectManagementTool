@@ -1,0 +1,65 @@
+
+<div class="modal-dialog">
+	<form class="form-horizontal" role="form" action="projectview.html">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">New Task</h4>
+			</div>
+			<div class="modal-body">
+
+
+
+				<div class="form-group">
+					<label for="name" class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" required focus id="name"
+							placeholder="Name">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" rows="5" id="description"
+							placeholder="Description"></textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="duedate" class="col-sm-2 control-label">Due
+						date</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" required id="duedate"
+							placeholder="Due date">
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label for="assigned" class="col-sm-2 control-label">Assign
+						to</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="assigned">
+							<option value="mem0" selected>NoBody</option>
+							<option value="mem1">Member 1</option>
+							<option value="mem2">Member 2</option>
+							<option value="mem3">Member 3</option>
+							<option value="mem4">Member 4</option>
+							<option value="mem5">Member 5</option>
+						</select>
+					</div>
+				</div>
+
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</form>
+</div>
