@@ -63,7 +63,7 @@ public class TaskDAOTest extends TestCase
 	public void testGetTasksByStory()
 	{
 		TaskDAO dao = new TaskDAO();
-		List<Task> tasks = dao.getTasks(3);
+		List<Task> tasks = dao.getTasksByStory(3);
 		
 		for (Task p : tasks)
 		{

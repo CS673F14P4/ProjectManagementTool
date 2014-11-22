@@ -68,7 +68,7 @@ public class TaskDAO
 	}
 	
 
-	public List<Task> getTasks(int storyId)
+	public List<Task> getTasksByStory(int storyId)
 	{
 		List<Task> tasks = null;
 		
