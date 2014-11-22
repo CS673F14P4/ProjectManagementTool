@@ -32,11 +32,16 @@
 	    delete from Story where idstory = #{id}
 	</delete>
 	
-	<update id="updateStory" useGeneratedKeys="true">
+	<update id="updateStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">
 		update story set
-		name = #{name}
+		name = #{name},
+		status= #{status},
+		due_date=#{dueDate},
+		description=#{description},
+		last_modified_date= now(),
+		last_modified_user=#{lastModifiedUser}
 		
-		where idstory= #{id}
+		where idstory= #{id};
 	</update>
 		
   
