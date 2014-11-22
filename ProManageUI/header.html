@@ -9,18 +9,58 @@
                 src="js/jquery-1.8.0.min.js"></script>
         <script type="text/javascript" 
                 src="js/jquery-ui-1.8.23.custom.min.js"></script>
-        <script type="text/javascript" 
-                src="js/header.js"></script>
+        
         <script type="text/javascript">
             $(function(){
                  $("#target").tabs();
             });
         </script>
+         <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.23.custom.css" 
+                rel="stylesheet" />
+        <script type="text/javascript" 
+                src="js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" 
+                src="js/jquery-ui-1.8.23.custom.min.js"></script>
+                
+        <script type="text/javascript">
+            $(function() {
+                    var options = {revert : 'invalid', color: 'black'};
+                    $('#src h3').draggable(options);
+                    
+                    options = {drop : handleDrop};
+                    $('#target1').droppable(options);
+
+                    var options2 = {revert : 'invalid', color: 'orange'};
+                    $('#target1 h3').draggable(options2);
+                    
+                    options2 = {drop : handleDrop2};
+                    $('#target2').droppable(options2);
+            });
+            
+            function handleDrop(event, ui) {
+                var elem = ui.draggable;
+                $('#target1').append(elem);
+                $(elem).css({position : 'relative', color:'orange',top: '0px', left : '0px'});
+            }
+          function handleDrop2(event, ui) {
+                var elem = ui.draggable;
+
+                var color = elem.css('color');
+               // console.log(color);
+                if(color == 'rgb(255, 165, 0)') 
+                $('#target2').append(elem);
+                $(elem).css({ position : 'relative', color:'black', top: '0px', left : '0px'}); 
+            }
+        </script>
+        <style>
+            td {width: 400px;
+                    height: 200px}
+            
+        </style>
         
 		<style>
-		html {
+		ahtml {
 			font-family:sans-serif;
-			-webkit-text-size-adjust:100%;
 			-ms-text-size-adjust:100%
 		}
 		#pmheader {
@@ -29,7 +69,9 @@
         #target {
             width: 1000px;
         }
-
+        h3 {
+            font-size: 20px;
+        }
 		</style>
 
 	</head>
@@ -66,9 +108,44 @@
                         <a href="#tab3">tab3</a>
                     </li>
                 </ul>
-                <span>welcome back! this is sample(dummy) json data to test !</span>
+                <span>welcome back! this is sample(dummy) data to test !</span>
                 <div id="tab1">
                     this is tab1 data.
+                     <table>
+            <thead>
+                <th>Backlog</th>
+                <th>In-Progress</th>
+                <th>Done</th>
+                
+            </thead>
+                <tr>
+            <td id="src" class="ui-widget-content ui-corner-all">
+                 <h3>one</h3>
+                <h3>two</h3>
+                <h3>three</h3>
+                <h3>four</h3>
+                <h3>one</h3>
+                <h3>two</h3>
+                <h3>three</h3>
+                <h3>four</h3>
+                <h3>one</h3>
+                <h3>two</h3>
+                <h3>three</h3>
+                <h3>four</h3> 
+                
+            </td> 
+            
+            
+             <td id="target1" class="ui-widget-content ui-corner-all">
+               
+            </td>
+           
+            
+             <td id="target2" class="ui-widget-content ui-corner-all">
+               
+            </td>
+            </tr>
+            </table>
                 </div>
                 <div id="tab2">
                     <iframe src="html/stories.html"></iframe>
