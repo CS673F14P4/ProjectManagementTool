@@ -18,11 +18,11 @@ import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
 import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
 import bu.met.cs.cs673.pm.jaxrs.mapper.UserMapper;
-import bu.met.cs.cs673.pm.jaxrs.mapper.UserWrapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
 import bu.met.cs.cs673.pm.jaxrs.model.User;
 import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
+import bu.met.cs.cs673.pm.jaxrs.wrapper.UserWrapper;
 
 @Path("/project")
 @Consumes(MediaType.APPLICATION_JSON)

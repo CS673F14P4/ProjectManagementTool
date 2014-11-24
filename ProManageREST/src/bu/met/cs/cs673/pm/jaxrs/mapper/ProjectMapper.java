@@ -12,6 +12,7 @@ public class ProjectMapper
 	{
 		Project project = new Project();
 		
+		project.setId(projectDTO.getId());
 		project.setName(projectDTO.getName());
 		project.setDescription(projectDTO.getDescription());
 		project.setStartDate(projectDTO.getStartDate());
@@ -43,6 +44,7 @@ public class ProjectMapper
 	{
 		bu.met.cs.cs673.pm.dto.Project project = new bu.met.cs.cs673.pm.dto.Project();
 
+		project.setId(projectWS.getId());
 		project.setName(projectWS.getName());
 		project.setDescription(projectWS.getDescription());
 		project.setStartDate(projectWS.getStartDate());

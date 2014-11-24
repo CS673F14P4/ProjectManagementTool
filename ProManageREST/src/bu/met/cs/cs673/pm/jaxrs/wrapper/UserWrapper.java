@@ -1,4 +1,4 @@
-package bu.met.cs.cs673.pm.jaxrs.mapper;
+package bu.met.cs.cs673.pm.jaxrs.wrapper;
 
 import java.util.List;
 

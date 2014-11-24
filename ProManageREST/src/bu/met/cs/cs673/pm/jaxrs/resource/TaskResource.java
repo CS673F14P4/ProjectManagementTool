@@ -1,55 +1,41 @@
 package bu.met.cs.cs673.pm.jaxrs.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import bu.met.cs.cs673.pm.dao.ProjectDAO;
-import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
-import bu.met.cs.cs673.pm.jaxrs.model.Project;
-
+import bu.met.cs.cs673.pm.dao.TaskDAO;
+import bu.met.cs.cs673.pm.jaxrs.mapper.TaskMapper;
+import bu.met.cs.cs673.pm.jaxrs.model.Task;
 
 @Path("/task")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class TaskResource 
-{
-	
+public class TaskResource {
+
 	@GET
-	@Path("{id}")
-	public Project getProject(@PathParam("id") String id)
-	{
-		System.out.println(">>> getProject");
-		
-		Project project = null;
-		
-		ProjectDAO dao = new ProjectDAO();
-		bu.met.cs.cs673.pm.dto.Project projectDTO = dao.getProject(Integer.parseInt(id));
-		
-		
-		project = ProjectMapper.mapProject(projectDTO); 
-		
-		System.out.println("<<< getProject");
-		
-		return project;
+	@Path("{storyid}")
+	public List<Task> getTasksByStory(@PathParam("storyid") int storyId) {
+
+		List<Task> tasks = new ArrayList<Task>();
+
+		TaskDAO taskDAO = new TaskDAO();
+		List<bu.met.cs.cs673.pm.dto.Task> tasksByStory = taskDAO
+				.getTasksByStory(storyId);
+
+		for (bu.met.cs.cs673.pm.dto.Task taskDTO : tasksByStory) {
+			Task mapTask = TaskMapper.mapTask(taskDTO);
+			tasks.add(mapTask);
+		}
+
+		return tasks;
+
 	}
-	
-	@PUT
-	public boolean addProject(
-			@QueryParam("name") String name, 
-			@QueryParam("description") String description, 
-			@QueryParam("startdate") String startDate, 
-			@QueryParam("enddate") String endDate)
-	{
-		boolean success = false;
-		
-		
-		
-		return success;
-	}
+
 }
