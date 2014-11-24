@@ -65,15 +65,19 @@
 		};
 	});
 
-	app.controller('LogoutCtrl', function($scope, AuthService, $window) {
+	app.controller('LogoutCtrl', function($scope, AuthService, $window,$http) {
 		$scope.logout = function() {
-			AuthService.logout().then(function() {
-				console.log("logout sucess");
-				$window.location.href = 'signin.html';
-
-			}, function() {
-				console.log("error");
+			return $http({
+				method : 'GET',
+				url : 'http://localhost:8080/ProManageREST/jaxrs/users/logout'
+			}).success(function(data) {
+				$window.location.href='../'
+				return true;
+			}).error(function(data, status, headers, config) {
+				console.log('error');
+				return false;
 			});
+			;
 		}
 	});
 

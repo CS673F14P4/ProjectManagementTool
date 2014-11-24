@@ -1,8 +1,9 @@
 package bu.met.cs.cs673.pm.jaxrs.resource;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -10,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.SecurityContext;
 
 import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.UserMapper;
@@ -44,18 +44,10 @@ public class UserResource {
 		return user;
 	}
 
-	/**
-	 * Just a test to use something in the web page
-	 * 
-	 * @return
-	 */
-	@POST
-	public User login(@Context SecurityContext sc) {
-		sc.getUserPrincipal().getName();
-		User user = new User();
-		user.setUserId(1);
-		user.setUsername("John");
-		return user;
+	@Path("/logout")
+	@GET
+	public void logout(@Context HttpServletRequest req) throws ServletException {
+		req.logout();
 	}
 
 	@PUT
