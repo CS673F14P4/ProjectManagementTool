@@ -1,5 +1,6 @@
 package bu.met.cs.cs673.pm.dao.unit;
 
+import java.sql.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -25,11 +26,11 @@ public class TaskDAOTest extends TestCase
     {
         task = new Task();
         
+        task.setStoryId(1);
         task.setName("unitTestTask");
         task.setDescription("This is a unit test task");
-        task.setStartDate(new java.util.Date());
-        task.setEndDate(new java.util.Date());
-        task.setCreateUser(1);
+        task.setDueDate(Date.valueOf("2014-12-25"));
+        task.setOwner(1);       
         task.setLastModifiedUser(1);
     }
 
@@ -63,7 +64,7 @@ public class TaskDAOTest extends TestCase
 	public void testGetTasksByStory()
 	{
 		TaskDAO dao = new TaskDAO();
-		List<Task> tasks = dao.getTasksByStory(3);
+		List<Task> tasks = dao.getTasksByStory(1);
 		
 		for (Task p : tasks)
 		{

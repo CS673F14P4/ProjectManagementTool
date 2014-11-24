@@ -1,83 +1,91 @@
 package bu.met.cs.cs673.pm.dto;
 
 import java.util.Date;
+
 /**
  * 
- * @author Ray 
+ * @author Ray
  */
-public class Task
-{
+public class Task {
 	private int id;
-	private int taskid;
+	private int storyId;
 	private String name;
 	private String description;
-	private Date startDate;
-	private Date endDate;
+	private Date dueDate;
+	private int owner;
 	private Date createDate;
-	private int createUser;
 	private Date lastModifiedDate;
 	private int lastModifiedUser;
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getTaskId() {
-		return taskid;
+
+	public int getStoryId() {
+		return storyId;
 	}
-	public void setTaskId(int taskid) {
-		this.taskid = taskid;
+
+	public void setStoryId(int storyId) {
+		this.storyId = storyId;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public Date getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}
+
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	public int getCreateUser() {
-		return createUser;
-	}
-	public void setCreateUser(int createUser) {
-		this.createUser = createUser;
-	}
+
 	public Date getLastModifiedDate() {
 		return lastModifiedDate;
 	}
+
 	public void setLastModifiedDate(Date lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
+
 	public int getLastModifiedUser() {
 		return lastModifiedUser;
 	}
+
 	public void setLastModifiedUser(int lastModifiedUser) {
 		this.lastModifiedUser = lastModifiedUser;
 	}
-}
 
+	public Date getDueDate() {
+		return dueDate;
+	}
+
+	public void setDueDate(Date dueDate) {
+		this.dueDate = dueDate;
+	}
+
+	public int getOwner() {
+		return owner;
+	}
+
+	public void setOwner(int owner) {
+		this.owner = owner;
+	}
+}
