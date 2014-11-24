@@ -15,37 +15,6 @@ angular
 
 					$scope.projectId = $routeParams.projectId;
 
-					$scope.acord = function(storyId) {
-						// Get the tasks by StoryId
-
-						// just do something if the element is collapsed and the
-						// list of
-						// task is null, otherwise return
-						if (!$("#title" + storyId).hasClass("collapsed")
-								|| $scope.project.status[0].userStories[0].tasks.length > 0) {
-							return;
-						}
-						// show spinner
-						$("#spinner" + storyId).show();
-						// simulating consuming time requesting service
-						setTimeout(function() {
-
-							// change one for test
-							$scope.project.status[0].userStories[0].tasks = [ {
-								"name" : "taskx",
-								"description" : "description task1",
-							}, {
-								"name" : "tasky",
-								"description" : "description task1",
-							} ];
-							// needed to show changes in UI
-							$scope.$apply();
-							// hide the spinner after get the tasks
-							$("#spinner" + storyId).hide();
-
-						}, 1000);
-					}
-
 					$scope.project = {
 						"description" : "",
 						"name" : "",
@@ -54,38 +23,14 @@ angular
 						"endDate" : "",
 						"status" : [ {
 							"name" : "Backlog",
-							"userStories" : [ {
-								id : 1,
-								"name" : "Story 1",
-								"description" : "Desc 1",
-								"tasks" : {}
-							}, {
-								id : 2,
-								"name" : "Story 2",
-								"description" : "bla2",
-								"tasks" : [ {
-									"name" : "task1",
-									"description" : "description task1",
-								}, {
-									"name" : "task1",
-									"description" : "description task1",
-								} ]
-							} ]
+							"userStories" : []
 
 						}, {
 							"name" : "Current",
 							"userStories" : []
 						}, {
 							"name" : "Done",
-							"userStories" : [ {
-								id : "4",
-								"name" : "Story Z",
-								"description" : "Desc 1",
-								"tasks" : [ {
-									"name" : "task1",
-									"description" : "description task1",
-								} ]
-							} ]
+							"userStories" : []
 						} ]
 
 					};
@@ -99,10 +44,10 @@ angular
 							}).success(function(data) {
 						// test
 						console.log(data);
-						$scope.project.name = data.project.name;
-						$scope.project.description = data.project.description;
-						$scope.project.startDate = data.project.startDate;
-						$scope.project.endDate = data.project.endDate;
+						$scope.project.name = data.name;
+						$scope.project.description = data.description;
+						$scope.project.startDate = data.startDate;
+						$scope.project.endDate = data.endDate;
 
 					}).error(function(data, status, headers, config) {
 						console.log('error');
@@ -119,16 +64,50 @@ angular
 									function(data) {
 										// test
 										console.log(data);
-										for (var i=0;i<data.wrapper.stories.length; i++) {
-											story = data.wrapper.stories[i];
-											//status -1 since the list start with index 0
-											stories = $scope.project.status[story.status-1].userStories;
+										for (var i = 0; i < data.length; i++) {
+											story = data[i];
+											console.log('Status:');
+											console.log(story.status);
+											stories = $scope.project.status[story.status].userStories;
 											stories.push(story);
 										}
-									//	$scope.project.status[1].userStories = data.wrapper.stories;
 									}).error(
 									function(data, status, headers, config) {
 										console.log('error');
 									});
+
+					$scope.acord = function(storyId, statusIndex, storyIndex) {
+						// Get the tasks by StoryId
+
+						// just do something if the element is collapsed and the
+						// list of
+						// task is null, otherwise return
+						if (!$("#title" + storyId).hasClass("collapsed")
+								|| $scope.project.status[0].userStories[0].tasks.length > 0) {
+							return;
+						}
+						// show spinner
+						$("#spinner" + storyId).show();
+
+						$http(
+								{
+									method : 'Get',
+									url : 'http://localhost:8080/ProManageREST/jaxrs/task/'
+											+ storyId
+								})
+								.success(
+										function(data) {
+											$scope.project.status[statusIndex].userStories[storyIndex].tasks = data;
+											// needed to show changes in UI
+											// $scope.$apply();
+											// hide the spinner after get the
+											// tasks
+											$("#spinner" + storyId).hide();
+										})
+								.error(function(data, status, headers, config) {
+									console.log('error');
+								});
+
+					}
 
 				})

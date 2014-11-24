@@ -77,7 +77,7 @@ public class ProjectResource
 
 	@GET
 	@Path("{projectid}/stories")
-	public StoryWrapper getStoriesByProject(
+	public List<Story> getStoriesByProject(
 			@PathParam("projectid") int projectid) {
 
 		List<Story> stories = new ArrayList<Story>();
@@ -94,7 +94,7 @@ public class ProjectResource
 		StoryWrapper storyWrapper = new StoryWrapper();
 		storyWrapper.setStories(stories);
 
-		return storyWrapper;
+		return stories;
 
 	}
 

@@ -46,7 +46,7 @@
 								<a id="title{{userStory.id}}" data-toggle="collapse"
 									data-parent="#{{stat.name}}accordion"
 									href=".{{stat.name}}userStory{{$index}}"
-									ng-click="acord(userStory.id)" class="collapsed">{{userStory.name}}
+									ng-click="acord(userStory.id,$parent.$index,$index)" class="collapsed">{{userStory.name}}
 									( 11/22/14 )</a> <a href=""> <span
 									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
 									class="glyphicon  pull-right"></span></a>

@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "story")
 public class Story {
+
+	private int id;
 	private String name;
 	private int projectid;
 	private int status;
@@ -54,6 +56,14 @@ public class Story {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
