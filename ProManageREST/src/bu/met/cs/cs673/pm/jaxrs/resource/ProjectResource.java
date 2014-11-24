@@ -27,17 +27,12 @@ import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
 @Path("/project")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProjectResource {
-
-	@GET
-	public String test() {
-		System.out.println("test");
-		return "test";
-	}
-
+public class ProjectResource 
+{
 	@GET
 	@Path("{projectid}")
-	public Project getProject(@PathParam("projectid") int projectid) {
+	public Project getProject(@PathParam("projectid") int projectid) 
+	{
 
 		System.out.println(">>> getProject");
 
@@ -51,6 +46,33 @@ public class ProjectResource {
 		System.out.println("<<< getProject");
 
 		return project;
+	}
+	
+	@GET
+	@Path("/user/{username}")
+	public List<Project> getProjects(@PathParam("username") String username)
+	{
+		System.out.println(">>> getProjects");
+		
+		List<Project> projects = null;
+		
+		if (username != null)
+		{
+			UserDAO userDAO = new UserDAO();
+			bu.met.cs.cs673.pm.dto.User userDTO = userDAO.getUserByName(username);
+			ProjectDAO dao = new ProjectDAO();
+			List<bu.met.cs.cs673.pm.dto.Project> projectDTOs = 
+					dao.getProjects(userDTO.getUserId());
+
+			projects = ProjectMapper.mapProjects(projectDTOs);
+		}
+		
+		System.out.println("projects:" + projects);
+		System.out.println("projectsize: " + projects.size());
+		
+		System.out.println("<<< getProjects");
+		
+		return projects;
 	}
 
 	@GET

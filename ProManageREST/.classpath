@@ -22,7 +22,11 @@
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/wink-common-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/wink-server-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/json-20080701.jar"/>
-	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/wink-json-provider-1.4.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/jackson-core-asl-1.9.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/jackson-jaxrs-1.9.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/jackson-mapper-asl-1.9.13.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/wink-jackson-provider-1.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="WebContent/WEB-INF/lib/jackson-xc-1.9.13.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
