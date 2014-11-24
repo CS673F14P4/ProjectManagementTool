@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bu.met.cs.cs673.pm.dto.Task">
+
+	<resultMap id="taskMap" type="bu.met.cs.cs673.pm.dto.Task">
+		<id property="id" column="idtask" />
+		<result property="storyId" column="idstory" />
+		<result property="name" column="name" />
+		<result property="description" column="description" />
+		<result property="dueDate" column="due_date" />
+		<result property="createDate" column="create_date" />
+		<result property="owner" column="owner" />
+		<result property="lastModifiedDate" column="last_modified_date" />
+		<result property="lastModifiedUser" column="last_modified_user" />
+	</resultMap>
+
+
+	<select id="getTask" resultMap="taskMap">
+		select * from Task where idtask =
+		#{id}
+	</select>
+
+	<select id="getTasksByStory" resultMap="taskMap">
+		select * from Task
+		join
+		Story on story.idstory = #{storyId}
+	</select>
+
+	<insert id="insertTask" useGeneratedKeys="true" keyProperty="id"
+		keyColumn="idtask">
+		insert into Task (idstory, name, description, due_date,
+		create_date, owner,
+		last_modified_date, last_modified_user)
+		values
+		(#{storyId}, #{name}, #{description}, #{dueDate}, now(), #{owner},
+		now(), #{lastModifiedUser})
+	</insert>
+
+	<delete id="deleteTask">
+		delete from Task where idtask = #{id}
+	</delete>
+
+</mapper>
+
