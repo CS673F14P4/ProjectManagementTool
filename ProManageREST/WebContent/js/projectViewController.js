@@ -82,8 +82,14 @@ angular
 						// just do something if the element is collapsed and the
 						// list of
 						// task is null, otherwise return
+						tasks = $scope.project.status[statusIndex].userStories[storyIndex].tasks;
+						tasksUnd = false;
+						if (typeof tasks === 'undefined') {
+							tasksUnd = true;
+						}
+
 						if (!$("#title" + storyId).hasClass("collapsed")
-								|| $scope.project.status[0].userStories[0].tasks.length > 0) {
+								|| !tasksUnd) {
 							return;
 						}
 						// show spinner
