@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ProManage.com</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<!-- add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="source/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="source/jquery.fancybox.css?v=2.1.5" media="screen" />
+	
+	<!-- bootstrap Core CSS  -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!--  custom css -->
+    <link href="css/header.css" rel="stylesheet">
+    <link href="css/about.css" rel="stylesheet">
+    <link href="css/landing-page.css" rel="stylesheet">
+    
+    <!--  js source -->
+	<script src="js/jquery-1.11.0.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+
+	<!--  custom js -->
+	<script src="js/indexController.js"></script>
+	<script src="js/about.js"></script>
+
+</head>
+<body ng-app="app">
+
+	<!--  header  -->
+	<div ng-include="'header.html'"></div><br><br><br>
+	
+	<div class="text-center" id="cont">
+		
+		<h1>Contact Us</h1><br><br>
+	
+		<p id="intro">We would love to talk to you about any question you may have.</p><br><br>
+	
+		<div style="text-align:center; display:inline-block">
+			<img src="images/email_icon.jpg" alt="Email Icon" style="width:150px;height:150px"><br>
+			<span id="tsize">Email Us</span><br>promanageteam@gmail.com
+		</div>
+	  		
+		<span style="display:inline-block; width: 80px;"></span>	  		
+		
+		<div style="text-align:center; display:inline-block">
+			<img src="images/phone_icon.jpg" alt="Phone Icon" style="width:150px;height:150px"><br>
+			<span id="tsize">Call Us</span><br>+1 111 111 1111
+		</div>
+	
+	</div>
+	
+	<!-- Footer -->
+    <br><br><br><br><footer class="text-center"><div ng-include="'footer.html'"></div></footer>
+	
+</body>
+
+</html>

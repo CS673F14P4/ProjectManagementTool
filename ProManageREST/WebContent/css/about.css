@@ -1,0 +1,51 @@
+
+.fancybox-custom .fancybox-skin {
+	box-shadow: 0 0 50px #222;
+}
+body {
+	margin: 0;
+	afont-size:23px;
+	afont-weight: normal;
+	color: gray;
+	font-family: Cambria, Georgia, serif;
+	}
+img {
+	width  : 250px;
+	height : 250px; 
+	}
+#cont {
+	max-width: 1100px;
+	margin: 0 auto;
+	}
+#intro {
+	font-size: 20px;
+}
+		
+th {
+	border: 2px solid white;
+	width: 200px;
+	background: white;
+	color: gray;
+			
+}
+#imgtxt{
+	width:1025px;
+}
+#tsize {
+	font-size: 23px;
+}
+.banner {
+	padding: 100px 0;
+	color: #f8f8f8;
+	background: url(../images/banner-bg.jpg) no-repeat center center;
+	background-size: cover;
+}
+h1 {
+	font-weight: normal;
+	font-size: 45px;
+	color: #7FB5DA;
+}
+h2 {
+	font-size: 50px;
+	font-weight: bold;
+}

@@ -5,10 +5,6 @@
 	
 	app.config(function($routeProvider) {
 		$routeProvider
-		// .when('/project', {
-		// templateUrl : 'home.html',
-		// controller : 'ApplicationController'
-		// })
 		.when('/project/:projectId', {
 			templateUrl : 'projectview.html',
 			controller : 'ProjectViewCtrl'
