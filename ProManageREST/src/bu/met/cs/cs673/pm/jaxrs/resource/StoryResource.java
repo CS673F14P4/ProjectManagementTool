@@ -65,15 +65,23 @@ public class StoryResource {
 	}
 
 	@POST
-	@Path("{id}")
-	public boolean addStory(@PathParam("id") int id,
-			@QueryParam("name") String name,
-			@QueryParam("description") String description,
-			@QueryParam("createUser") int createUser,
-			@QueryParam("dueDate") String dueDate) {
-		boolean success = false;
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean addStory(Story story, @Context SecurityContext sc) {
+		System.out.println(story.getProjectid());
+		
+		String userName = sc.getUserPrincipal().getName();
 
-		return success;
+		UserDAO userDAO = new UserDAO();
+		User user = userDAO.getUserByName(userName);
+		
+		bu.met.cs.cs673.pm.dto.Story storyDTO = StoryMapper.mapStory(story);
+		storyDTO.setCreateUser(user.getUserId());
+		storyDTO.setLastModifiedUser(user.getUserId());
+
+		StoryDAO storyDAO = new StoryDAO();
+		int createStory = storyDAO.createStory(storyDTO);
+
+		return createStory>1;
 	}
 
 }

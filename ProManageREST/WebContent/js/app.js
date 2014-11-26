@@ -19,6 +19,9 @@
 			templateUrl : 'members.html',
 			// change this
 			controller : 'MembersController'
+		}).when('/newstory/:projectId', {
+			templateUrl : 'modalNewStory.html',
+			controller : 'NewStoryCtrl'
 		}).otherwise({
 			templateUrl : 'projectList.html',
 			controller : 'ProjectsController'

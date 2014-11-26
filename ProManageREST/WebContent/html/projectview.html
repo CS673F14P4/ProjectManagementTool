@@ -24,9 +24,9 @@
 			</div>
 			<div class="col-md-4"></div>
 			<div class="col-md-4">
-				<a href=""><span
-					class=" btn-primary btn btn-default btn-lg pull-right"
-					data-toggle="modal" data-target=".modalNewStory">New Story</span> </a>
+				<a href="#newstory/{{project.idproject}}"><span
+					class=" btn-primary btn btn-default btn-lg pull-right">New
+						Story</span> </a>
 			</div>
 		</div>
 	</div>
@@ -46,8 +46,9 @@
 								<a id="title{{userStory.id}}" data-toggle="collapse"
 									data-parent="#{{stat.name}}accordion"
 									href=".{{stat.name}}userStory{{$index}}"
-									ng-click="acord(userStory.id,$parent.$index,$index)" class="collapsed">{{userStory.name}}
-									( 11/22/14 )</a> <a href="" ng-click="updateStatus($parent.$index,$index)"> <span
+									ng-click="acord(userStory.id,$parent.$index,$index)"
+									class="collapsed">{{userStory.name}} ({{userStory.dueDate | date}} )</a> <a
+									href="" ng-click="updateStatus($parent.$index,$index)"> <span
 									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
 									class="glyphicon  pull-right"></span></a>
 
