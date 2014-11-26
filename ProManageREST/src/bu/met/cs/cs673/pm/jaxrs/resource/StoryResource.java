@@ -2,60 +2,78 @@ package bu.met.cs.cs673.pm.jaxrs.resource;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.core.SecurityContext;
 
 import bu.met.cs.cs673.pm.dao.StoryDAO;
+import bu.met.cs.cs673.pm.dao.UserDAO;
+import bu.met.cs.cs673.pm.dto.User;
 import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
-
 
 @Path("/story")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+public class StoryResource {
 
-public class StoryResource 
-{
-	
 	@GET
 	@Path("{id}")
-	public Story getStory(@PathParam("id") String id)
-	{
+	public Story getStory(@PathParam("id") String id) {
 		System.out.println(">>> getStory");
-		
+
 		Story story = null;
-		
+
 		StoryDAO dao = new StoryDAO();
-		bu.met.cs.cs673.pm.dto.Story StoryDTO = dao.getStory(Integer.parseInt(id));
-		
-		
-		story = StoryMapper.mapStory(StoryDTO); 
-		
+		bu.met.cs.cs673.pm.dto.Story StoryDTO = dao.getStory(Integer
+				.parseInt(id));
+
+		story = StoryMapper.mapStory(StoryDTO);
+
 		System.out.println("<<< getGet");
-		
+
 		return story;
 	}
-	
+
 	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	public boolean editStory(Story story, @Context SecurityContext sc) {
+
+		if (story.getId() < 1) {
+			throw new IllegalStateException(
+					"The id need to be greater than zero.");
+		}
+
+		UserDAO userDAO = new UserDAO();
+		String userName = sc.getUserPrincipal().getName();
+		User user = userDAO.getUserByName(userName);
+
+		StoryDAO storyDAO = new StoryDAO();
+
+		bu.met.cs.cs673.pm.dto.Story storyDTO = StoryMapper.mapStory(story);
+		storyDTO.setLastModifiedUser(user.getUserId());
+
+		storyDAO.updateStory(story.getId(), storyDTO);
+
+		return false;
+	}
+
+	@POST
 	@Path("{id}")
-	public boolean addStory( @PathParam("id") String id,
-			@QueryParam("name") String name, 
-			@QueryParam("projectid") int projectid, 
+	public boolean addStory(@PathParam("id") int id,
+			@QueryParam("name") String name,
 			@QueryParam("description") String description,
 			@QueryParam("createUser") int createUser,
-			@QueryParam("dueDate") String dueDate)
-	{
+			@QueryParam("dueDate") String dueDate) {
 		boolean success = false;
-		Story story=new Story();
-		
-		
-		
+
 		return success;
 	}
-	
+
 }

@@ -116,4 +116,35 @@ angular
 
 					}
 
+					$scope.updateStatus = function(statusIndex, storyIndex) {
+						story = $scope.project.status[statusIndex].userStories[storyIndex];
+						console.log('updateStatus - storyId:' + story.id);
+						story.status = story.status + 1;
+
+						$http(
+								{
+									method : 'PUT',
+									url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
+									data : JSON.stringify(story),
+									headers : {
+										'Content-Type' : 'application/json'
+									}
+
+								})
+
+								.success(
+										function(data) {
+
+											$scope.project.status[statusIndex].userStories
+													.splice(storyIndex, 1);
+											$scope.project.status[statusIndex + 1].userStories
+													.push(story);
+
+										})
+
+								.error(function(data, status, headers, config) {
+									console.log('error');
+								});
+					}
+
 				})

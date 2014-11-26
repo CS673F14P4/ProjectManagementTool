@@ -47,7 +47,7 @@
 									data-parent="#{{stat.name}}accordion"
 									href=".{{stat.name}}userStory{{$index}}"
 									ng-click="acord(userStory.id,$parent.$index,$index)" class="collapsed">{{userStory.name}}
-									( 11/22/14 )</a> <a href=""> <span
+									( 11/22/14 )</a> <a href="" ng-click="updateStatus($parent.$index,$index)"> <span
 									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
 									class="glyphicon  pull-right"></span></a>
 
