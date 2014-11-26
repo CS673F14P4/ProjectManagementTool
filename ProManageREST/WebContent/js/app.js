@@ -12,9 +12,6 @@
 		.when('/project/:projectId', {
 			templateUrl : 'projectview.html',
 			controller : 'ProjectViewCtrl'
-		}).when('/signin', {
-			templateUrl : 'signin.html',
-			controller : 'ApplicationController'
 		}).when('/newproject', {
 			templateUrl : 'newproject.html',
 			controller : 'FormController'

@@ -1,12 +1,9 @@
-
 package bu.met.cs.cs673.pm.dao;
 
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-
-
 
 import bu.met.cs.cs673.pm.dto.Story;
 
@@ -16,125 +13,111 @@ import bu.met.cs.cs673.pm.dto.Story;
  * Last edit 10/15/2015
  */
 public class StoryDAO {
-	
-	public int createStory(Story story)
-	{
+
+	public int createStory(Story story) {
 		int success = -1;
-		
-		if (story == null)
-		{
+
+		if (story == null) {
 			success = -1;
-		}
-		else
-		{
-			SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+		} else {
+			if (story.getStatus() < 0 || story.getStatus() > 2) {
+				throw new IllegalArgumentException(
+						"The status needs to be 0, 1 or 2");
+			}
+			SqlSessionFactory factory = SessionFactorySingleton.getInstance()
+					.getSqlSessionFactory();
 			SqlSession session = factory.openSession();
-			
-			try 
-			{
+
+			try {
 				success = session.insert("createStory", story);
 				session.commit();
-			} 
-			finally 
-			{
-			  session.close();
+			} finally {
+				session.close();
 			}
 		}
-	
-	
-		if (success > 0)
-		{
+
+		if (success > 0) {
 			success = story.getIdstory();
 		}
-		
+
 		return success;
-	
-	
-}
-	//retrieves story at certain value
-	public Story getStory(int id)
-	{
-		Story selected=null;
-		
-		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+
+	}
+
+	// retrieves story at certain value
+	public Story getStory(int id) {
+		Story selected = null;
+
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
+				.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
-		
-		try 
-		{
+
+		try {
 			selected = session.selectOne("getStory", id);
 			session.commit();
-		} 
-		finally 
-		{
-		  session.close();
+		} finally {
+			session.close();
 		}
-		
+
 		return selected;
 	}
-	
-	//should remove specific story
-	public boolean deleteStory(int id)
-	{
-		int deleted=-1;
-		boolean delete=false;
-		
-		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+
+	// should remove specific story
+	public boolean deleteStory(int id) {
+		int deleted = -1;
+		boolean delete = false;
+
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
+				.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
-		
-		
-		
-		try 
-		{
+
+		try {
 			deleted = session.delete("deleteStory", id);
 			session.commit();
-		} 
-		finally 
-		{
-		  session.close();
+		} finally {
+			session.close();
 		}
-		if(deleted>0)
-			delete=true;
-		
+		if (deleted > 0)
+			delete = true;
+
 		return delete;
 	}
 
-	//Should return list of stories by project id#
+	// Should return list of stories by project id#
 	public List<Story> storyByProject(int idproject) {
-		List<Story> storyList=null; 
-		
-		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+		List<Story> storyList = null;
+
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
+				.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
-		
-		try
-		{
-			storyList= session.selectList("storyByProject", idproject);
-		}
-		finally
-		{
+
+		try {
+			storyList = session.selectList("storyByProject", idproject);
+		} finally {
 			session.close();
 		}
 		return storyList;
 	}
+
 	public int updateStory(int idstory, Story story) {
-		// TODO Auto-generated method stub
-		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		int update;
-		
-		try
-		{
-			update=session.update("updateStory", story);
-			session.commit();
+		if (story.getStatus() < 0 || story.getStatus() > 2) {
+			throw new IllegalArgumentException(
+					"The status needs to be 0, 1 or 2");
 		}
-		finally
-		{
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
+				.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+
+		int update;
+
+		try {
+			update = session.update("updateStory", story);
+			session.commit();
+		}finally {
 			session.close();
 		}
-		
 		return update;
+
 	}
 
-	
 }
-

@@ -14,7 +14,7 @@
 			}).success(function(data) {
 				//test
 				console.log(data);
-				$scope.project.name = data.project.name;
+				$scope.project.name = data.name;
 
 			}).error(function(data, status, headers, config) {
 				console.log('error');
@@ -27,7 +27,9 @@
 			}).success(function(data) {
 				//test
 				console.log(data);
-				$scope.members = data.wrapper.users;
+				$scope.members = data;
+				console.log("members");
+				console.log($scope.members);
 
 			}).error(function(data, status, headers, config) {
 				console.log('error');

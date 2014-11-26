@@ -22,17 +22,14 @@ import bu.met.cs.cs673.pm.jaxrs.model.Project;
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
 import bu.met.cs.cs673.pm.jaxrs.model.User;
 import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
-import bu.met.cs.cs673.pm.jaxrs.wrapper.UserWrapper;
 
 @Path("/project")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProjectResource 
-{
+public class ProjectResource {
 	@GET
 	@Path("{projectid}")
-	public Project getProject(@PathParam("projectid") int projectid) 
-	{
+	public Project getProject(@PathParam("projectid") int projectid) {
 
 		System.out.println(">>> getProject");
 
@@ -47,38 +44,36 @@ public class ProjectResource
 
 		return project;
 	}
-	
+
 	@GET
 	@Path("/user/{username}")
-	public List<Project> getProjects(@PathParam("username") String username)
-	{
+	public List<Project> getProjects(@PathParam("username") String username) {
 		System.out.println(">>> getProjects");
-		
+
 		List<Project> projects = null;
-		
-		if (username != null)
-		{
+
+		if (username != null) {
 			UserDAO userDAO = new UserDAO();
-			bu.met.cs.cs673.pm.dto.User userDTO = userDAO.getUserByName(username);
+			bu.met.cs.cs673.pm.dto.User userDTO = userDAO
+					.getUserByName(username);
 			ProjectDAO dao = new ProjectDAO();
-			List<bu.met.cs.cs673.pm.dto.Project> projectDTOs = 
-					dao.getProjects(userDTO.getUserId());
+			List<bu.met.cs.cs673.pm.dto.Project> projectDTOs = dao
+					.getProjects(userDTO.getUserId());
 
 			projects = ProjectMapper.mapProjects(projectDTOs);
 		}
-		
+
 		System.out.println("projects:" + projects);
 		System.out.println("projectsize: " + projects.size());
-		
+
 		System.out.println("<<< getProjects");
-		
+
 		return projects;
 	}
 
 	@GET
 	@Path("{projectid}/stories")
-	public List<Story> getStoriesByProject(
-			@PathParam("projectid") int projectid) {
+	public List<Story> getStoriesByProject(@PathParam("projectid") int projectid) {
 
 		List<Story> stories = new ArrayList<Story>();
 
@@ -100,7 +95,7 @@ public class ProjectResource
 
 	@GET
 	@Path("{projectid}/members")
-	public UserWrapper getMembersProject(@PathParam("projectid") int projectid) {
+	public List<User> getMembersProject(@PathParam("projectid") int projectid) {
 
 		List<User> users = new ArrayList<User>();
 
@@ -113,11 +108,7 @@ public class ProjectResource
 			users.add(user);
 		}
 
-		UserWrapper userWrapper = new UserWrapper();
-
-		userWrapper.setUsers(users);
-
-		return userWrapper;
+		return users;
 
 	}
 

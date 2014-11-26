@@ -83,21 +83,21 @@ public class StoryDAOtest extends TestCase {
 		int updated;
 		StoryDAO dao = new StoryDAO();
 		
-		story=dao.getStory(3);
+		story=dao.getStory(1);
 		System.out.println("BEFORE CHANGE" +story.toString());
 		story.setName("updated");
 		story.setLastModifiedUser(5);
-		story.setStatus(3);
+		story.setStatus(1);
 		story.setDueDate(new java.util.Date());
 		story.setDescription("this is updated");
 		story.setLastModifiedDate(new java.util.Date());
 		
+		System.out.println("id story: "+story.getIdstory());
 		
 		
+		updated=dao.updateStory(1, story);
 		
-		updated=dao.updateStory(3, story);
-		
-		System.out.println("After Update "+dao.getStory(3).toString());
+		System.out.println("After Update "+dao.getStory(1).toString());
 		
 		
 	
