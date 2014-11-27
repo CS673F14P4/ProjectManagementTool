@@ -25,10 +25,21 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>bu.met.cs.cs673.pm.servlet.RegistrationServlet</servlet-class>
+    </servlet>
+	
 	<servlet-mapping>
 		<servlet-name>ProManageApp</servlet-name>
 		<url-pattern>/jaxrs/*</url-pattern>
 	</servlet-mapping>
+       
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/registration/*</url-pattern>
+    </servlet-mapping>
+
 
 	<security-constraint>
 		<web-resource-collection>
@@ -46,11 +57,10 @@
 			<role-name>admin</role-name>
 			<role-name>teammate</role-name>
 		</auth-constraint>
-		<!-- <user-data-constraint> <transport-guarantee>CONFIDENTIAL</transport-guarantee> 
+		<!-- <user-data-constraint> 
+				<transport-guarantee>CONFIDENTIAL</transport-guarantee> 
 			</user-data-constraint> -->
 	</security-constraint>
-
-
 
 	<login-config>
 		<auth-method>FORM</auth-method>
@@ -77,6 +87,5 @@
 		<description>Customer Role</description>
 		<role-name>customer</role-name>
 	</security-role>
-
 
 </web-app>
