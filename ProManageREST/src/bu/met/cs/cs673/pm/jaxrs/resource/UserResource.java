@@ -36,9 +36,13 @@ public class UserResource {
 		bu.met.cs.cs673.pm.dto.User userDTO = dao.getUserByName(username);
 		// bu.met.cs.cs673.pm.dto.User userDTO =
 		// dao.getUser(Integer.parseInt(id));
-
-		user = UserMapper.mapUser(userDTO);
-
+		if(userDTO != null){
+			System.out.println("<<< not null");
+			user = UserMapper.mapUser(userDTO);
+		} else{
+			System.out.println("<<< null");
+			//user = new User(10, null, "femi", null, null, null, null, null);
+		}
 		System.out.println("<<< getUser");
 
 		return user;
