@@ -21,24 +21,22 @@ angular.module('promanage').controller("FormController",
 	}
 
 	/* post data */
-    $scope.submit = function () {
+	$scope.submit = function () {
     	
-  
-    		var formData = $scope.user;
+		var formData = $scope.user;
     		
-    		// post request to send form
-			//get list of projects
-			$http({
-				method : 'PUT',
-				url : 'http://localhost:8080/ProManageREST/jaxrs/project',
-				data: formData
-			}).success(function(data) {
-				$window.alert("Project created");
-		        $window.location.href = '';
+		// put request to send form
+		$http({
+			method : 'PUT',
+			url : 'http://localhost:8080/ProManageREST/jaxrs/project',
+			data: formData
+		}).success(function(data) {
+			$window.alert("Project created");
+	        $window.location.href = '';
 				
-			}).error(function(data, status, headers, config) {
-				//$window.alert("Please try again later.")
-			});
+		}).error(function(data, status, headers, config) {
+			$window.alert("Please try again later.")
+		});
 
     }
     	

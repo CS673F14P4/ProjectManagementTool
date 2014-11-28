@@ -16,11 +16,14 @@
 
 					<!--  list projects -->
 					<ul class="list" id="list">
-						<li ng-repeat="project in projects"><a
-							href="#/project/{{project.id}}"> <span class="title">{{project.name}}</span>
+						<li ng-repeat="project in projects">
+							<a href="#/project/{{project.id}}">
+								<span class="title">{{project.name}}</span>
 								<span class="content">{{project.description}}</span>
-						</a>
-						<li>
+							</a>
+							<a href="" ng-click="del(project)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
+							<br>
+						</li>
 					</ul>
 
 				</div>

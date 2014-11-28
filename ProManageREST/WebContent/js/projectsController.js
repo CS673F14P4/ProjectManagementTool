@@ -23,4 +23,15 @@ angular.module('promanage').controller("ProjectsController",
 				//$window.alert("Please try again later.")
 			});
 
-		})
+			
+			//delete a project
+			$scope.del = function(project) {
+				var answer = confirm("Are you sure you want to delete the project " + project.name + "?");
+				
+				if (answer == true){
+					// request to delete project
+				}
+				
+			}
+
+})

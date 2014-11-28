@@ -1,8 +1,8 @@
 <div class="tab-content">
-	<div class="tab-pane active" id="projects">
+	<div class="tab-pane active" id="members">
 		<div class="container">
 
-			<a href="" class="navbar-button btn btn-large btn-primary pull-right"
+			<a href="#/addmember" class="navbar-button btn btn-large btn-primary pull-right"
 				type="button">Add member</a>
 
 			<!--  box to show projects -->
@@ -15,11 +15,16 @@
 					
 					<!--  list members -->
 					<ul class="list" id="list">
-						<li ng-repeat="member in members"><a href=""> <span
-								class="title">{{member.username}}</span> <!-- 	should show the member role -->
+						<li ng-repeat="member in members">
+							<a href="">
+								<span class="title">{{member.username}}</span> 
+								<!-- 	should show the member role -->
 								<!-- <span class="content">{{member.role}}</span> -->
-						</a>
-						<li>
+							</a>
+							<!--  button to delete a member -->
+							<a href="" ng-click="del(member)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
+							<br>
+						</li>
 					</ul>
 
 				</div>

@@ -1,0 +1,38 @@
+<!--  search member by username -->
+<div class="container">
+	<br>
+	<div class="text-center">
+		<form class="form-inline">
+			<div class="form-group" >
+				<input style="width:400px" name="search" type="text" ng-model="searchQuery" class="form-control">
+				<a href="" class="navbar-button btn btn-sm btn-primary" type="button" ng-click="search()">Search</a> 
+			</div>
+		</form>
+	</div>
+	
+	<!--  show result -->
+	<div class="content-container clearfix">
+		<div class="col-md-12">
+
+			<!--  title -->
+			<h2 class="content-title">{{message}}</h2>
+
+			<!--  list projects -->
+			<ul class="list" id="list">
+				<li ng-repeat="user in users">
+					<a href=""> 
+						<span class="title">{{user.firstname}} {{user.lastname}}</span>
+						<span class="content">{{user.username}}</span>
+					</a>
+					<!--  button to add a member -->
+					<a href="" ng-click="add(user)"class="navbar-button btn btn-sm btn-default pull-right" type="button">Add</a>
+					<br>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+	
+	
+	
+</div>
