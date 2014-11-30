@@ -7,7 +7,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
@@ -68,12 +67,12 @@ public class StoryResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public boolean addStory(Story story, @Context SecurityContext sc) {
 		System.out.println(story.getProjectid());
-		
+
 		String userName = sc.getUserPrincipal().getName();
 
 		UserDAO userDAO = new UserDAO();
 		User user = userDAO.getUserByName(userName);
-		
+
 		bu.met.cs.cs673.pm.dto.Story storyDTO = StoryMapper.mapStory(story);
 		storyDTO.setCreateUser(user.getUserId());
 		storyDTO.setLastModifiedUser(user.getUserId());
@@ -81,7 +80,7 @@ public class StoryResource {
 		StoryDAO storyDAO = new StoryDAO();
 		int createStory = storyDAO.createStory(storyDTO);
 
-		return createStory>1;
+		return createStory > 1;
 	}
 
 }
