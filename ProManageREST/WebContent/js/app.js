@@ -18,7 +18,7 @@
 		}).when('/addmember', {
 			templateUrl : 'addmember.html',
 			controller : 'AddMemberCtrl'
-		}).when('/newstory/:projectId', {
+		}).when('/newstory/:projectId/:storyId', {
 			templateUrl : 'modalNewStory.html',
 			controller : 'NewStoryCtrl'
 		}).otherwise({

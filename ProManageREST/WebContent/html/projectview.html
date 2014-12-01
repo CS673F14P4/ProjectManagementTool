@@ -13,7 +13,7 @@
 <div class="container">
 
 	<!-- button to create new story -->
-	<a href="#newstory/{{project.idproject}}"><span
+	<a href="#newstory/{{project.idproject}}/-1"><span
 		class="navbar-button btn btn-large btn-primary pull-right">New
 			Story</span> </a>
 
@@ -45,7 +45,7 @@
 									href=".{{stat.name}}userStory{{$index}}"
 									ng-click="acord(userStory.id,$parent.$index,$index)"
 									class="collapsed">{{userStory.name}} ( {{userStory.dueDate | date}} )</a> <a
-									href=""> <span
+									href="" ng-click="updateStatus($parent.$index,$index)"> <span
 									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
 									class="glyphicon  pull-right"></span></a>
 
@@ -83,8 +83,8 @@
 								</div>
 								<div class="pull-right">
 
-									<button ng-show="{{stat.name!='Done'}}" type="button"
-										class="btn btn-default ">Edit Story</button>
+									<a ng-show="{{stat.name!='Done'}}" type="button"
+										class="btn btn-default" href="#newstory/{{project.idproject}}/{{userStory.id}}" >Edit Story</a>
 									<button ng-show="{{stat.name=='Backlog'}}" type="button"
 										class="btn btn-default" data-toggle="modal"
 										data-target=".modalNewTask">New Task</button>
