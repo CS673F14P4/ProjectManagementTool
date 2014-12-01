@@ -3,8 +3,10 @@ package bu.met.cs.cs673.pm.jaxrs.security.impl;
 
 import java.util.List;
 
+import bu.met.cs.cs673.pm.dao.MemberDAO;
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.dao.UserDAO;
+import bu.met.cs.cs673.pm.dto.Member;
 import bu.met.cs.cs673.pm.dto.Project;
 import bu.met.cs.cs673.pm.dto.User;
 
@@ -21,6 +23,8 @@ import bu.met.cs.cs673.pm.dto.User;
 public class UserAuthorizationService
 {
     //private static Logger logger = LogManager.getLogger("security");
+	
+	private static String PROJECT_LEADER_ROLE = "project_leader";
     
     /**
      * Determines if the specified user is authorized to request the specified project.
@@ -35,13 +39,11 @@ public class UserAuthorizationService
         
         try
         {
-        	UserDAO udao = new UserDAO();
-        	
-            User user = udao.getUserByName(username);
+        	int userid = getUserId(username);
             
             ProjectDAO pdao = new ProjectDAO();
             
-			List<Project> projects = pdao.getProjects(user.getUserId());
+			List<Project> projects = pdao.getProjects(userid);
             
 			int id = Integer.parseInt(projectId);
 			
@@ -62,5 +64,64 @@ public class UserAuthorizationService
         System.out.println("user: " + username + ", isAuthorized: " + isAuthorized + ", project: "+ projectId);
         
         return isAuthorized;
+    }
+    
+    /**
+     * isAuthorizedForMemberOperations()
+     * 
+     * Determines if the specified user is authorized to manage the member lists for the given project. Only the project
+     * leader should have this ability.
+     * 
+     * @param username
+     * @param projectId
+     * @return
+     */
+    public boolean isAuthorizedForMemberOperations(String username, String projectId)
+    {
+    	boolean isAuthorized = false;
+        
+    	try
+        {
+        	int userId = getUserId(username);
+        	int pId = Integer.parseInt(projectId);
+            
+            MemberDAO mdao = new MemberDAO();
+            
+            Member searchMember = new Member(pId, userId, null); 
+            Member member = mdao.getMember(searchMember);
+            
+            if (PROJECT_LEADER_ROLE.equals(member.getRoleName()))
+            {
+            	isAuthorized = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            //logger.error("Error authorizing user '" + username + "' for project [" + projectId + "].", ex);
+        }
+            
+        System.out.println("MEMBER_OP_AUTH::: user: " + username + ", isAuthorized: " + isAuthorized + ", project: "+ projectId);    	
+    	
+    	return isAuthorized;
+    }
+    
+    /**
+     * getUserId()
+     * 
+     * Helper function to get the userid given the username
+     * 
+     * @param username
+     * @return
+     */
+    private int getUserId(String username)
+    {
+    	int userid = -1; //doesnt exist
+    	
+    	UserDAO dao = new UserDAO();
+    	
+    	User user = dao.getUserByName(username);
+    	userid = user.getUserId();
+    	
+    	return userid;
     }
 }

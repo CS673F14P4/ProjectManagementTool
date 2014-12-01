@@ -85,16 +85,28 @@ public class AuthorizationRequestHandler implements RequestHandler
      */    
     private void authorizeParams(String username, UriInfo uriInfo)
     {
+    	System.out.println("uri.path: " + uriInfo.getPath());
+    	
+    	//authorize the path parameters first
+        MultivaluedMap<String, String> pathParams = uriInfo.getPathParameters();
+        if (!pathParams.isEmpty())
+        {
+            authorizeParams(username, pathParams);
+        }
+        
+        //authorize the query parameters next
         MultivaluedMap<String, String> queryParams = uriInfo.getQueryParameters();
         if (!queryParams.isEmpty())
         {
             authorizeParams(username, queryParams);
         }
         
-        MultivaluedMap<String, String> pathParams = uriInfo.getPathParameters();
-        if (!pathParams.isEmpty())
+        //custom authorization
+        String path = uriInfo.getPath();
+        if (path.endsWith("member") && pathParams.containsKey("projectid"))
         {
-            authorizeParams(username, pathParams);
+        	String projectId = pathParams.getFirst("projectid");
+        	authorizeMember(username, projectId);
         }
     }
 
@@ -135,7 +147,14 @@ public class AuthorizationRequestHandler implements RequestHandler
             handleUnauthorizedRequest("User '" + username + "' is not authorized for project [" + projectId + "]");
         }
     }
-     
+
+    private void authorizeMember(String username, String projectId)
+    {
+    	if(!authSvc.isAuthorizedForMemberOperations(username, projectId))
+    	{
+    		handleUnauthorizedRequest("User '" + username + "' is not authorized to edit member list for project [" + projectId + "]");
+    	}
+    }
 
     /**
      * @param 
@@ -170,7 +189,7 @@ public class AuthorizationRequestHandler implements RequestHandler
     private void handleUnauthorizedRequest(String message)
     {
         //logger.error(message);
-        
+        System.out.println(message);
         throw new javax.ws.rs.WebApplicationException(Response.status(Status.UNAUTHORIZED).build());
     }
     

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -26,10 +26,12 @@ import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
 @Path("/project")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class ProjectResource {
+public class ProjectResource 
+{
 	@GET
 	@Path("{projectid}")
-	public Project getProject(@PathParam("projectid") int projectid) {
+	public Project getProject(@PathParam("projectid") int projectid) 
+	{
 
 		System.out.println(">>> getProject");
 
@@ -47,7 +49,8 @@ public class ProjectResource {
 
 	@GET
 	@Path("/user/{username}")
-	public List<Project> getProjects(@PathParam("username") String username) {
+	public List<Project> getProjects(@PathParam("username") String username) 
+	{
 		System.out.println(">>> getProjects");
 
 		List<Project> projects = null;
@@ -73,7 +76,8 @@ public class ProjectResource {
 
 	@GET
 	@Path("{projectid}/stories")
-	public List<Story> getStoriesByProject(@PathParam("projectid") int projectid) {
+	public List<Story> getStoriesByProject(@PathParam("projectid") int projectid) 
+	{
 
 		List<Story> stories = new ArrayList<Story>();
 
@@ -95,7 +99,8 @@ public class ProjectResource {
 
 	@GET
 	@Path("{projectid}/members")
-	public List<User> getMembersProject(@PathParam("projectid") int projectid) {
+	public List<User> getMembersProject(@PathParam("projectid") int projectid) 
+	{
 
 		List<User> users = new ArrayList<User>();
 
@@ -111,8 +116,8 @@ public class ProjectResource {
 		return users;
 
 	}
-
-	@PUT
+	
+	@POST
 	public boolean addProject(@QueryParam("name") String name,
 			@QueryParam("description") String description,
 			@QueryParam("startdate") String startDate,
