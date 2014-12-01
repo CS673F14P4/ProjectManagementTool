@@ -34,5 +34,16 @@
 			}).error(function(data, status, headers, config) {
 				console.log('error');
 			});
+ 	
+ 	
+	//delete a member
+	$scope.del = function(member) {
+		var answer = confirm("Are you sure you want to delete the member " + member.username + "?");
+		
+		if (answer == true){
+			// request to delete member
+		}
+		
+	}
 
 })

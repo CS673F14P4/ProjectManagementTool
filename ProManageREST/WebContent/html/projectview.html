@@ -11,23 +11,23 @@
 	aria-labelledby="myModalLabel2" aria-hidden="true"></div>
 
 <div class="container">
-	
+
 	<!-- button to create new story -->
-	<a href="" class="navbar-button btn btn-large btn-primary pull-right" type="button" 
-	data-toggle="modal" data-target=".modalNewStory">New Story</a> 
-	
+	<a href="#newstory/{{project.idproject}}"><span
+		class="navbar-button btn btn-large btn-primary pull-right">New
+			Story</span> </a>
+
 	<div class="page-header">
-	
+
 		<!--  Project name and button to see members page -->
-		<h2 class="content-title">{{project.name}}
-			<a href="#/members/{{project.idproject}}"
-			class="navbar-button btn btn-xs btn-default"
-			type="button">Members</a>
+		<h2 class="content-title">
+			{{project.name}} <a href="#/members/{{project.idproject}}"
+				class="navbar-button btn btn-xs btn-default" type="button">Members</a>
 		</h2>
-	
+
 		<!--  display project description -->
 		<h6>{{project.description}}</h6>
-	
+
 	</div>
 
 	<div class="row">
@@ -43,8 +43,9 @@
 								<a id="title{{userStory.id}}" data-toggle="collapse"
 									data-parent="#{{stat.name}}accordion"
 									href=".{{stat.name}}userStory{{$index}}"
-									ng-click="acord(userStory.id)" class="collapsed">{{userStory.name}}
-									( 11/22/14 )</a> <a href=""> <span
+									ng-click="acord(userStory.id,$parent.$index,$index)"
+									class="collapsed">{{userStory.name}} ( {{userStory.dueDate | date}} )</a> <a
+									href=""> <span
 									ng-class="{'glyphicon-play': stat.name == 'Backlog' , 'glyphicon-ok': stat.name == 'Current'}"
 									class="glyphicon  pull-right"></span></a>
 

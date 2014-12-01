@@ -28,18 +28,23 @@ ul.list{
     list-style:none;
     margin-top:30px;
 }
-ul.list li a{
-    display:block;
+ul.list li {
+	display:block;
     border-bottom:1px dotted #CFCFCF;
     padding:20px;
     text-decoration:none;
 }
-ul.list li:last-child a{
-    border-bottom:none;
+
+ul.list li:hover{
+    background-color:#DBF9FF;    
 }
+
 ul.list li a:hover{
     background-color:#DBF9FF;
+    text-decoration: none;
+    
 }
+
 ul.list li span{
     display:block;
 }

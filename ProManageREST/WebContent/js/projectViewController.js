@@ -92,6 +92,9 @@ angular
 								|| !tasksUnd) {
 							return;
 						}
+						console.log('acord - params storyId- ' + storyId
+								+ ' - statusIndex - ' + statusIndex
+								+ ' - storyIndex  - ' + storyIndex);
 						// show spinner
 						$("#spinner" + storyId).show();
 
@@ -103,6 +106,8 @@ angular
 								})
 								.success(
 										function(data) {
+											console.log('data:');
+											console.log(data);
 											$scope.project.status[statusIndex].userStories[storyIndex].tasks = data;
 											// needed to show changes in UI
 											// $scope.$apply();
@@ -111,6 +116,7 @@ angular
 											$("#spinner" + storyId).hide();
 										})
 								.error(function(data, status, headers, config) {
+									$("#spinner" + storyId).hide();
 									console.log('error');
 								});
 

@@ -23,7 +23,8 @@
 	<select id="getTasksByStory" resultMap="taskMap">
 		select * from Task
 		join
-		Story on story.idstory = #{storyId}
+		Story on story.idstory = task.idstory
+		and story.idstory = #{storyId}
 	</select>
 
 	<insert id="insertTask" useGeneratedKeys="true" keyProperty="id"

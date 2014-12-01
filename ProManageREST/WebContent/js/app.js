@@ -15,6 +15,9 @@
 			templateUrl : 'members.html',
 			// change this
 			controller : 'MembersController'
+		}).when('/addmember', {
+			templateUrl : 'addmember.html',
+			controller : 'AddMemberCtrl'
 		}).when('/newstory/:projectId', {
 			templateUrl : 'modalNewStory.html',
 			controller : 'NewStoryCtrl'

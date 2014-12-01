@@ -28,11 +28,13 @@ public class TaskResource {
 		TaskDAO taskDAO = new TaskDAO();
 		List<bu.met.cs.cs673.pm.dto.Task> tasksByStory = taskDAO
 				.getTasksByStory(storyId);
-
+		System.out.println("taks by story"+storyId);
 		for (bu.met.cs.cs673.pm.dto.Task taskDTO : tasksByStory) {
 			Task mapTask = TaskMapper.mapTask(taskDTO);
+			System.out.println(mapTask.getName());
 			tasks.add(mapTask);
 		}
+		
 
 		return tasks;
 
