@@ -17,17 +17,12 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
-import bu.met.cs.cs673.pm.dao.MemberDAO;
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
-import bu.met.cs.cs673.pm.dao.StoryDAO;
 import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
-import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
 import bu.met.cs.cs673.pm.jaxrs.mapper.UserMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
-import bu.met.cs.cs673.pm.jaxrs.model.Story;
 import bu.met.cs.cs673.pm.jaxrs.model.User;
-import bu.met.cs.cs673.pm.jaxrs.wrapper.StoryWrapper;
 import bu.met.cs.cs673.pm.util.UserUtil;
 
 @Path("/project")
@@ -74,35 +69,9 @@ public class ProjectResource
 			projects = ProjectMapper.mapProjects(projectDTOs);
 		}
 
-		System.out.println("projects:" + projects);
-		System.out.println("projectsize: " + projects.size());
-
 		System.out.println("<<< getProjects");
 
 		return projects;
-	}
-
-	@GET
-	@Path("{projectid}/stories")
-	public List<Story> getStoriesByProject(@PathParam("projectid") int projectid) 
-	{
-
-		List<Story> stories = new ArrayList<Story>();
-
-		StoryDAO storyDAO = new StoryDAO();
-		List<bu.met.cs.cs673.pm.dto.Story> storiesByProject = storyDAO
-				.storyByProject(projectid);
-		System.out.println(storiesByProject.size());
-		for (bu.met.cs.cs673.pm.dto.Story storyDTO : storiesByProject) {
-			Story story = StoryMapper.mapStory(storyDTO);
-			stories.add(story);
-		}
-
-		StoryWrapper storyWrapper = new StoryWrapper();
-		storyWrapper.setStories(stories);
-
-		return stories;
-
 	}
 
 	@GET
