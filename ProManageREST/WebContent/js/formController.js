@@ -11,10 +11,6 @@ angular.module('promanage').controller("FormController",
 	var currentTime = new Date();
 	$scope.user = {'name': 'Project A', 'description': 'Description of Project A', 'startdate': currentTime, 'enddate': currentTime};
 	
-	$scope.selectText = function(){
-	    document.getElementById("txtarea").select();
-	}
-	
 	/* reset form */
 	$scope.reset = function () {
 		$scope.user = {};
@@ -22,14 +18,15 @@ angular.module('promanage').controller("FormController",
 
 	/* post data */
 	$scope.submit = function () {
-    	
-		var formData = $scope.user;
-    		
-		// put request to send form
+    	    		
+		// post request to send form
 		$http({
-			method : 'PUT',
+			method : 'POST',
 			url : 'http://localhost:8080/ProManageREST/jaxrs/project',
-			data: formData
+			data: JSON.stringify($scope.user),
+			headers: {
+				'Content-Type':'application/json'
+			}
 		}).success(function(data) {
 			$window.alert("Project created");
 	        $window.location.href = '';

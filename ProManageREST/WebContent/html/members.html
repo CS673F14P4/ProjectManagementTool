@@ -6,7 +6,7 @@
 				type="button">Add member</a>
 
 			<!--  box to show projects -->
-			<div class="content-container clearfix">
+			<div class="content-container clearfix" ng-show="showFlag">
 				<div class="col-md-12">
 
 					<!--  title -->
@@ -22,7 +22,7 @@
 								<!-- <span class="content">{{member.role}}</span> -->
 							</a>
 							<!--  button to delete a member -->
-							<a href="" ng-click="del(member)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
+							<a href="" ng-show="showFlag" ng-click="del(member)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
 							<br>
 						</li>
 					</ul>

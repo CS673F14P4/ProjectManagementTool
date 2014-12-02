@@ -6,11 +6,14 @@
  	$scope.project = {'name':"",};
  	$scope.projectId = $routeParams.projectId;
  	$scope.members = [];
+ 	
+	// only show button when there are projects
+	$scope.showFlag = false;
 
 
  	$http({
 				method : 'Get',
-				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$scope.projectId
+				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ $scope.projectId
 			}).success(function(data) {
 				//test
 				console.log(data);
@@ -23,13 +26,16 @@
 
  	$http({
 				method : 'Get',
-				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$scope.projectId+'/members'
+				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ $scope.projectId + '/member'
 			}).success(function(data) {
-				//test
-				console.log(data);
-				$scope.members = data;
-				console.log("members");
-				console.log($scope.members);
+				if (data == undefined || data == ""){
+					$scope.members = "";
+					$scope.showFlag = false;
+
+				}else{
+					$scope.members = data;
+					$scope.showFlag = true;
+				}
 
 			}).error(function(data, status, headers, config) {
 				console.log('error');

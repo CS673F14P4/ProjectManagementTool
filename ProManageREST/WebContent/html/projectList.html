@@ -8,7 +8,7 @@
 				type="button">New Project</a> 
 
 			<!--  box to show projects -->
-			<div class="content-container clearfix">
+			<div class="content-container clearfix" ng-show="showFlag">
 				<div class="col-md-12">
 
 					<!--  title -->
@@ -21,7 +21,7 @@
 								<span class="title">{{project.name}}</span>
 								<span class="content">{{project.description}}</span>
 							</a>
-							<a href="" ng-click="del(project)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
+							<a href="" class="navbar-button btn btn-sm btn-default pull-right" type="button">Edit</a>
 							<br>
 						</li>
 					</ul>

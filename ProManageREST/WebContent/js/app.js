@@ -13,7 +13,6 @@
 			controller : 'FormController'
 		}).when('/members/:projectId', {
 			templateUrl : 'members.html',
-			// change this
 			controller : 'MembersController'
 		}).when('/addmember', {
 			templateUrl : 'addmember.html',

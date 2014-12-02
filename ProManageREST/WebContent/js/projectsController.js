@@ -8,30 +8,31 @@ angular.module('promanage').controller("ProjectsController",
 		function($scope, $window, $rootScope, $http) {
 
 			$rootScope.pageTitle = "Project List";
-
-			var login = 'cyclops'; //change later
+			
+			// only show button when there are projects
+			$scope.showFlag = false;
+			
 			
 			//get list of projects
 			$http({
 				method : 'GET',
-				url : 'http://localhost:8080/ProManageREST/jaxrs/project/user/cyclops'
+				url : 'http://localhost:8080/ProManageREST/jaxrs/project'
 			}).success(function(data) {
-				$scope.projects = data;
-				$scope.message = "Projects";
-				
-			}).error(function(data, status, headers, config) {
-				//$window.alert("Please try again later.")
-			});
+				// user has no projects
+				if (data == undefined || data == ""){
+					$scope.projects = "";
+					$scope.message = "";
+					$scope.showFlag = false;
 
-			
-			//delete a project
-			$scope.del = function(project) {
-				var answer = confirm("Are you sure you want to delete the project " + project.name + "?");
-				
-				if (answer == true){
-					// request to delete project
+				}else{
+					$scope.projects = data;
+					$scope.message = "Projects";
+					$scope.showFlag = true;
 				}
 				
-			}
+			}).error(function(data, status, headers, config) {
+				// choose something to show in every error situation
+				//$window.alert("Please try again later.")
+			});
 
 })
