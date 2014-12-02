@@ -5,14 +5,12 @@ import java.util.List;
 
 import bu.met.cs.cs673.pm.dao.MemberDAO;
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
-import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.dto.Member;
 import bu.met.cs.cs673.pm.dto.Project;
-import bu.met.cs.cs673.pm.dto.User;
+import bu.met.cs.cs673.pm.util.UserUtil;
 
 
-
-/*
+/**
  * UserAuthorizationService
  *
  * User authorization service is responsible for authorizing the logged in user against the rest resource operations.
@@ -39,7 +37,7 @@ public class UserAuthorizationService
         
         try
         {
-        	int userid = getUserId(username);
+        	int userid = UserUtil.getUserId(username);
             
             ProjectDAO pdao = new ProjectDAO();
             
@@ -82,7 +80,7 @@ public class UserAuthorizationService
         
     	try
         {
-        	int userId = getUserId(username);
+        	int userId = UserUtil.getUserId(username);
         	int pId = Integer.parseInt(projectId);
             
             MemberDAO mdao = new MemberDAO();
@@ -103,25 +101,5 @@ public class UserAuthorizationService
         System.out.println("MEMBER_OP_AUTH::: user: " + username + ", isAuthorized: " + isAuthorized + ", project: "+ projectId);    	
     	
     	return isAuthorized;
-    }
-    
-    /**
-     * getUserId()
-     * 
-     * Helper function to get the userid given the username
-     * 
-     * @param username
-     * @return
-     */
-    private int getUserId(String username)
-    {
-    	int userid = -1; //doesnt exist
-    	
-    	UserDAO dao = new UserDAO();
-    	
-    	User user = dao.getUserByName(username);
-    	userid = user.getUserId();
-    	
-    	return userid;
     }
 }

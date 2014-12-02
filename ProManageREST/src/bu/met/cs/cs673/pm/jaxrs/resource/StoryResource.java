@@ -16,6 +16,7 @@ import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.dto.User;
 import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
+import bu.met.cs.cs673.pm.util.UserUtil;
 
 @Path("/story")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -35,7 +36,7 @@ public class StoryResource {
 
 		story = StoryMapper.mapStory(StoryDTO);
 
-		System.out.println("<<< getGet");
+		System.out.println("<<< getStory");
 
 		return story;
 	}
@@ -69,13 +70,12 @@ public class StoryResource {
 		System.out.println(story.getProjectid());
 
 		String userName = sc.getUserPrincipal().getName();
-
-		UserDAO userDAO = new UserDAO();
-		User user = userDAO.getUserByName(userName);
+		int userId = UserUtil.getUserId(userName);
+		
 
 		bu.met.cs.cs673.pm.dto.Story storyDTO = StoryMapper.mapStory(story);
-		storyDTO.setCreateUser(user.getUserId());
-		storyDTO.setLastModifiedUser(user.getUserId());
+		storyDTO.setCreateUser(userId);
+		storyDTO.setLastModifiedUser(userId);
 
 		StoryDAO storyDAO = new StoryDAO();
 		int createStory = storyDAO.createStory(storyDTO);
