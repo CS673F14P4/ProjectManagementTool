@@ -1,5 +1,8 @@
 package bu.met.cs.cs673.pm.jaxrs.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import bu.met.cs.cs673.pm.jaxrs.model.User;
 
 /*
@@ -22,6 +25,24 @@ public class UserMapper {
 		user.setCreateDate(userDTO.getCreateDate());
 		
 		return user;
+	}
+	
+	public static List<User> mapUsers(List<bu.met.cs.cs673.pm.dto.User> userDTOList)
+	{
+		List<User> users = null;
+		
+		if (userDTOList != null && !userDTOList.isEmpty())
+		{
+			users = new ArrayList<User>();
+			
+			for (bu.met.cs.cs673.pm.dto.User dto : userDTOList)
+			{
+				User user = mapUser(dto);
+				users.add(user);
+			}
+		}
+		
+		return users;
 	}
 	
 	public static bu.met.cs.cs673.pm.dto.User mapUser(User UserWS)

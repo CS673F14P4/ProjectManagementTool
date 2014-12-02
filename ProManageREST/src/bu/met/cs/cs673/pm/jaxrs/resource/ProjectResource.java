@@ -1,6 +1,5 @@
 package bu.met.cs.cs673.pm.jaxrs.resource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,9 +16,7 @@ import javax.ws.rs.core.SecurityContext;
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.jaxrs.mapper.ProjectMapper;
-import bu.met.cs.cs673.pm.jaxrs.mapper.UserMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
-import bu.met.cs.cs673.pm.jaxrs.model.User;
 import bu.met.cs.cs673.pm.util.UserUtil;
 
 @Path("/project")
@@ -71,27 +68,6 @@ public class ProjectResource
 		return projects;
 	}
 
-	@GET
-	@Path("{projectid}/members")
-	public List<User> getMembersProject(@PathParam("projectid") int projectid) 
-	{
-
-		List<User> users = new ArrayList<User>();
-
-		UserDAO userDAO = new UserDAO();
-		List<bu.met.cs.cs673.pm.dto.User> usersByProject = userDAO
-				.getUserByProject(projectid);
-		System.out.println(usersByProject.size());
-		for (bu.met.cs.cs673.pm.dto.User userDTO : usersByProject) 
-		{
-			User user = UserMapper.mapUser(userDTO);
-			users.add(user);
-		}
-
-		return users;
-
-	}
-	
 	@POST
 	public int addProject(@Context SecurityContext context, Project project) 
 	{
