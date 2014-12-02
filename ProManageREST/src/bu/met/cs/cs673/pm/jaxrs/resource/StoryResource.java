@@ -19,7 +19,7 @@ import bu.met.cs.cs673.pm.jaxrs.mapper.StoryMapper;
 import bu.met.cs.cs673.pm.jaxrs.model.Story;
 import bu.met.cs.cs673.pm.util.UserUtil;
 
-@Path("{projectid}/story")
+@Path("/project/{projectid}/story")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class StoryResource 
