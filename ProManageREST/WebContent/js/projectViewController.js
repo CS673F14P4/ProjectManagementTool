@@ -83,13 +83,9 @@ angular
 						// list of
 						// task is null, otherwise return
 						tasks = $scope.project.status[statusIndex].userStories[storyIndex].tasks;
-						tasksUnd = false;
-						if (typeof tasks === 'undefined') {
-							tasksUnd = true;
-						}
-
-						if (!$("#title" + storyId).hasClass("collapsed")
-								|| !tasksUnd) {
+						taskEmpty = false;
+						
+						if (!$("#title" + storyId).hasClass("collapsed")) {
 							return;
 						}
 						console.log('acord - params storyId- ' + storyId
