@@ -1,9 +1,6 @@
 package bu.met.cs.cs673.pm.jaxrs.resource;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -12,7 +9,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
@@ -95,49 +91,25 @@ public class ProjectResource
 	}
 	
 	@POST
-	public int addProject(@Context SecurityContext sc, 
-			@QueryParam("name") String name,
-			@QueryParam("description") String description,
-			@QueryParam("startdate") String startDateStr,
-			@QueryParam("enddate") String endDateStr) 
+	public int addProject(@Context SecurityContext sc, Project project) 
 	{
 		
 		int projectId = -1;
-
-		Date startDate = null;
-		Date endDate = null;
-
-		//parse out the date from the input
-		try
-		{
-			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-			startDate = sdf.parse(startDateStr);
-			endDate = sdf.parse(endDateStr);
-
-		}
-		catch (ParseException pe)
-		{
-			System.out.println("could not parse the date");
-		}
 
 		//retrieve the userid for the logged in user
 		String username = sc.getUserPrincipal().getName();
 		int userId = UserUtil.getUserId(username);
 		
-		//create the project object from the input
-		bu.met.cs.cs673.pm.dto.Project project = new bu.met.cs.cs673.pm.dto.Project();
-		project.setName(name);
-		project.setDescription(description);
-		project.setStartDate(startDate);
-		project.setEndDate(endDate);
-		project.setCreateUser(userId);
-		project.setLastModifiedUser(userId);
+		bu.met.cs.cs673.pm.dto.Project projectDTO = ProjectMapper.mapProject(project);
+		projectDTO.setCreateUser(userId);
+		projectDTO.setLastModifiedUser(userId);
 		
 		//create the project and grab its id to return from the service
 		ProjectDAO dao = new ProjectDAO();
-		projectId = dao.createProject(project, userId);
+		projectId = dao.createProject(projectDTO, userId);
 		
 
 		return projectId;
 	}
+	
 }
