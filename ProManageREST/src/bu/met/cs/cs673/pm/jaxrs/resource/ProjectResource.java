@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -81,7 +82,8 @@ public class ProjectResource
 		List<bu.met.cs.cs673.pm.dto.User> usersByProject = userDAO
 				.getUserByProject(projectid);
 		System.out.println(usersByProject.size());
-		for (bu.met.cs.cs673.pm.dto.User userDTO : usersByProject) {
+		for (bu.met.cs.cs673.pm.dto.User userDTO : usersByProject) 
+		{
 			User user = UserMapper.mapUser(userDTO);
 			users.add(user);
 		}
@@ -91,13 +93,13 @@ public class ProjectResource
 	}
 	
 	@POST
-	public int addProject(@Context SecurityContext sc, Project project) 
+	public int addProject(@Context SecurityContext context, Project project) 
 	{
 		
 		int projectId = -1;
 
 		//retrieve the userid for the logged in user
-		String username = sc.getUserPrincipal().getName();
+		String username = context.getUserPrincipal().getName();
 		int userId = UserUtil.getUserId(username);
 		
 		bu.met.cs.cs673.pm.dto.Project projectDTO = ProjectMapper.mapProject(project);
@@ -110,6 +112,26 @@ public class ProjectResource
 		
 
 		return projectId;
+	}
+	
+	@PUT
+	public Project updateProject(@Context SecurityContext context, Project project)
+	{
+		//retrieve the userid for the logged in user
+		String username = context.getUserPrincipal().getName();
+		int userId = UserUtil.getUserId(username);
+		
+		bu.met.cs.cs673.pm.dto.Project projectDTO = ProjectMapper.mapProject(project);
+		projectDTO.setLastModifiedUser(userId);
+
+		//create the project and grab its id to return from the service
+		ProjectDAO dao = new ProjectDAO();
+		projectDTO = dao.updateProject(projectDTO);
+		
+		Project updatedProject = ProjectMapper.mapProject(projectDTO);
+
+		return updatedProject;
+		
 	}
 	
 }
