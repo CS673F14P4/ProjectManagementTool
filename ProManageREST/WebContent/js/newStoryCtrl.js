@@ -14,7 +14,7 @@ angular
 						$http(
 								{
 									method : 'GET',
-									url : 'http://localhost:8080/ProManageREST/jaxrs/story/'+$scope.storyId,
+									url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$routeParams.projectId+'/story/'+$scope.storyId,
 									data : JSON.stringify($scope.story),
 									headers : {
 										'Content-Type' : 'application/json'
@@ -55,7 +55,7 @@ angular
 
 									{
 										method : 'PUT',
-										url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
+										url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$routeParams.projectId+'/story/',
 										data : JSON.stringify($scope.story),
 										headers : {
 											'Content-Type' : 'application/json'
@@ -78,7 +78,7 @@ angular
 							$http(
 									{
 										method : 'POST',
-										url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
+										url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+$routeParams.projectId+'/story/',
 										data : JSON.stringify($scope.story),
 										headers : {
 											'Content-Type' : 'application/json'

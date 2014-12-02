@@ -58,7 +58,7 @@ angular
 							{
 								method : 'Get',
 								url : 'http://localhost:8080/ProManageREST/jaxrs/project/'
-										+ $scope.projectId + '/stories'
+										+ $scope.projectId + '/story'
 							})
 							.success(
 									function(data) {
@@ -125,7 +125,7 @@ angular
 						$http(
 								{
 									method : 'PUT',
-									url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
+									url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+story.projectid+'/story',
 									data : JSON.stringify(story),
 									headers : {
 										'Content-Type' : 'application/json'
