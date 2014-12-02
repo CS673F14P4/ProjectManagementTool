@@ -75,3 +75,8 @@ table.newproject p {
 	color:red; 
 	margin:5%;
 }
+
+/* style for forms */
+div.form-group h6 {
+	color:red; 
+}

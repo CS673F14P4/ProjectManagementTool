@@ -37,89 +37,97 @@
 	<div ng-include="'header.html'"></div><br><br>
 	
 	<!-- form to register -->
-	<div class="container">
-		<form name = "signupForm" novalidate>
-			<h1>Sigin Up</h1>
-			<br>
-				
-			<table class="newproject">
-			<tr>
-				<td>
-					<!--  first name field -->
-				 	<div class="form-group">
-	 					<label>First Name:</label>
-						<input name="firstname" type="text" ng-model="user.firstname" class="form-control" onclick="this.select()" ng-maxlength="100" required>
-					</div>
-				</td>
-				<td>
-					<p ng-show="signupForm.firstname.$error.required"> First name is required! </p>
-					<p ng-show="signupForm.firstname.$error.maxlength"> Your name is too long, max length is 100. </p>
-					
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<!--  last name field -->
-				 	<div class="form-group">
-						<label>Last Name:</label>
-						<input name="lastname" type="text" ng-model="user.lastname" class="form-control" onclick="this.select()" ng-maxlength="100" required></input>
-					</div>
-				</td>
-				<td>
-					<p ng-show="signupForm.lastname.$error.required"> Last name is required! </p>
-					<p ng-show="signupForm.lastname.$error.maxlength"> Your name is too long, max length is 100	. </p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<!--  email -->
-				 	<div class="form-group">
-						<label>Email:</label>
-						<input name="email" type="email" ng-model="user.email" class="form-control" onclick="this.select()" ng-maxlength="100" required>
-					</div>
-				</td>
-				<td>
-					<p ng-show="signupForm.email.$error.required">Email is required!</p>
-					<p ng-show="signupForm.email.$error.email">Invalid email!</p>
-					<p ng-show="signupForm.email.$error.maxlength">Your email is too long, max length is 100.</p>
-				</td>
-			</tr>
-			<tr>
-				<td> 
-					<!-- username -->
-				   	<div class="form-group">
-						<label>Username:</label>
-						<input name="username" type="text" ng-model="user.username" ng-pattern="usernamePattern" class="form-control" onclick="this.select()" ng-maxlength="100" required>
-					</div>
-				</td>
-				<td>
-					<p ng-show="signupForm.username.$error.required">Username is required!</p>
-					<p ng-show="signupForm.username.$error.pattern">Username can only have numbers and letters!</p>
-					<p ng-show="signupForm.username.$error.maxlength"> Your username is too long, max length is 100. </p>
-				</td>
-			</tr>
-			<tr>
-				<td> 
-					<!-- password -->
-					<div class="form-group">
-						<label>Password:</label>
-						<input name="password" type="password" ng-model="user.password" class="form-control" onclick="this.select()" ng-minlength="8" ng-maxlength="100" required>
-					</div>
-				</td>
-				<td>
-					<p ng-show="signupForm.password.$error.required">Password is required!</p>
-					<p ng-show="signupForm.password.$error.minlength"> Your password is too short, minimum length is 8</p>
-					<p ng-show="signupForm.password.$error.maxlength"> Your password is too long, max length is 100.</p>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<!--  submit button -->
-					<button type="submit"  class="btn btn-lg btn-primary btn-block" ng-disabled="signupForm.$invalid" ng-click="submit()">Sign Up</button>
-				</td>
-			</tr>
-			</table>
-		</form>	
+	<div class="container">    
+		<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+			<div class="panel panel-info" >
+				<div class="panel-heading"><div class="panel-title">Sign Up</div></div>     
+	
+				<div style="padding-top:30px" class="panel-body" >
+                            
+					<form name="signupForm" class="form-horizontal" role="form">
+                         
+                        <!--  first name field -->       
+						<div class="form-group">
+						
+							<label class="control-label col-sm-3" for="firstname">First Name:</label>
+							<div class="col-sm-9">
+								<input name="firstname" type="text" ng-model="user.firstname" class="form-control" onclick="this.select()" ng-maxlength="100" required>
+							</div>
+							
+							<!-- error messages -->
+							<h6 class="col-sm-3"></h6>
+							<h6 class="col-sm-9" ng-show="signupForm.firstname.$error.required"> First name is required! </h6>
+							<h6 class="col-sm-9" ng-show="signupForm.firstname.$error.maxlength"> Your name is too long, max length is 100. </h6>
+       					</div>
+       					
+       					 <!--  last name field -->       
+						<div class="form-group">
+						
+							<label class="control-label col-sm-3" for="firstname">Last Name:</label>
+							<div class="col-sm-9">
+								<input name="lastname" type="text" ng-model="user.lastname" class="form-control" onclick="this.select()" ng-maxlength="100" required>
+							</div>
+							
+							<!-- error messages -->
+							<h6 class="col-sm-3"></h6>
+							<h6 class="col-sm-9" ng-show="signupForm.lastname.$error.required"> Last name is required! </h6>
+							<h6 class="col-sm-9" ng-show="signupForm.lastname.$error.maxlength"> Your name is too long, max length is 100. </h6>
+       					</div>
+
+       					 <!--  email field -->       
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="email">Email:</label>
+							<div class="col-sm-9">
+								<input name="email" type="email" ng-model="user.email" class="form-control" onclick="this.select()" ng-maxlength="100" required>
+							</div>
+							
+							<!-- error messages -->
+							<h6 class="col-sm-3"></h6>
+							<h6 class="col-sm-9" ng-show="signupForm.email.$error.required">Email is required!</h6>
+							<h6 class="col-sm-9" ng-show="signupForm.email.$error.email">Invalid email!</h6>
+							<h6 class="col-sm-9" ng-show="signupForm.email.$error.maxlength">Your email is too long, max length is 100.</h6>
+       					</div>
+       					
+       					<!--  username field -->     
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="username">Username:</label>
+							<div class="col-sm-9">
+       							<input name="username" type="text" ng-model="user.username" ng-pattern="usernamePattern" class="form-control" onclick="this.select()" ng-maxlength="100" required>
+							</div>
+							
+							<!-- error messages -->
+							<h6 class="col-sm-3"></h6>
+							<h6 class="col-sm-9" ng-show="signupForm.username.$error.required">Username is required!</h6>
+							<h6 class="col-sm-9" ng-show="signupForm.username.$error.pattern">Username can only have numbers and letters!</h6>
+							<h6 class="col-sm-9" ng-show="signupForm.username.$error.maxlength"> Your username is too long, max length is 100. </h6>
+       					</div>
+       					
+       					<!--  password field -->     
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="password">Password:</label>
+							<div class="col-sm-9">
+       							<input name="password" type="password" ng-model="user.password" class="form-control" onclick="this.select()" ng-minlength="8" ng-maxlength="100" required>
+							</div>
+							
+							<!-- error messages -->
+							<h6 class="col-sm-3"></h6>
+							<h6 class="col-sm-9" ng-show="signupForm.password.$error.required">Password is required!</h6>
+							<h6 class="col-sm-9" ng-show="signupForm.password.$error.minlength"> Your password is too short, minimum length is 8</h6>
+							<h6 class="col-sm-9" ng-show="signupForm.password.$error.maxlength"> Your password is too long, max length is 100.</h6>
+       					</div>
+       					       					
+						<!-- sign up button -->
+						<div style="margin-top:50px" class="form-group">
+ 							<div class="col-sm-12 controls">
+ 								<a href="" class="navbar-button btn btn-large btn-primary pull-right">Sign Up </a>
+							</div>
+						</div>
+
+					</form>     
+
+				</div>                     
+			</div>  
+		</div>
 	</div>
 	
 </body>
