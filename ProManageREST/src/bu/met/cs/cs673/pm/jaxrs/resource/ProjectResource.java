@@ -10,7 +10,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 
 import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.dao.StoryDAO;
@@ -48,13 +50,14 @@ public class ProjectResource
 	}
 
 	@GET
-	@Path("/user/{username}")
-	public List<Project> getProjects(@PathParam("username") String username) 
+	public List<Project> getProjects(@Context SecurityContext sc) 
 	{
 		System.out.println(">>> getProjects");
 
 		List<Project> projects = null;
-
+		
+		String username = sc.getUserPrincipal().getName();
+		
 		if (username != null) {
 			UserDAO userDAO = new UserDAO();
 			bu.met.cs.cs673.pm.dto.User userDTO = userDAO

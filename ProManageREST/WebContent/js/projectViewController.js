@@ -83,8 +83,7 @@ angular
 						// list of
 						// task is null, otherwise return
 						tasks = $scope.project.status[statusIndex].userStories[storyIndex].tasks;
-						taskEmpty = false;
-						
+
 						if (!$("#title" + storyId).hasClass("collapsed")) {
 							return;
 						}
