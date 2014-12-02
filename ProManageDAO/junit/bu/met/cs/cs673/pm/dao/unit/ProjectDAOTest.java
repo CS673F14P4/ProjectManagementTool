@@ -27,6 +27,7 @@ public class ProjectDAOTest extends TestCase
         
         project.setName("unitTestProject");
         project.setDescription("This is a unit test project");
+        project.setStatus("open");
         project.setStartDate(new java.util.Date());
         project.setEndDate(new java.util.Date());
         project.setCreateUser(1);
@@ -59,6 +60,7 @@ public class ProjectDAOTest extends TestCase
 		assertNotNull(project);
 	}
 	
+	
 	@Test
 	public void testGetProjectsByUser()
 	{
@@ -74,4 +76,22 @@ public class ProjectDAOTest extends TestCase
 		assertTrue(projects.size() > 0);
 	}
 	
+	@Test
+	public void testUpdateProject()
+	{
+		ProjectDAO dao = new ProjectDAO();
+		
+		int projectId = dao.createProject(project, 1);
+		
+		Project newProject = dao.getProject(projectId);
+		
+		newProject.setId(projectId);
+		newProject.setStatus("closed");
+		
+		Project updatedProject = dao.updateProject(newProject);
+		
+		dao.deleteProject(projectId);
+		
+		assertEquals(updatedProject.getStatus(), "closed");
+	}
 }

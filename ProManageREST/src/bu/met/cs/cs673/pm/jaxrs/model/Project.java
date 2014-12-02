@@ -3,20 +3,17 @@ package bu.met.cs.cs673.pm.jaxrs.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="project")
 public class Project 
 {
 	private static final String OWNER = "project_leader";
 	private int id;
 	private String name;
 	private String description;
+	private String status;
 	private Date startDate;
 	private Date endDate;
 	private List<Member> members;
-	
-	
 	
 	public int getId() {
 		return id;
@@ -35,6 +32,12 @@ public class Project
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public Date getStartDate() {
 		return startDate;

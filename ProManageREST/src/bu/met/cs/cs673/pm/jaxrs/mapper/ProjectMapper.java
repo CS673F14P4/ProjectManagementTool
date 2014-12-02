@@ -5,6 +5,10 @@ import java.util.List;
 
 import bu.met.cs.cs673.pm.jaxrs.model.Project;
 
+/**
+ * 
+ * @author Luis Marion
+ */
 public class ProjectMapper 
 {
 
@@ -15,9 +19,9 @@ public class ProjectMapper
 		project.setId(projectDTO.getId());
 		project.setName(projectDTO.getName());
 		project.setDescription(projectDTO.getDescription());
+		project.setStatus(projectDTO.getStatus());
 		project.setStartDate(projectDTO.getStartDate());
 		project.setEndDate(projectDTO.getEndDate());
-		//project.setOwner(projectDTO.getCreateUser());
 		
 		return project;
 	}
@@ -47,6 +51,7 @@ public class ProjectMapper
 		project.setId(projectWS.getId());
 		project.setName(projectWS.getName());
 		project.setDescription(projectWS.getDescription());
+		project.setStatus(projectWS.getStatus());
 		project.setStartDate(projectWS.getStartDate());
 		project.setEndDate(projectWS.getEndDate());
 		

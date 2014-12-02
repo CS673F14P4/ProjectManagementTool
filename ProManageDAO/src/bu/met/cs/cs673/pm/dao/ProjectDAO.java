@@ -97,9 +97,26 @@ public class ProjectDAO
 		return projects;
 	}
 	
-	public boolean updateProject()
+	public Project updateProject(Project project)
 	{
-		return false;
+		if (project != null)
+		{
+			SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+			SqlSession session = factory.openSession();
+			
+			try 
+			{
+				session.update("updateProject", project);
+				
+				session.commit();
+			} 
+			finally 
+			{
+			  session.close();
+			}
+		}
+		
+		return project;
 	}
 	
 	public boolean deleteProject(int projectId)
