@@ -20,5 +20,9 @@
 	<delete id="deleteMember">
 	    delete from Member where idproject = #{projectId} and iduser= #{userId} and rolename != "project_leader"
 	</delete>
+	
+	<delete id="deleteAllProjectMembers">
+	    delete from Member where idproject = #{projectId}
+	</delete>
   
 </mapper>

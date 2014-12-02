@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import bu.met.cs.cs673.pm.dto.Member;
 import bu.met.cs.cs673.pm.dto.Project;
 
 /**
@@ -14,13 +15,15 @@ import bu.met.cs.cs673.pm.dto.Project;
 public class ProjectDAO 
 {
 
-	public int createProject(Project project)
+	public static String PROJECT_LEADER_ROLE = "project_leader";
+	
+	public int createProject(Project project, int userId)
 	{
-		int success = -1;
-		
-		if (project == null)
+		int projectId = -1;
+
+		if (project == null || userId <= 0)
 		{
-			success = -1;
+			projectId = -1;
 		}
 		else
 		{
@@ -29,27 +32,35 @@ public class ProjectDAO
 			
 			try 
 			{
-				success = session.insert("insertProject", project);
-				session.commit();
+				//insert the project store its id for next insert
+				int numrows = session.insert("insertProject", project);
+				
+				if (numrows > 0)
+				{
+					projectId = project.getId();
+					Member member = new Member(projectId, userId, PROJECT_LEADER_ROLE);
+
+					//insert the initial project leader member as the person who created the project
+					session.insert("insertMember", member);
+					
+					session.commit();
+				}
+				else
+				{
+					session.rollback();
+				}
 			} 
 			finally 
 			{
 			  session.close();
 			}
 		}
-	
-	
-		if (success > 0)
-		{
-			success = project.getId();
-		}
 		
-		return success;
+		return projectId;
 	}
 	
 	public Project getProject(int projectId)
 	{
-		System.out.println("getProject");
 		Project project = new Project();
 		
 		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
@@ -102,7 +113,13 @@ public class ProjectDAO
 		
 		try 
 		{
+			//delete any members associated to this project
+			session.delete("deleteAllProjectMembers", projectId);
+			
+			//then delete the project itself
 			rows = session.delete("deleteProject", projectId);
+
+			//commit
 			session.commit();
 		} 
 		finally 

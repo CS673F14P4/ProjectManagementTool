@@ -37,9 +37,9 @@ public class ProjectDAOTest extends TestCase
 	public void testCreateProject()
 	{
 		ProjectDAO dao = new ProjectDAO();
-		int projectId = dao.createProject(project);
+		int projectId = dao.createProject(project, 1);
 		
-		System.out.println("id: " + projectId);
+		System.out.println("projectid: " + projectId);
 		
 		assertTrue(projectId > 0);
 		
