@@ -1,75 +1,85 @@
+<!-- form to create project -->
+<div class="container">    
+	<div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+		<div class="panel panel-info" >
+			<div class="panel-heading"><div class="panel-title">New Project</div></div>     
 
-<!-- form to create a new project -->
-<div class="container">
+			<div style="padding-top:30px" class="panel-body" >
+                           
+				<form name="projectForm" class="form-horizontal" role="form">
+                        
+					<!-- name field -->       
+					<div class="form-group">
+					
+						<label class="control-label col-sm-3" for="name">Name:</label>
+						<div class="col-sm-9">
+							<input name="name" type="text" ng-model="user.name" class="form-control" onclick="this.select()" ng-maxlength="45" required>
+						</div>
+						
+						<!-- error messages -->
+						<h6 class="col-sm-3"></h6>
+						<h6 class="col-sm-9" ng-show="projectForm.name.$error.required"> Name is required! </h6>
+						<h6 class="col-sm-9" ng-show="projectForm.name.$error.maxlength"> Name is too long, max length is 45. </h6>
+      				</div>
+      					
+      				 <!--  description field -->       
+					<div class="form-group">
+					
+						<label class="control-label col-sm-3" for="description">Description:</label>
+						<div class="col-sm-9">
+							<textarea name="description" type="text" ng-model="user.description" class="form-control" id="txtarea" onclick="selectText()" ng-maxlength="200" required></textarea>
+						</div>
+						
+						<!-- error messages -->
+						<h6 class="col-sm-3"></h6>
+						<h6 class="col-sm-9" ng-show="projectForm.description.$error.required"> Description is required! </h6>
+						<h6 class="col-sm-9" ng-show="projectForm.description.$error.maxlength"> Description is too long, max length is 200.</h6>
+			
+      				</div>
 
-	<h2>Create a Project</h2>
-	<form name = "projectForm" novalidate>
-		<table class="newproject">
-		<tr>
-			<td>
-				<!--  name field -->
-				<div class="form-group">
- 					<label>Name:</label>
-					<input name="name" type="text" ng-model="user.name" class="form-control" onclick="this.select()" ng-maxlength="45" required>
-				</div>
-			</td>
-			<td>
-				<p ng-show="projectForm.name.$error.required"> Name is required! </p>
-				<p ng-show="projectForm.name.$error.maxlength"> Name is too long, max length is 45. </p>
-				
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<!--  description field -->
-				<div class="form-group">
-					<label>Description:</label>
-					<textarea name="description" type="text" ng-model="user.description" class="form-control" id="txtarea" onclick="selectText()" ng-maxlength="200" required></textarea>
-				</div>
-			</td>
-			<td>
-				<p ng-show="projectForm.description.$error.required"> Description is required! </p>
-				<p ng-show="projectForm.description.$error.maxlength"> Description is too long, max length is 200.</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<!--  start date field -->
-				<div class="form-group">
-					<label>Start Date:</label>
-					<input name="startDate" type="date" placeholder="yyyy-MM-dd" ng-model="user.startdate" class="form-control" onclick="this.select()" required>
-				</div>
-			</td>
-			<td>
-				<p ng-show="projectForm.startDate.$error.required">Start date is required!</p>
-				<p ng-show="projectForm.startDate.$error.date">Invalid date!</p>
-			</td>
-		</tr>
-		<tr>
-			<td> 
-				<!-- end date field -->
-				<div class="form-group">
-					<label>End Date:</label>
-					<input name="endDate" type="date" placeholder="yyyy-MM-dd" ng-model="user.enddate" class="form-control" onclick="this.select()" required>
-				</div>
-			</td>
-			<td>
-				<p ng-show="projectForm.endDate.$error.required">End date is required!</p>
-				<p ng-show="projectForm.endDate.$error.date">Invalid date!</p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<!--  submit button -->
-				<button type="submit" ng-click="submit()" class="btn btn-default" ng-disabled="projectForm.$invalid">Submit</button>
+      				<!--  start date field -->       
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="startDate">Start Date:</label>
+						<div class="col-sm-9">
+							<input name="startDate" type="date" placeholder="yyyy-MM-dd" ng-model="user.startDate" class="form-control" onclick="this.select()" required>
+						</div>
+						
+						<!-- error messages -->
+						<h6 class="col-sm-3"></h6>
+						<h6 class="col-sm-9" ng-show="projectForm.startDate.$error.required">Start date is required!</h6>
+						<h6 class="col-sm-9" ng-show="projectForm.startDate.$error.date">Invalid date!</h6>
+      				</div>
+      					
+      				<!--  end date field -->     
+					<div class="form-group">
+						<label class="control-label col-sm-3" for="endDate">End Date:</label>
+						<div class="col-sm-9">
+							<input name="endDate" type="date" placeholder="yyyy-MM-dd" ng-model="user.endDate" class="form-control" onclick="this.select()" required>
+						</div>
+						
+						<!-- error messages -->
+						<h6 class="col-sm-3"></h6>
+						<h6 class="col-sm-9" ng-show="projectForm.endDate.$error.required">End date is required!</h6>
+						<h6 class="col-sm-9" ng-show="projectForm.endDate.$error.date">Invalid date!</h6>
+      				</div>
+      					       					
+					<!-- buttons -->
+					<div style="margin-top:50px" class="pull-right">
 	
-				<!--  reset button -->
-				<button type="button" ng-click="reset()" class="btn btn-default">Reset</button>
+						<!--  cancel button -->
+						<a href = "#" class ="btn btn-primary oull-right" type="button">Cancel</a>
+						
+						<!--  reset button -->
+						<button type="button" ng-click="reset()" class="btn btn-primary pull-rigth">Reset</button>
+		
+						<!--  submit button -->
+						<button type="submit" ng-click="submit()" class="btn btn-primary pull-rigth" ng-disabled="projectForm.$invalid">Submit</button>
+		
+					</div>
 
-				<!--  cancel button -->
-				<a href = "#" class = "btn btn-default" type="button">Cancel</a>
-			</td>
-		</tr>
-		</table>
-	</form>	
+				</form>     
+
+			</div>                     
+		</div>  
+	</div>
 </div>

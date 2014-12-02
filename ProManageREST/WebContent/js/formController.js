@@ -9,7 +9,7 @@ angular.module('promanage').controller("FormController",
 	$rootScope.pageTitle = "New Project";
 
 	var currentTime = new Date();
-	$scope.user = {'name': 'Project A', 'description': 'Description of Project A', 'startdate': currentTime, 'enddate': currentTime};
+	$scope.user = {'name': 'Project A', 'description': 'Description of Project A', 'startDate': currentTime, 'endDate': currentTime, 'status': 'open'};
 	
 	/* reset form */
 	$scope.reset = function () {
