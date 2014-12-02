@@ -55,13 +55,14 @@ public class ProjectResource
 	}
 
 	@GET
-	@Path("/user/{username}")
-	public List<Project> getProjects(@PathParam("username") String username) 
+	public List<Project> getProjects(@Context SecurityContext sc) 
 	{
 		System.out.println(">>> getProjects");
 
 		List<Project> projects = null;
-
+		
+		String username = sc.getUserPrincipal().getName();
+		
 		if (username != null) {
 			UserDAO userDAO = new UserDAO();
 			bu.met.cs.cs673.pm.dto.User userDTO = userDAO

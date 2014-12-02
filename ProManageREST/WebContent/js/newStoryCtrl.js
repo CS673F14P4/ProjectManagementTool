@@ -1,39 +1,101 @@
 /**
  * 
  */
-angular.module('promanage').controller("NewStoryCtrl",
-		function($scope, $routeParams, $http, $location) {
-	
-	$scope.story;
-	
-	$scope.users = [{name:'Joahn'},{name:'Pedro'}];
-	$scope.selected_notify = $scope.users[0];
-	$scope.selected_asigned = $scope.users[0];
-	
-	$scope.submit = function(){
-		
-		console.log($scope.story);
-		$scope.story.dueDate = (new Date($scope.story.dueDate));
-		$scope.story.projectid =  $routeParams.projectId;
-		
-		$http(
-				{
-					method : 'POST',
-					url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
-					data : JSON.stringify($scope.story),
-					headers : {
-						'Content-Type' : 'application/json'
+angular
+		.module('promanage')
+		.controller(
+				"NewStoryCtrl",
+				function($scope, $routeParams, $http, $location) {
+
+					$scope.story;
+					$scope.storyId = $routeParams.storyId;
+					if ($scope.storyId > 0) {
+
+						$http(
+								{
+									method : 'GET',
+									url : 'http://localhost:8080/ProManageREST/jaxrs/story/'+$scope.storyId,
+									data : JSON.stringify($scope.story),
+									headers : {
+										'Content-Type' : 'application/json'
+									}
+								})
+
+						.success(
+								function(data) {
+									console.log(data);
+									$scope.story = data;
+									$scope.story.dueDate = (new Date(
+											$scope.story.dueDate));
+								})
+
+						.error(function(data, status, headers, config) {
+							console.log('error');
+						});
+
 					}
+					// use this when owner is added
+					$scope.users = [ {
+						name : 'Joahn'
+					}, {
+						name : 'Pedro'
+					} ];
+					$scope.selected_notify = $scope.users[0];
+					$scope.selected_asigned = $scope.users[0];
+
+					$scope.submit = function() {
+
+						console.log($scope.story);
+						$scope.story.dueDate = (new Date($scope.story.dueDate));
+						$scope.story.projectid = $routeParams.projectId;
+
+						if ($scope.storyId > 0) {
+							// edit story
+							$http(
+
+									{
+										method : 'PUT',
+										url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
+										data : JSON.stringify($scope.story),
+										headers : {
+											'Content-Type' : 'application/json'
+										}
+									})
+
+							.success(
+									function(data) {
+										$location.path("/project/"
+												+ $routeParams.projectId);
+									})
+
+							.error(function(data, status, headers, config) {
+								console.log('error');
+							});
+
+						} else {
+							// new story
+
+							$http(
+									{
+										method : 'POST',
+										url : 'http://localhost:8080/ProManageREST/jaxrs/story/',
+										data : JSON.stringify($scope.story),
+										headers : {
+											'Content-Type' : 'application/json'
+										}
+									})
+
+							.success(
+									function(data) {
+										$location.path("/project/"
+												+ $routeParams.projectId);
+									})
+
+							.error(function(data, status, headers, config) {
+								console.log('error');
+							});
+						}
+
+					}
+
 				})
-
-				.success(
-						function(data) {
-							$location.path("/project/"+$routeParams.projectId);
-						})
-
-				.error(function(data, status, headers, config) {
-					console.log('error');
-				});		
-	}
- 
-})
