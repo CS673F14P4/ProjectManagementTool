@@ -22,8 +22,7 @@
 
 	<select id="getTasksByStory" resultMap="taskMap">
 		select * from Task
-		join
-		Story on story.idstory = task.idstory
+		join Story on story.idstory = task.idstory
 		and story.idstory = #{storyId}
 	</select>
 
@@ -36,6 +35,18 @@
 		(#{storyId}, #{name}, #{description}, #{dueDate}, now(), #{owner},
 		now(), #{lastModifiedUser})
 	</insert>
+	
+	<update id="updateTask" keyColumn="idtask">
+	    update Task
+	    set
+	    	name = #{name},
+	    	description = #{description},
+	    	due_date = #{dueDate},
+	    	owner = #{owner},
+	    	last_modified_date = now(),
+	    	last_modified_user = #{lastModifiedUser}
+	    where idtask = #{id}
+	</update>
 
 	<delete id="deleteTask">
 		delete from Task where idtask = #{id}

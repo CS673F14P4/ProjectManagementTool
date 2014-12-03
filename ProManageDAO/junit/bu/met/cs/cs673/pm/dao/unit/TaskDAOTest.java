@@ -7,7 +7,9 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.dao.TaskDAO;
+import bu.met.cs.cs673.pm.dto.Project;
 import bu.met.cs.cs673.pm.dto.Task;
 
 /**
@@ -75,4 +77,22 @@ public class TaskDAOTest extends TestCase
 		assertTrue(tasks.size() > 0);
 	}
 	
+	@Test
+	public void testUpdateTask()
+	{
+		TaskDAO dao = new TaskDAO();
+		
+		int taskId = dao.createTask(task);
+		
+		Task newTask = dao.getTask(taskId);
+		
+		newTask.setId(taskId);
+		newTask.setName("someTaskUpdateName");
+		
+		Task updatedTask = dao.updateTask(newTask);
+		
+		dao.deleteTask(taskId);
+		
+		assertEquals(updatedTask.getName(), "someTaskUpdateName");
+	}
 }
