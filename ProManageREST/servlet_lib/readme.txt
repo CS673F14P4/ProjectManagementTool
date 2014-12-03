@@ -1,0 +1,2 @@
+servlet-api.jar is tomcats servlet spec. This is only really needed to compile the code, but should be getting
+picked up in the classpath once the application is deployed to any servlet container/web-container.
