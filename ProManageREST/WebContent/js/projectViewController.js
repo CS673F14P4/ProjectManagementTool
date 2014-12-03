@@ -11,7 +11,7 @@ angular
 					console.log($rootScope.pageTitle);
 
 					$scope.projectId = $routeParams.projectId;
-
+					
 					// needs to be previous setup to have status and userStories
 					// list
 					$scope.project = {
@@ -47,6 +47,11 @@ angular
 						$scope.project.description = data.description;
 						$scope.project.startDate = data.startDate;
 						$scope.project.endDate = data.endDate;
+						if (data.status == "closed"){
+							$scope.statusFlag = false;
+						}else{
+							$scope.statusFlag = true;
+						}
 
 					}).error(function(data, status, headers, config) {
 						console.log('error');
@@ -212,5 +217,4 @@ angular
 							console.log('Modal task dismissed');
 						});
 					}
-
-				})
+	})

@@ -3,7 +3,7 @@
 		<div class="container">
 
 			<a href="#/addmember" class="navbar-button btn btn-large btn-primary pull-right"
-				type="button">Add member</a>
+				type="button" ng-show="statusFlag">Add member</a>
 
 			<!--  box to show projects -->
 			<div class="content-container clearfix" ng-show="showFlag">
@@ -22,7 +22,7 @@
 								<!-- <span class="content">{{member.role}}</span> -->
 							</a>
 							<!--  button to delete a member -->
-							<a href="" ng-show="showFlag" ng-click="del(member)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
+							<a href="" ng-show="showFlag && statusFlag" ng-click="del(member)" class="navbar-button btn btn-sm btn-default pull-right" type="button">Delete</a>
 							<br>
 						</li>
 					</ul>

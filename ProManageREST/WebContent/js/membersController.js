@@ -3,7 +3,7 @@
  */
  angular.module('promanage').controller("MembersController", function($scope, $routeParams, $http) {
 
- 	$scope.project = {'name':"",};
+ 	$scope.project = {'name':""};
  	$scope.projectId = $routeParams.projectId;
  	$scope.members = [];
  	
@@ -18,7 +18,12 @@
 				//test
 				console.log(data);
 				$scope.project.name = data.name;
-
+				if (data.status == "closed"){
+					$scope.statusFlag = false;
+				}else{
+					$scope.statusFlag = true;
+				}
+				
 			}).error(function(data, status, headers, config) {
 				console.log('error');
 			});
@@ -48,6 +53,22 @@
 		
 		if (answer == true){
 			// request to delete member
+			var dataDelete = {'projectid': $scope.projectId, 'userid':member.userId};
+			
+			$http({
+				method : 'DELETE',
+				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ $scope.projectId + '/member',
+				data: JSON.stringify(dataDelete),
+				headers: {
+					'Content-Type':'application/json'
+				}			
+			}).success(function(data) {
+				$window.alert("Member deleted with sucess.");
+				
+			}).error(function(data, status, headers, config) {
+				$window.alert("Sorry, we have a problem to delete member, try again later.");
+			});
+			
 		}
 		
 	}

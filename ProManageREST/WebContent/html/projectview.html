@@ -13,9 +13,9 @@
 <div class="container">
 
 	<!-- button to create new story -->
-	<a ng-click="openModalNewSotry(-1)"><span
-		class="navbar-button btn btn-large btn-primary pull-right">New
-			Story</span> </a>
+	<a href="" class="navbar-button btn btn-large btn-primary pull-right" type="button" ng-click="openModalNewSotry(-1)" 
+		ng-show="statusFlag">New Story</a>
+			
 	<div class="page-header">
 
 		<!--  Project name and button to see members page -->
@@ -84,10 +84,10 @@
 								</div>
 								<div class="pull-right">
 
-									<a ng-show="{{stat.name!='Done'}}" type="button"
+									<a ng-show="{{stat.name!='Done' && statusFlag}}" type="button"
 										class="btn btn-default"
 										ng-click="openModalNewSotry(userStory.id)">Edit Story</a>
-									<button ng-show="{{stat.name=='Backlog'}}" type="button"
+									<button ng-show="{{stat.name=='Backlog' && statusFlag}}" type="button"
 										class="btn btn-default"
 										ng-click="openModalNewTask($parent.$index,$index,userStory.id, -1)">New
 										Task</button>
