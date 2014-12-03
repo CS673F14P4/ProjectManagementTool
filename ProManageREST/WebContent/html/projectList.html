@@ -3,7 +3,7 @@
 		<div class="container">
 
 			<!--  button to create new project -->
-			<a href="#newproject" id="newprojectBtn"
+			<a href="#newproject/-1" id="newprojectBtn"
 				class="navbar-button btn btn-large btn-primary pull-right"
 				type="button">New Project</a> 
 
@@ -21,7 +21,7 @@
 								<span class="title">{{project.name}}</span>
 								<span class="content">{{project.description}}</span>
 							</a>
-							<a href="" class="navbar-button btn btn-sm btn-default pull-right" type="button">Edit</a>
+							<a href="#newproject/{{project.id}}" class="navbar-button btn btn-sm btn-default pull-right" type="button">Edit</a>
 							<br>
 						</li>
 					</ul>
