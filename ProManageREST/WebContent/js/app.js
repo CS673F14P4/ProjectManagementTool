@@ -8,7 +8,7 @@
 		.when('/project/:projectId', {
 			templateUrl : 'projectview.html',
 			controller : 'ProjectViewCtrl'
-		}).when('/newproject', {
+		}).when('/newproject/:projectId', {
 			templateUrl : 'newproject.html',
 			controller : 'FormController'
 		}).when('/members/:projectId', {
