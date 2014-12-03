@@ -88,9 +88,26 @@ public class TaskDAO
 	}
 	
 	
-	public boolean updateTask()
+	public Task updateTask(Task task)
 	{
-		return false;
+		if (task != null)
+		{
+			SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+			SqlSession session = factory.openSession();
+			
+			try 
+			{
+				session.update("updateTask", task);
+				
+				session.commit();
+			} 
+			finally 
+			{
+			  session.close();
+			}
+		}
+		
+		return task;
 	}
 	
 	public boolean deleteTask(int taskId)
