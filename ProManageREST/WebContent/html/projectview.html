@@ -76,8 +76,8 @@
 											<div class="panel-body">
 												<p>{{task.description}}</p>
 												<button ng-show="{{stat.name!='Done'}}" type="button"
-													class="btn btn-default btn-sm pull-right">Edit</button>
-
+													class="btn btn-default btn-sm pull-right"
+													ng-click="openModalNewTask($parent.$parent.$index,$parent.$index,userStory.id, task.id)">Edit</button>
 											</div>
 										</div>
 									</div>
@@ -87,9 +87,11 @@
 									<a ng-show="{{stat.name!='Done'}}" type="button"
 										class="btn btn-default"
 										ng-click="openModalNewSotry(userStory.id)">Edit Story</a>
-									<button ng-show="{{stat.name=='Backlog'}}" ng-click="open()"
-										type="button" class="btn btn-default" data-toggle="modal"
-										data-target=".modalNewTask">New Task</button>
+									<button ng-show="{{stat.name=='Backlog'}}" type="button"
+										class="btn btn-default"
+										ng-click="openModalNewTask($parent.$index,$index,userStory.id, -1)">New
+										Task</button>
+									
 								</div>
 							</div>
 						</div>

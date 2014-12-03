@@ -5,8 +5,8 @@ angular
 		.module('promanage')
 		.controller(
 				"NewStoryCtrl",
-				function($scope, $http,$modalInstance,item) {
-					
+				function($scope, $http, $modalInstance, item) {
+
 					console.log(item);
 
 					// initialize form
@@ -33,11 +33,8 @@ angular
 									method : 'GET',
 									url : 'http://localhost:8080/ProManageREST/jaxrs/project/'
 											+ item.projectId
-											+ '/story/' + $scope.storyId,
-									data : JSON.stringify($scope.story),
-									headers : {
-										'Content-Type' : 'application/json'
-									}
+											+ '/story/'
+											+ $scope.storyId
 								})
 
 						.success(
@@ -81,19 +78,17 @@ angular
 									{
 										method : 'PUT',
 										url : 'http://localhost:8080/ProManageREST/jaxrs/project/'
-												+ item.projectId
-												+ '/story/',
+												+ item.projectId + '/story/',
 										data : JSON.stringify($scope.story),
 										headers : {
 											'Content-Type' : 'application/json'
 										}
 									})
 
-							.success(
-									function(data) {
-										//close modal if it worked
-										$modalInstance.close();
-									})
+							.success(function(data) {
+								// close modal if it worked
+								$modalInstance.close();
+							})
 
 							.error(function(data, status, headers, config) {
 								console.log('error');
@@ -106,29 +101,24 @@ angular
 									{
 										method : 'POST',
 										url : 'http://localhost:8080/ProManageREST/jaxrs/project/'
-												+ item.projectId
-												+ '/story/',
+												+ item.projectId + '/story/',
 										data : JSON.stringify($scope.story),
 										headers : {
 											'Content-Type' : 'application/json'
 										}
 									})
 
-							.success(
-									function(data) {
-										//close modal if it worked
-										$modalInstance.close();
+							.success(function(data) {
+								// close modal if it worked
+								$modalInstance.close();
 
-									})
+							})
 
 							.error(function(data, status, headers, config) {
 								console.log('error');
 							});
 						}
-					  
 
-						
-						
 					}
 
 				})

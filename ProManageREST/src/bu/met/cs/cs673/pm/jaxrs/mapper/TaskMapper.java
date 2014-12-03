@@ -8,6 +8,7 @@ public class TaskMapper {
 		Task task = new Task();
 		
 		task.setId(taskDTO.getId());
+		task.setStoryId(taskDTO.getStoryId());
 		task.setName(taskDTO.getName());
 		task.setDescription(taskDTO.getDescription());
 		task.setCreateDate(taskDTO.getCreateDate());
@@ -24,7 +25,8 @@ public class TaskMapper {
 	{
 		bu.met.cs.cs673.pm.dto.Task taskDTO = new bu.met.cs.cs673.pm.dto.Task();
 
-		taskDTO.setId(taskDTO.getId());
+		taskDTO.setId(task.getId());
+		taskDTO.setStoryId(task.getStoryId());
 		taskDTO.setName(task.getName());
 		taskDTO.setDescription(task.getDescription());
 		taskDTO.setCreateDate(task.getCreateDate());

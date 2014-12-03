@@ -12,7 +12,8 @@ angular
 
 					$scope.projectId = $routeParams.projectId;
 
-					//needs to be previous setup to have status and userStories list
+					// needs to be previous setup to have status and userStories
+					// list
 					$scope.project = {
 						"description" : "",
 						"name" : "",
@@ -40,8 +41,8 @@ angular
 								url : 'http://localhost:8080/ProManageREST/jaxrs/project/'
 										+ $scope.projectId
 							}).success(function(data) {
-					
-						//update the project attributes
+
+						// update the project attributes
 						$scope.project.name = data.name;
 						$scope.project.description = data.description;
 						$scope.project.startDate = data.startDate;
@@ -54,7 +55,8 @@ angular
 					getStories();
 
 					function getStories() {
-						// make sure all the status are empty before getting stories from service
+						// make sure all the status are empty before getting
+						// stories from service
 						$scope.project.status[0].userStories = [];
 						$scope.project.status[1].userStories = [];
 						$scope.project.status[2].userStories = [];
@@ -70,7 +72,8 @@ angular
 											console.log(data);
 											for (var i = 0; i < data.length; i++) {
 												story = data[i];
-												//put the story in the correct status list
+												// put the story in the correct
+												// status list
 												stories = $scope.project.status[story.status].userStories;
 												stories.push(story);
 											}
@@ -81,7 +84,7 @@ angular
 					}
 					// Get the tasks by StoryId
 					$scope.acord = function(storyId, statusIndex, storyIndex) {
-						
+
 						tasks = $scope.project.status[statusIndex].userStories[storyIndex].tasks;
 
 						// just do something if the element is collapsed and the
@@ -90,18 +93,27 @@ angular
 							return;
 						}
 						
+						getTasks(storyId,statusIndex,storyIndex);
+						
+
+					}
+					
+					function getTasks(storyId,statusIndex,storyIndex){
 						// show spinner
 						$("#spinner" + storyId).show();
 
 						$http(
 								{
 									method : 'Get',
-									url : 'http://localhost:8080/ProManageREST/jaxrs/task/'
-											+ storyId
+									url : 'http://localhost:8080/ProManageREST/jaxrs/project/'
+											+ $scope.projectId
+											+ '/story/'
+											+ storyId + '/task'
 								})
 								.success(
 										function(data) {
-											//put the task list in the correct story
+											// put the task list in the correct
+											// story
 											$scope.project.status[statusIndex].userStories[storyIndex].tasks = data;
 											$("#spinner" + storyId).hide();
 										})
@@ -109,13 +121,13 @@ angular
 									$("#spinner" + storyId).hide();
 									console.log('error');
 								});
-
 					}
 
 					$scope.updateStatus = function(statusIndex, storyIndex) {
 						story = $scope.project.status[statusIndex].userStories[storyIndex];
-						
-						// status + 1, so if it's in backlog (0) it will be in current (1)
+
+						// status + 1, so if it's in backlog (0) it will be in
+						// current (1)
 						story.status = story.status + 1;
 
 						$http(
@@ -132,7 +144,8 @@ angular
 
 								.success(
 										function(data) {
-											//update list of stories to reflect change in data
+											// update list of stories to reflect
+											// change in data
 											$scope.project.status[statusIndex].userStories
 													.splice(storyIndex, 1);
 											$scope.project.status[statusIndex + 1].userStories
@@ -144,15 +157,15 @@ angular
 									console.log('error');
 								});
 					}
-					
-					//open modal Story
+
+					// open modal Story
 					$scope.openModalNewSotry = function(storyId) {
 
 						var modalInstance = $modal.open({
 							templateUrl : 'modalNewStory.html',
 							controller : 'NewStoryCtrl',
 							size : 'lg',
-							//pass object to NewStoryCtrl
+							// pass object to NewStoryCtrl
 							resolve : {
 								item : function() {
 									item = {
@@ -165,10 +178,38 @@ angular
 						});
 
 						modalInstance.result.then(function() {
-							console.log('submit from modal');
+							console.log('submit from story modal');
 							getStories();
 						}, function() {
-							console.log('Modal dismissed');
+							console.log('Modal story dismissed');
+						});
+					}
+
+					// open modal Task
+					$scope.openModalNewTask = function(statusIndex,storyIndex,storyId, taskId) {
+
+						var modalInstance = $modal.open({
+							templateUrl : 'modalNewTask.html',
+							controller : 'NewTaskCtrl',
+							size : 'lg',
+							// pass object to NewTaskCtrl
+							resolve : {
+								item : function() {
+									item = {
+										projectId : $scope.projectId,
+										storyId : storyId,
+										taskId : taskId
+									};
+									return item;
+								}
+							}
+						});
+
+						modalInstance.result.then(function() {
+							console.log('submit from task modal');
+							getTasks(storyId,statusIndex,storyIndex);
+						}, function() {
+							console.log('Modal task dismissed');
 						});
 					}
 
