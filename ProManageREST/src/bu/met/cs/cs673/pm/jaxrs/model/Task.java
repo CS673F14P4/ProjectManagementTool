@@ -2,16 +2,16 @@ package bu.met.cs.cs673.pm.jaxrs.model;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "task")
-public class Task {
-
+public class Task 
+{
 	private int id;
 	private int storyId;
 	private String name;
 	private String description;
 	private Date dueDate;
+	private String status;
+	private int estimate;
+	private int remaining;
 	private int owner;
 	private Date createDate;
 	private Date lastModifiedDate;
@@ -71,6 +71,30 @@ public class Task {
 
 	public void setLastModifiedUser(int lastModifiedUser) {
 		this.lastModifiedUser = lastModifiedUser;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public int getEstimate() {
+		return estimate;
+	}
+
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
+	}
+
+	public int getRemaining() {
+		return remaining;
+	}
+
+	public void setRemaining(int remaining) {
+		this.remaining = remaining;
 	}
 
 	public int getId() {

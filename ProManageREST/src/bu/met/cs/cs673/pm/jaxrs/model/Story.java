@@ -15,6 +15,7 @@ public class Story {
 	private String name;
 	private int projectid;
 	private int status;
+	private int estimate;
 	private Date dueDate;
 	private String description;
 
@@ -66,4 +67,11 @@ public class Story {
 		this.id = id;
 	}
 
+	public int getEstimate() {
+		return estimate;
+	}
+
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
+	}
 }

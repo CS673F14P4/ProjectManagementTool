@@ -6,9 +6,11 @@ import bu.met.cs.cs673.pm.jaxrs.model.Story;
  * Daniel Abramowitz
  */
 
-public class StoryMapper {
+public class StoryMapper 
+{
 
-	public static Story mapStory(bu.met.cs.cs673.pm.dto.Story storyDTO) {
+	public static Story mapStory(bu.met.cs.cs673.pm.dto.Story storyDTO) 
+	{
 		Story story = new Story();
 
 		story.setId(storyDTO.getIdstory());
@@ -17,6 +19,7 @@ public class StoryMapper {
 		story.setStatus(storyDTO.getStatus());
 		story.setDescription(storyDTO.getDescription());
 		story.setName(storyDTO.getName());
+		story.setEstimate(storyDTO.getEstimate());
 
 		return story;
 	}
@@ -32,6 +35,7 @@ public class StoryMapper {
 		story.setStatus(storyWS.getStatus());
 		story.setDescription(storyWS.getDescription());
 		story.setName(storyWS.getName());
+		story.setEstimate(storyWS.getEstimate());
 
 		return story;
 	}

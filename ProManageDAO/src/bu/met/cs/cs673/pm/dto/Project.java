@@ -13,6 +13,7 @@ public class Project
 	private String status;
 	private Date startDate;
 	private Date endDate;
+	private int estimate;
 	private Date createDate;
 	private int createUser;
 	private Date lastModifiedDate;
@@ -53,6 +54,12 @@ public class Project
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public int getEstimate() {
+		return estimate;
+	}
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
 	}
 	public Date getCreateDate() {
 		return createDate;

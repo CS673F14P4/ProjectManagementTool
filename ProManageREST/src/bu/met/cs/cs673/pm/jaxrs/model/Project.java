@@ -11,6 +11,7 @@ public class Project
 	private String name;
 	private String description;
 	private String status;
+	private int estimate;
 	private Date startDate;
 	private Date endDate;
 	private List<Member> members;
@@ -38,6 +39,13 @@ public class Project
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public int getEstimate() {
+		return estimate;
+	}
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
 	}
 	public Date getStartDate() {
 		return startDate;
