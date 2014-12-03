@@ -1,6 +1,6 @@
 (function() {
 
-	var app = angular.module('promanage', [ 'ngRoute','ngCookies' ]);
+	var app = angular.module('promanage', [ 'ngRoute','ngCookies', 'ui.bootstrap']);
 
 	
 	app.config(function($routeProvider) {
@@ -8,7 +8,7 @@
 		.when('/project/:projectId', {
 			templateUrl : 'projectview.html',
 			controller : 'ProjectViewCtrl'
-		}).when('/newproject', {
+		}).when('/newproject/:projectId', {
 			templateUrl : 'newproject.html',
 			controller : 'FormController'
 		}).when('/members/:projectId', {
