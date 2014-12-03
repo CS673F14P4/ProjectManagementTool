@@ -76,13 +76,23 @@ angular
 											function(data, status, headers,
 													config) {
 												console.log('error');
-											});
+								});
+						}else{
+							// initialize form
+							var currentTime = new Date();
+							$scope.task = {'name':'Task', 'description':'Description of task.', 'dueDate': currentTime};
 						}
 					}
 
 					$scope.cancel = function() {
 						$modalInstance.dismiss('cancel');
 					}
+					
+					/* reset form */
+					$scope.reset = function() {
+						$scope.task = {};
+					}
+					
 					$scope.submit = function() {
 
 						$scope.task.dueDate = (new Date($scope.task.dueDate));
