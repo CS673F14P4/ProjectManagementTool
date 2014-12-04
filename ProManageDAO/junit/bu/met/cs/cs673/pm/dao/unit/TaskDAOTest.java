@@ -7,9 +7,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import bu.met.cs.cs673.pm.dao.ProjectDAO;
 import bu.met.cs.cs673.pm.dao.TaskDAO;
-import bu.met.cs.cs673.pm.dto.Project;
 import bu.met.cs.cs673.pm.dto.Task;
 
 /**
@@ -32,7 +30,10 @@ public class TaskDAOTest extends TestCase
         task.setName("unitTestTask");
         task.setDescription("This is a unit test task");
         task.setDueDate(Date.valueOf("2014-12-25"));
-        task.setOwner(1);       
+        task.setOwner(1);
+        task.setEstimate(4);
+        task.setRemaining(2);
+        task.setStatus("in_progress");
         task.setLastModifiedUser(1);
     }
 

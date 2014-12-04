@@ -15,6 +15,7 @@ public class Story {
 	private String name;
 	private int status;
 	private Date dueDate;
+	private int estimate;
 	private String description;
 	private int createUser;
 	private Date createDate;
@@ -74,6 +75,14 @@ public class Story {
 
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
+	}
+
+	public int getEstimate() {
+		return estimate;
+	}
+
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
 	}
 
 	public int getProjectid() {

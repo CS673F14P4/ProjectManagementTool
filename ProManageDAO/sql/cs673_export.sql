@@ -31,12 +31,13 @@ CREATE TABLE `project` (
   `status` varchar(45) NOT NULL,
   `start_date` date DEFAULT NULL,
   `end_date` date DEFAULT NULL,
+  `estimate` int(11) NOT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
   `last_modified_date` timestamp NULL DEFAULT NULL,
   `last_modified_user` int(11) DEFAULT NULL,
   PRIMARY KEY (`idproject`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +46,7 @@ CREATE TABLE `project` (
 
 LOCK TABLES `project` WRITE;
 /*!40000 ALTER TABLE `project` DISABLE KEYS */;
-INSERT INTO `project` VALUES (1,'ProManage','Groups Tool','open','2014-09-19','2014-12-04','2015-01-01 04:59:59',1,'2015-01-01 04:59:59',1);
+INSERT INTO `project` VALUES (1,'ProManage','Groups Tool','open','2014-09-19','2014-12-04',16,'2015-01-01 04:59:59',1,'2015-01-01 04:59:59',1);
 /*!40000 ALTER TABLE `project` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,6 +95,7 @@ CREATE TABLE `story` (
   `status` int(11) DEFAULT '0',
   `due_date` date DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
+  `estimate` int(11) DEFAULT NULL,
   `create_user` int(11) DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `last_modified_date` timestamp NULL DEFAULT NULL,
@@ -108,9 +110,10 @@ CREATE TABLE `story` (
 -- Dumping data for table `story`
 --
 
+
 LOCK TABLES `story` WRITE;
 /*!40000 ALTER TABLE `story` DISABLE KEYS */;
-INSERT INTO `story` VALUES (1,1,'test',0,'2014-12-02','Let me tell you a story about the time my life got flipped opsidedown',1,'2014-12-02 03:45:32','2014-12-02 03:45:32',1),(2,1,'story2',0,'2014-12-02','I\'ll tell you how I became the prince of a town called Bel-Air',1,'2014-12-02 03:45:32','2014-12-02 03:45:32',1);
+INSERT INTO `story` VALUES (1,1,'test',0,'2014-12-02','Let me tell you a story about the time my life got flipped opsidedown',14,1,'2014-12-02 03:45:32','2014-12-02 03:45:32',1),(2,1,'story2',0,'2014-12-02','I\'ll tell you how I became the prince of a town called Bel-Air',14,1,'2014-12-02 03:45:32','2014-12-02 03:45:32',1);
 /*!40000 ALTER TABLE `story` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,6 +130,9 @@ CREATE TABLE `task` (
   `description` varchar(100) DEFAULT NULL,
   `name` varchar(30) DEFAULT NULL,
   `owner` int(11) DEFAULT NULL,
+  `estimate` int(11) NOT NULL,
+  `remaining` int(11) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
   `due_date` date DEFAULT NULL,
   `create_date` timestamp NULL DEFAULT NULL,
   `last_modified_date` timestamp NULL DEFAULT NULL,
@@ -134,7 +140,7 @@ CREATE TABLE `task` (
   PRIMARY KEY (`idtask`),
   KEY `fk_story` (`idstory`),
   CONSTRAINT `fk_story` FOREIGN KEY (`idstory`) REFERENCES `story` (`idstory`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +149,7 @@ CREATE TABLE `task` (
 
 LOCK TABLES `task` WRITE;
 /*!40000 ALTER TABLE `task` DISABLE KEYS */;
-INSERT INTO `task` VALUES (1,1,'task 1 description','test',1,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(2,1,'task 2 description','test2',1,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(3,2,'task 1 story 2','task 1',1,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(4,2,'task2 story 2','task2',1,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1);
+INSERT INTO `task` VALUES (1,1,'task 1 description','test',1,4,2,NULL,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(2,1,'task 2 description','test2',1,4,1,NULL,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(3,2,'task 1 story 2','task 1',1,4,3,NULL,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(4,2,'task2 story 2','task2',1,4,0,NULL,'2014-12-02','2014-12-02 03:45:32','2014-12-02 03:45:32',1),(5,1,'This is a unit test task','unitTestTask',1,4,1,NULL,'2014-12-25','2014-12-03 03:50:47','2014-12-03 03:50:47',1);
 /*!40000 ALTER TABLE `task` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +161,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `iduser` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` varchar(128) DEFAULT NULL,
   `firstname` varchar(100) DEFAULT NULL,
@@ -164,7 +170,7 @@ CREATE TABLE `user` (
   `create_date` timestamp NULL DEFAULT NULL,
   `last_modified_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +239,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-01 22:55:20
+-- Dump completed on 2014-12-03  9:24:52
 
-/* Manually added to create the user */
+/* manually added to create the user */
 GRANT ALL ON cs673.* TO cs673_user@localhost IDENTIFIED BY 'cs673';

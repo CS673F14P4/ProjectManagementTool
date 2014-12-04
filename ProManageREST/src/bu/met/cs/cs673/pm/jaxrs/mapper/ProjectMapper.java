@@ -20,6 +20,7 @@ public class ProjectMapper
 		project.setName(projectDTO.getName());
 		project.setDescription(projectDTO.getDescription());
 		project.setStatus(projectDTO.getStatus());
+		project.setEstimate(projectDTO.getEstimate());
 		project.setStartDate(projectDTO.getStartDate());
 		project.setEndDate(projectDTO.getEndDate());
 		
@@ -52,6 +53,7 @@ public class ProjectMapper
 		project.setName(projectWS.getName());
 		project.setDescription(projectWS.getDescription());
 		project.setStatus(projectWS.getStatus());
+		project.setEstimate(projectWS.getEstimate());
 		project.setStartDate(projectWS.getStartDate());
 		project.setEndDate(projectWS.getEndDate());
 		

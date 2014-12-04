@@ -3,7 +3,7 @@
 <mapper namespace="bu.met.cs.cs673.pm.dto.User">
 
 	<resultMap id="result" type="bu.met.cs.cs673.pm.dto.User">
-		<result property="userid" column="iduser" />
+	    <id property="userid" column="iduser" />
 		<result property="email" column="email" />
 		<result property="username" column="username" />
 		<result property="password" column="password" />
@@ -20,20 +20,24 @@
 		SELECT * FROM user WHERE username = #{username}
 	</select>
 
-	<insert id="insert">
-		insert into user (userid, email, username, password, firstname,lastname)
-		values (#{userid},#{email},#{username},#{password},#{firstname},
-		#{lastname})
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userid" keyColumn="iduser">
+		insert into user ( email, username, password,
+		firstname,lastname,create_date,last_modified_date)
+		values
+		(#{email},#{username},#{password},#{firstname},
+		#{lastname},now(),now())
 	</insert>
 
-	<update id="update" parameterType="bu.met.cs.cs673.pm.dto.User">
+	<update id="update" parameterType="bu.met.cs.cs673.pm.dto.User"  keyColumn="iduser">
 		UPDATE user
-		SET firstname = #{firstname}, lastname = #{lastname}
+		SET firstname =
+		#{firstname}, lastname = #{lastname}
 		WHERE username = #{username}
 	</update>
 
 	<delete id="delete" parameterType="String">
-		DELETE from user WHERE username = #{username}
+		DELETE from user WHERE
+		username = #{username}
 	</delete>
 
 	<select id="getUserByProject" resultMap="result">

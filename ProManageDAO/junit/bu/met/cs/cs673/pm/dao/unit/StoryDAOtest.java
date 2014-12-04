@@ -88,6 +88,7 @@ public class StoryDAOtest extends TestCase {
 		story.setName("updated");
 		story.setLastModifiedUser(5);
 		story.setStatus(1);
+		story.setEstimate(4);
 		story.setDueDate(new java.util.Date());
 		story.setDescription("this is updated");
 		story.setLastModifiedDate(new java.util.Date());

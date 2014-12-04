@@ -8,6 +8,9 @@
 		<result property="name" column="name" />
 		<result property="description" column="description" />
 		<result property="dueDate" column="due_date" />
+  		<result property="estimate" column="estimate"/>
+  		<result property="remaining" column="remaining"/>
+  		<result property="status" column="status"/>
 		<result property="createDate" column="create_date" />
 		<result property="owner" column="owner" />
 		<result property="lastModifiedDate" column="last_modified_date" />
@@ -16,32 +19,35 @@
 
 
 	<select id="getTask" resultMap="taskMap">
-		select * from Task where idtask =
+		select * from task where idtask =
 		#{id}
 	</select>
 
 	<select id="getTasksByStory" resultMap="taskMap">
-		select * from Task
-		join Story on story.idstory = task.idstory
+		select * from task
+		join story on story.idstory = task.idstory
 		and story.idstory = #{storyId}
 	</select>
 
 	<insert id="insertTask" useGeneratedKeys="true" keyProperty="id"
 		keyColumn="idtask">
-		insert into Task (idstory, name, description, due_date,
-		create_date, owner,
+		insert into task (idstory, name, description, due_date,
+		estimate, remaining, status, create_date, owner,
 		last_modified_date, last_modified_user)
 		values
-		(#{storyId}, #{name}, #{description}, #{dueDate}, now(), #{owner},
+		(#{storyId}, #{name}, #{description}, #{dueDate},#{estimate},#{remaining}, #{status}, now(), #{owner},
 		now(), #{lastModifiedUser})
 	</insert>
 	
 	<update id="updateTask" keyColumn="idtask">
-	    update Task
+	    update task
 	    set
 	    	name = #{name},
 	    	description = #{description},
 	    	due_date = #{dueDate},
+	    	estimate = #{estimate},
+	    	remaining=#{remaining},
+	    	status = #{status},
 	    	owner = #{owner},
 	    	last_modified_date = now(),
 	    	last_modified_user = #{lastModifiedUser}
@@ -49,7 +55,7 @@
 	</update>
 
 	<delete id="deleteTask">
-		delete from Task where idtask = #{id}
+		delete from task where idtask = #{id}
 	</delete>
 
 </mapper>

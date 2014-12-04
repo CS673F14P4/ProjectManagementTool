@@ -6,12 +6,16 @@ import java.util.Date;
  * 
  * @author Ray
  */
-public class Task {
+public class Task 
+{
 	private int id;
 	private int storyId;
 	private String name;
 	private String description;
 	private Date dueDate;
+	private int estimate;
+	private int remaining;
+	private String status;
 	private int owner;
 	private Date createDate;
 	private Date lastModifiedDate;
@@ -47,6 +51,31 @@ public class Task {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	
+	public int getEstimate() {
+		return estimate;
+	}
+
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
+	}
+
+	public int getRemaining() {
+		return remaining;
+	}
+
+	public void setRemaining(int remaining) {
+		this.remaining = remaining;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public Date getCreateDate() {

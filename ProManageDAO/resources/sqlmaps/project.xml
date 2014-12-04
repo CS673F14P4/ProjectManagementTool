@@ -9,6 +9,7 @@
   	<result property="status" column="status"/>
   	<result property="startDate" column="start_date"/>
   	<result property="endDate" column="end_date"/>
+  	<result property="estimate" column="estimate"/>
   	<result property="createDate" column="create_date"/>
   	<result property="createUser" column="create_user"/>
   	<result property="lastModifiedDate" column="last_modified_date"/>
@@ -17,35 +18,36 @@
 
   
 	<select id="getProject" resultMap="projectMap">
-		select * from Project where idproject = #{projectId}
+		select * from project where idproject = #{projectId}
 	</select>
 
 	<select id="getProjectsByUser" resultMap="projectMap">
-		select * from Project
-		join Member on member.idproject = project.idproject
+		select * from project
+		join member on member.idproject = project.idproject
 		where member.iduser = #{userId}
 	</select>
 	
 	<insert id="insertProject" useGeneratedKeys="true" keyProperty="id" keyColumn="idproject">
-	    insert into Project (name, description, status, start_date, end_date, create_date, create_user, last_modified_date, last_modified_user) 
-	    values (#{name}, #{description}, #{status}, #{startDate}, #{endDate}, now(), #{createUser}, now(), #{lastModifiedUser}) 
+	    insert into project (name, description, status, start_date, end_date, estimate, create_date, create_user, last_modified_date, last_modified_user) 
+	    values (#{name}, #{description}, #{status}, #{startDate}, #{endDate}, #{estimate}, now(), #{createUser}, now(), #{lastModifiedUser}) 
 	</insert>
 	
 	<update id="updateProject" useGeneratedKeys="true" keyProperty="id" keyColumn="idproject">
-		update Project 
+		update project 
 		set
 			name = #{name},
 			description = #{description},
 			status = #{status},
 			start_date = #{startDate},
 			end_date = #{endDate},
+			estimate = #{estimate},
 			last_modified_date= now(),
 			last_modified_user=#{lastModifiedUser}
 		where idproject= #{id};
 	</update>
 	
 	<delete id="deleteProject">
-	    delete from Project where idproject = #{id}
+	    delete from project where idproject = #{id}
 	</delete>
   
 </mapper>

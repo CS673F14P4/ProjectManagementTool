@@ -30,6 +30,7 @@ public class ProjectDAOTest extends TestCase
         project.setStatus("open");
         project.setStartDate(new java.util.Date());
         project.setEndDate(new java.util.Date());
+        project.setEstimate(16);
         project.setCreateUser(1);
         project.setLastModifiedUser(1);
     }
