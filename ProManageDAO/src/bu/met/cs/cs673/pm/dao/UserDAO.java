@@ -61,7 +61,7 @@ public class UserDAO {
 		SqlSession session = factory.openSession();
 
 		try {
-			id = session.insert("User.insert", user);
+			id = session.insert("insertUser", user);
 		} finally {
 			session.commit();
 			session.close();
@@ -139,18 +139,16 @@ public class UserDAO {
 	 * @return
 	 */
 	public List<User> getUserByProject(int idproject) {
-		
-		List<User> userList = null; 
-		
-		SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+
+		List<User> userList = null;
+
+		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
+				.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
-		
-		try
-		{
-			userList= session.selectList("getUserByProject", idproject);
-		}
-		finally
-		{
+
+		try {
+			userList = session.selectList("getUserByProject", idproject);
+		} finally {
 			session.close();
 		}
 		return userList;

@@ -23,9 +23,4 @@ app.controller('signupCtrl', function($scope, $http, $window) {
 	// pattern to only accept single words
 	$scope.usernamePattern = /^\s*\w*\s*$/;
     
-	/* post data */
-    $scope.submit = function () {
-    	var formData = $scope.user;
-    	// post method here
-    }
 })
