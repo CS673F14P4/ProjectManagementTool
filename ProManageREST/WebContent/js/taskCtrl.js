@@ -6,7 +6,7 @@ angular
 		.module('promanage')
 		.controller(
 				"NewTaskCtrl",
-				function($scope, $http, $modalInstance, item) {
+				function($scope, $http, $modalInstance, item, $location, $window) {
 
 					$scope.task = {};
 
@@ -32,7 +32,7 @@ angular
 					})
 
 					.error(function(data, status, headers, config) {
-						console.log('error');
+						$location.path("/errormsg");
 					});
 
 					// get all the information of task if id >0
@@ -75,7 +75,7 @@ angular
 									.error(
 											function(data, status, headers,
 													config) {
-												console.log('error');
+												$location.path("/errormsg");
 								});
 						}else{
 							// initialize form
@@ -122,7 +122,7 @@ angular
 							})
 
 							.error(function(data, status, headers, config) {
-								console.log('error');
+								$window.alert("Sorry, we have a problem. Please try again later.");
 							});
 						} else {
 							// create task
@@ -147,7 +147,7 @@ angular
 							})
 
 							.error(function(data, status, headers, config) {
-								console.log('error');
+								$window.alert("Sorry, we have a problem. Please try again later.");
 							});
 
 						}

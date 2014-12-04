@@ -20,6 +20,8 @@
 		}).when('/newstory/:projectId/:storyId', {
 			templateUrl : 'modalNewStory.html',
 			controller : 'NewStoryCtrl'
+		}).when('/errormsg', {
+			templateUrl : 'errorMsg.html',
 		}).otherwise({
 			templateUrl : 'projectList.html',
 			controller : 'ProjectsController'

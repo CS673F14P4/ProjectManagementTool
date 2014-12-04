@@ -5,7 +5,7 @@ angular
 		.module('promanage')
 		.controller(
 				"ProjectViewCtrl",
-				function($scope, $routeParams, $http, $rootScope, $modal) {
+				function($scope, $routeParams, $http, $rootScope, $modal, $location, $window) {
 
 					$rootScope.pageTitle = "Project Detail";
 					console.log($rootScope.pageTitle);
@@ -54,7 +54,7 @@ angular
 						}
 
 					}).error(function(data, status, headers, config) {
-						console.log('error');
+						$location.path("/errormsg");
 					});
 
 					getStories();
@@ -84,7 +84,7 @@ angular
 											}
 										})
 								.error(function(data, status, headers, config) {
-									console.log('error');
+									$location.path("/errormsg");
 								});
 					}
 					// Get the tasks by StoryId
@@ -124,7 +124,7 @@ angular
 										})
 								.error(function(data, status, headers, config) {
 									$("#spinner" + storyId).hide();
-									console.log('error');
+									$location.path("/errormsg");
 								});
 					}
 
@@ -159,7 +159,8 @@ angular
 										})
 
 								.error(function(data, status, headers, config) {
-									console.log('error');
+									$location.path("/errormsg");
+
 								});
 					}
 

@@ -5,7 +5,7 @@ angular
 		.module('promanage')
 		.controller(
 				"NewStoryCtrl",
-				function($scope, $http, $modalInstance, item) {
+				function($scope, $http, $modalInstance, item, $location, $window) {
 
 					console.log(item);
 
@@ -46,7 +46,7 @@ angular
 								})
 
 						.error(function(data, status, headers, config) {
-							console.log('error');
+							$location.path("/errormsg");
 						});
 
 					}
@@ -91,7 +91,7 @@ angular
 							})
 
 							.error(function(data, status, headers, config) {
-								console.log('error');
+								$window.alert("Sorry, we have a problem. Please try again later.");
 							});
 
 						} else {
@@ -115,7 +115,7 @@ angular
 							})
 
 							.error(function(data, status, headers, config) {
-								console.log('error');
+								$window.alert("Sorry, we have a problem. Please try again later.");
 							});
 						}
 

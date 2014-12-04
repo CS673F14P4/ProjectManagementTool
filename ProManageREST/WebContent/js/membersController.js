@@ -1,13 +1,13 @@
 /**
  * 
  */
- angular.module('promanage').controller("MembersController", function($scope, $routeParams, $http, $window) {
+ angular.module('promanage').controller("MembersController", function($scope, $routeParams, $http, $window, $location) {
 
  	$scope.project = {'name':""};
  	$scope.projectId = $routeParams.projectId;
  	$scope.members = [];
  	
-	// only show button when there are projects
+	// only show button when there are members
 	$scope.showFlag = false;
 
 
@@ -25,7 +25,7 @@
 				}
 				
 			}).error(function(data, status, headers, config) {
-				console.log('error');
+				$location.path("/errormsg");
 			});
 
  	function getMembers(){
@@ -43,7 +43,7 @@
 				}
 
 			}).error(function(data, status, headers, config) {
-				console.log('error');
+				$location.path("/errormsg");
 			});
  	}
  	
@@ -69,7 +69,7 @@
 				getMembers();
 				
 			}).error(function(data, status, headers, config) {
-				$window.alert("Sorry, we have a problem to delete member, try again later.");
+				$window.alert("Sorry, we have a problem. Please try again later.");
 			});
 			
 		}

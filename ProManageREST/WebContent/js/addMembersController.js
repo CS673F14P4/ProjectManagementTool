@@ -4,63 +4,71 @@
  angular.module('promanage').controller("AddMemberCtrl", function($scope, $routeParams, $http, $window, $rootScope) {
 
 	 $scope.projectId = $routeParams.projectId;
-	
+	 $scope.members = {};
 	 
 	// only show button when there is a user
 	$scope.showFlag = false;
+		 
+	// request to get users by username
+	$scope.search = function(){
+		
+		//get members
+		$http({
+			method : 'Get',
+			url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ $scope.projectId + '/member'
+		}).success(function(data) {			
+			// get user
+			$http({
+				method: "GET",
+				url : 'http://localhost:8080/ProManageREST/jaxrs/users/'+ $scope.searchQuery
+			}).success(function(userdata){
 
-	//request to get list of members
-	function getMembers(){
-	 	$http({
-				method : 'Get',
-				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ $scope.projectId + '/member'
-			}).success(function(data) {
+				// members list
 				if (data == undefined || data == ""){
 					$scope.members = {};
 				}else{
 					$scope.members = data;
 				}
-			}).error(function(data, status, headers, config) {
-				console.log('error');
+				
+				if (userdata == undefined || userdata == ""){
+					 $scope.user = "";
+					 $scope.message = "";
+					 $scope.showFlag = false;
+					 $scope.buttonFlag = false;
+					 
+				}else{
+					$scope.user = userdata;
+					$scope.message = "User";
+					
+					 //check if user is a member already
+					 var member = false;
+
+					 for(var i=0; i< $scope.members.length; i++){
+						 var obj = $scope.members[i];
+					     if (obj.userId == $scope.user.userId){
+					    	 $scope.message = obj.username;
+					    	 member = true;
+					    	 break;
+					     }
+					 }
+					 
+					 if (member){
+						 $scope.buttonFlag = false;
+					 }else{
+						 $scope.buttonFlag = true;
+					 }
+					 
+					 $scope.showFlag = true;
+				}
+				
+			}).error(function(userdata){
+				$window.alert("Sorry, we have a problem. Please try again later.");
 			});
- 	}
-		 
-	 // request to get users by username
-	 $scope.search = function(){
-		 
-		 $http({
-			 method : 'Get',
-			 url : 'http://localhost:8080/ProManageREST/jaxrs/users/'+ $scope.searchQuery
-		 }).success(function(data) {
-			 if (data == undefined || data == "") {
-				 $scope.user = "";
-				 $scope.message = "";
-				 $scope.showFlag = false;
-				 $scope.buttonFlag = false;
-
-			 }else{
-				 $scope.user = data;
-				 $scope.message = "User";
-				 $scope.showFlag = true;
-				 $scope.buttonFlag = true;
-
-				 //check if user is a member already
-				 getMembers();
-
-				 for(var i=0; i< $scope.members.length; i++){
-					 var obj = $scope.members[i];
-				     if (obj.userId == $scope.user.userId){
-				    	 $scope.buttonFlag = false; // don't show button to member
-				    	 break;
-				     }
-				 }
-				        
-			}
-			 
-		 }).error(function(data, status, headers, config) {
-			 $scope.message = "Sorry, we have a problem. Try again later."
-		 });
-		 
+			
+		}).error(function(data, status, headers, config) {
+			$window.alert("Sorry, we have a problem. Please try again later.");
+		});
+		  
 	 }
 	 
 	 //add a member
@@ -84,7 +92,7 @@
 					 
 					 
 				 }).error(function(data, status, headers, config) {
-					 $window.alert("Sorry, we have a problem. Try again later.");
+					 $window.alert("Sorry, we have a problem. Please try again later.");
 					 $scope.user = {};
 					 $scope.showFlag = false;
 					 $scope.buttonFlag = false;

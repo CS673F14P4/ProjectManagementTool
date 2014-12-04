@@ -5,7 +5,7 @@
 /* Get list of projects */
 
 angular.module('promanage').controller("ProjectsController",
-		function($scope, $window, $rootScope, $http) {
+		function($scope, $window, $rootScope, $http, $location) {
 
 			$rootScope.pageTitle = "Project List";
 			
@@ -29,22 +29,19 @@ angular.module('promanage').controller("ProjectsController",
 					$scope.message = "Projects";
 					$scope.showFlag = true;
 				}
-				
+								
 			}).error(function(data, status, headers, config) {
-				// choose something to show in every error situation
-				//$window.alert("Please try again later.")
+				$location.path("/errormsg");
 			});
 			
 			// close project
 			$scope.close = function(projectId){
-				
+							
 				// get project details
 				$http({
 					method : 'GET',
 					url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ projectId
-				})
-
-				.success(function(data) {
+				}).success(function(data) {
 					// load data
 					console.log(data);
 					$scope.user = data;
@@ -67,13 +64,11 @@ angular.module('promanage').controller("ProjectsController",
 				        $window.location.href = '';
 							
 					}).error(function(data, status, headers, config) {
-						$window.alert("Please try again later.")
+						$window.alert("Sorry, we have a problem. Please try again later.");
 					});
 					
-				})
-
-				.error(function(data, status, headers, config) {
-					console.log('error');
+				}).error(function(data, status, headers, config) {
+					$window.alert("Sorry, we have a problem. Please try again later.");
 				});
 			}
 

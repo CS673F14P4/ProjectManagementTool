@@ -4,7 +4,7 @@
 
 
 angular.module('promanage').controller("FormController",
-		function($scope, $window, $rootScope, $http, $routeParams) {
+		function($scope, $window, $rootScope, $http, $routeParams, $location) {
 
 	$rootScope.pageTitle = "New Project";
 	$scope.projectId = $routeParams.projectId;
@@ -31,7 +31,8 @@ angular.module('promanage').controller("FormController",
 		})
 
 		.error(function(data, status, headers, config) {
-			console.log('error');
+			$location.path("/errormsg");
+
 		});
 		
 	// new project
@@ -58,7 +59,7 @@ angular.module('promanage').controller("FormController",
 		        $window.location.href = '';
 					
 			}).error(function(data, status, headers, config) {
-				$window.alert("Please try again later.")
+				$window.alert("Sorry, we have a problem. Please try again later.");
 			});
 
 		}else{
@@ -75,7 +76,7 @@ angular.module('promanage').controller("FormController",
 		        $window.location.href = '';
 					
 			}).error(function(data, status, headers, config) {
-				$window.alert("Please try again later.")
+				$window.alert("Sorry, we have a problem. Please try again later.");
 			});
 		}
 
