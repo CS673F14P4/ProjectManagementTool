@@ -18,22 +18,22 @@
 
   
 	<select id="getProject" resultMap="projectMap">
-		select * from Project where idproject = #{projectId}
+		select * from project where idproject = #{projectId}
 	</select>
 
 	<select id="getProjectsByUser" resultMap="projectMap">
-		select * from Project
-		join Member on member.idproject = project.idproject
+		select * from project
+		join member on member.idproject = project.idproject
 		where member.iduser = #{userId}
 	</select>
 	
 	<insert id="insertProject" useGeneratedKeys="true" keyProperty="id" keyColumn="idproject">
-	    insert into Project (name, description, status, start_date, end_date, estimate, create_date, create_user, last_modified_date, last_modified_user) 
+	    insert into project (name, description, status, start_date, end_date, estimate, create_date, create_user, last_modified_date, last_modified_user) 
 	    values (#{name}, #{description}, #{status}, #{startDate}, #{endDate}, #{estimate}, now(), #{createUser}, now(), #{lastModifiedUser}) 
 	</insert>
 	
 	<update id="updateProject" useGeneratedKeys="true" keyProperty="id" keyColumn="idproject">
-		update Project 
+		update project 
 		set
 			name = #{name},
 			description = #{description},
@@ -47,7 +47,7 @@
 	</update>
 	
 	<delete id="deleteProject">
-	    delete from Project where idproject = #{id}
+	    delete from project where idproject = #{id}
 	</delete>
   
 </mapper>

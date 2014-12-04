@@ -19,19 +19,19 @@
 
 
 	<select id="getTask" resultMap="taskMap">
-		select * from Task where idtask =
+		select * from task where idtask =
 		#{id}
 	</select>
 
 	<select id="getTasksByStory" resultMap="taskMap">
-		select * from Task
-		join Story on story.idstory = task.idstory
+		select * from task
+		join story on story.idstory = task.idstory
 		and story.idstory = #{storyId}
 	</select>
 
 	<insert id="insertTask" useGeneratedKeys="true" keyProperty="id"
 		keyColumn="idtask">
-		insert into Task (idstory, name, description, due_date,
+		insert into task (idstory, name, description, due_date,
 		estimate, remaining, status, create_date, owner,
 		last_modified_date, last_modified_user)
 		values
@@ -40,7 +40,7 @@
 	</insert>
 	
 	<update id="updateTask" keyColumn="idtask">
-	    update Task
+	    update task
 	    set
 	    	name = #{name},
 	    	description = #{description},
@@ -55,7 +55,7 @@
 	</update>
 
 	<delete id="deleteTask">
-		delete from Task where idtask = #{id}
+		delete from task where idtask = #{id}
 	</delete>
 
 </mapper>

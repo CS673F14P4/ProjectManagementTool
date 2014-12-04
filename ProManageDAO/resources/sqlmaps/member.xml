@@ -9,20 +9,20 @@
 	</resultMap>
 	
 	<select id="getMember" resultMap="memberMap">
-		select * from Member where idproject = #{projectId} and iduser = #{userId}
+		select * from member where idproject = #{projectId} and iduser = #{userId}
 	</select>
 	
 	<insert id="insertMember">
-	    insert into Member (idproject, iduser, rolename) 
+	    insert into member (idproject, iduser, rolename) 
 	    values (#{projectId}, #{userId}, #{roleName}) 
 	</insert>
 	
 	<delete id="deleteMember">
-	    delete from Member where idproject = #{projectId} and iduser= #{userId} and rolename != "project_leader"
+	    delete from member where idproject = #{projectId} and iduser= #{userId} and rolename != "project_leader"
 	</delete>
 	
 	<delete id="deleteAllProjectMembers">
-	    delete from Member where idproject = #{projectId}
+	    delete from member where idproject = #{projectId}
 	</delete>
   
 </mapper>
