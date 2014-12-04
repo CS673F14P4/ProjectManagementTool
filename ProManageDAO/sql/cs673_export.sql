@@ -110,6 +110,7 @@ CREATE TABLE `story` (
 -- Dumping data for table `story`
 --
 
+
 LOCK TABLES `story` WRITE;
 /*!40000 ALTER TABLE `story` DISABLE KEYS */;
 INSERT INTO `story` VALUES (1,1,'test',0,'2014-12-02','Let me tell you a story about the time my life got flipped opsidedown',14,1,'2014-12-02 03:45:32','2014-12-02 03:45:32',1),(2,1,'story2',0,'2014-12-02','I\'ll tell you how I became the prince of a town called Bel-Air',14,1,'2014-12-02 03:45:32','2014-12-02 03:45:32',1);
@@ -239,3 +240,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2014-12-03  9:24:52
+
+/* manually added to create the user */
+GRANT ALL ON cs673.* TO cs673_user@localhost IDENTIFIED BY 'cs673';
