@@ -14,7 +14,7 @@
 		}).when('/members/:projectId', {
 			templateUrl : 'members.html',
 			controller : 'MembersController'
-		}).when('/addmember', {
+		}).when('/addmember/:projectId', {
 			templateUrl : 'addmember.html',
 			controller : 'AddMemberCtrl'
 		}).when('/newstory/:projectId/:storyId', {

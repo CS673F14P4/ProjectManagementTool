@@ -1,7 +1,7 @@
 /**
  * 
  */
- angular.module('promanage').controller("MembersController", function($scope, $routeParams, $http) {
+ angular.module('promanage').controller("MembersController", function($scope, $routeParams, $http, $window) {
 
  	$scope.project = {'name':""};
  	$scope.projectId = $routeParams.projectId;
@@ -28,8 +28,8 @@
 				console.log('error');
 			});
 
-
- 	$http({
+ 	function getMembers(){
+	 	$http({
 				method : 'Get',
 				url : 'http://localhost:8080/ProManageREST/jaxrs/project/'+ $scope.projectId + '/member'
 			}).success(function(data) {
@@ -45,7 +45,9 @@
 			}).error(function(data, status, headers, config) {
 				console.log('error');
 			});
+ 	}
  	
+ 	getMembers();
  	
 	//delete a member
 	$scope.del = function(member) {
@@ -53,7 +55,7 @@
 		
 		if (answer == true){
 			// request to delete member
-			var dataDelete = {'projectid': $scope.projectId, 'userid':member.userId};
+			var dataDelete = {'projectId': $scope.projectId, 'userId':member.userId, 'roleName': null};
 			
 			$http({
 				method : 'DELETE',
@@ -64,6 +66,7 @@
 				}			
 			}).success(function(data) {
 				$window.alert("Member deleted with sucess.");
+				getMembers();
 				
 			}).error(function(data, status, headers, config) {
 				$window.alert("Sorry, we have a problem to delete member, try again later.");

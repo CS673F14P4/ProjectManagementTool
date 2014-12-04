@@ -2,8 +2,11 @@
 	<div class="tab-pane active" id="members">
 		<div class="container">
 
-			<a href="#/addmember" class="navbar-button btn btn-large btn-primary pull-right"
+			<a href="#/addmember/{{projectId}}" class="navbar-button btn btn-large btn-primary pull-right"
 				type="button" ng-show="statusFlag">Add member</a>
+				
+			<a href="#/project/{{projectId}}" class="navbar-button btn btn-xs btn-default pull-left" type="button">Project Details</a>
+			<br><br>
 
 			<!--  box to show projects -->
 			<div class="content-container clearfix" ng-show="showFlag">

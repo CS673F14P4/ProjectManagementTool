@@ -1,6 +1,9 @@
 <!--  search member by username -->
 <div class="container">
-	<br>
+	
+	<a href="#/members/{{projectId}}" class="navbar-button btn btn-xs btn-default pull-left" type="button">Members</a>
+	
+	<br><br>
 	<div class="text-center">
 		<form name="searchForm" class="form-inline">
 			<div class="form-group" >
@@ -25,7 +28,7 @@
 						<span class="content">{{user.username}}</span>
 					</a>
 					<!--  button to add a member -->
-					<a href="" ng-click="add(user)"class="navbar-button btn btn-sm btn-default pull-right" type="button">Add</a>
+					<a href="" ng-click="add(user)"class="navbar-button btn btn-sm btn-default pull-right" type="button" ng-show="buttonFlag">Add</a>
 					<br>
 				</li>
 			</ul>
