@@ -18,15 +18,15 @@
 
   
 	<select id="getStory" resultMap="storyMap">
-		select * from Story where idstory = #{id}
+		select * from story where idstory = #{id}
 	</select>
 	
 	<select id="storyByProject" resultMap="storyMap">
-		select * from Story where idproject=#{idproject}
+		select * from story where idproject=#{idproject}
 	</select>
 	
 	<insert id="createStory" useGeneratedKeys="true" keyProperty="id" keyColumn="idstory">
-		insert into Story (idproject,name,due_date,description,estimate,create_user,create_date,last_modified_date,last_modified_user) 
+		insert into story (idproject,name,due_date,description,estimate,create_user,create_date,last_modified_date,last_modified_user) 
 	    values (#{projectid},#{name},#{dueDate},#{description},#{estimate},#{createUser},now(), now(),#{lastModifiedUser})</insert>
 	
 	<delete id="deleteStory">
