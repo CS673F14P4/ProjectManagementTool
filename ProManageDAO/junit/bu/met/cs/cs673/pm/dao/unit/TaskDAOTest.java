@@ -53,7 +53,7 @@ public class TaskDAOTest extends TestCase
 	public void testGetTask()
 	{
 		TaskDAO dao = new TaskDAO();
-		Task task = dao.getTask(1);
+		Task task = dao.getTask(0);
 		
 		System.out.println("task: " + task.getName());
 		
