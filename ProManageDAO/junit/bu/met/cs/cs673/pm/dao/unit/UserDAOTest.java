@@ -5,7 +5,6 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-
 import bu.met.cs.cs673.pm.dao.UserDAO;
 import bu.met.cs.cs673.pm.dto.User;
 
