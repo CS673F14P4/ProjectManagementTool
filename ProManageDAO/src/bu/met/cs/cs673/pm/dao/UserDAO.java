@@ -54,16 +54,21 @@ public class UserDAO {
 	 *            the instance to be persisted.
 	 */
 
-	public int insert(User user) {
+	public int insert(User user) 
+	{
 		int id = -1;
 		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
 				.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 
-		try {
+		try 
+		{
 			id = session.insert("insertUser", user);
-		} finally {
+			session.insert("insertUserRole", user);
 			session.commit();
+		} 
+		finally 
+		{
 			session.close();
 		}
 		return id;
@@ -82,9 +87,11 @@ public class UserDAO {
 		SqlSession session = factory.openSession();
 
 		try {
-			session.delete("User.delete", username);
-		} finally {
+			session.delete("deleteUser", username);
+			session.delete("deleteUserRole", username);
 			session.commit();
+		} finally {
+			
 			session.close();
 		}
 	}

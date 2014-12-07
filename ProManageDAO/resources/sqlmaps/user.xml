@@ -21,11 +21,15 @@
 	</select>
 
 	<insert id="insertUser" useGeneratedKeys="true" keyProperty="userid" keyColumn="iduser">
-		insert into user ( email, username, password,
-		firstname,lastname,create_date,last_modified_date)
+		insert into user 
+		(email, username, password,	firstname,lastname,create_date,last_modified_date)
 		values
-		(#{email},#{username},#{password},#{firstname},
-		#{lastname},now(),now())
+		(#{email},#{username},#{password},#{firstname},	#{lastname},now(),now())
+	</insert>
+	
+	<insert id="insertUserRole">
+		insert into user_roles
+		values (#{username},'customer')
 	</insert>
 
 	<update id="update" parameterType="bu.met.cs.cs673.pm.dto.User"  keyColumn="iduser">
@@ -35,9 +39,13 @@
 		WHERE username = #{username}
 	</update>
 
-	<delete id="delete" parameterType="String">
+	<delete id="deleteUser" parameterType="String">
 		DELETE from user WHERE
 		username = #{username}
+	</delete>
+	
+	<delete id="deleteUserRole">
+	    delete from user_roles where username = #{username}
 	</delete>
 
 	<select id="getUserByProject" resultMap="result">
