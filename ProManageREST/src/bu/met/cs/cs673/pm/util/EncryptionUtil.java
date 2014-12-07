@@ -3,66 +3,61 @@ package bu.met.cs.cs673.pm.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
+public final class EncryptionUtil 
+{
+	//private static final String code = "_marvel_universe";
 
-public final class EncryptionUtil {
-	private static final String code = "_marvel_universe";
+	/**
+	 * encrypt()
+	 * 
+	 * Hashing function obtained from this website:
+	 * http://www.mkyong.com/java/java-sha-hashing-example/
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public static String encrypt(String password) 
+	{
+		String encryptedPassword = null;
+		
+        MessageDigest md = null; 
 
-	public static String encrypt(String input) {
-		String encryptedstr = null;
-		/**
-		 * code from: http://mustafacanturk.com/sha512-hashing-on-java/
-		 */
-		MessageDigest md;
-		String message = input;
-		try {
-			md = MessageDigest.getInstance("SHA-512");
-
-			md.update(message.getBytes());
-			byte[] mb = md.digest();
-			String out = "";
-			for (int i = 0; i < mb.length; i++) {
-				byte temp = mb[i];
-				String s = Integer.toHexString(new Byte(temp));
-				while (s.length() < 2) {
-					s = "0" + s;
-				}
-				s = s.substring(s.length() - 2);
-				out += s;
-			}
-			encryptedstr = out;
-
-		} catch (NoSuchAlgorithmException e) {
-			System.out.println("ERROR: " + e.getMessage());
-		}
-
-		return encryptedstr;
+        try 
+        {
+        	md = MessageDigest.getInstance("SHA-512");
+        	md.update(password.getBytes());
+        }
+        catch (NoSuchAlgorithmException nsa)
+        {
+        	nsa.printStackTrace();
+        }
+ 
+        byte byteData[] = md.digest();
+ 
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) 
+        {
+         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+ 
+        System.out.println("Hex format : " + sb.toString());
+ 
+        //convert the byte to hex format method 2
+        StringBuffer hexString = new StringBuffer();
+    	for (int i=0;i<byteData.length;i++) 
+    	{
+    		String hex=Integer.toHexString(0xff & byteData[i]);
+   	     	
+    		if(hex.length()==1) 
+    			hexString.append('0');
+   	     		
+    		hexString.append(hex);
+    	}
+    	
+    	encryptedPassword = hexString.toString();
+    	
+    	return encryptedPassword;
 	}
 
-	public static String decrypt(String input) {
-		String decryptedstr = null;
-
-		if (input == null || "".equals(input)) {
-			return null;
-		}
-
-		try {
-			SecretKeySpec skeySpec = new SecretKeySpec(code.getBytes("UTF-8"),
-					"AES");
-
-			Cipher cipher = Cipher.getInstance("AES");
-
-			cipher.init(Cipher.DECRYPT_MODE, skeySpec);
-
-			byte[] decrypted = cipher.doFinal(input.getBytes());
-
-			decryptedstr = new String(decrypted, "UTF-8");
-		} catch (Exception e) {
-			System.out.println("error decrypting text");
-			e.printStackTrace();
-		}
-
-		return decryptedstr;
-	}
 }
