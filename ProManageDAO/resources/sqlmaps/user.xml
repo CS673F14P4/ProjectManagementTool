@@ -32,10 +32,12 @@
 		values (#{username},'customer')
 	</insert>
 
-	<update id="update" parameterType="bu.met.cs.cs673.pm.dto.User"  keyColumn="iduser">
+	<update id="updateUser" parameterType="bu.met.cs.cs673.pm.dto.User"  keyColumn="iduser">
 		UPDATE user
-		SET firstname =
-		#{firstname}, lastname = #{lastname}
+		SET firstname =	#{firstname}, 
+		lastname = #{lastname},
+		email = #{email},
+		last_modified_date = now()
 		WHERE username = #{username}
 	</update>
 

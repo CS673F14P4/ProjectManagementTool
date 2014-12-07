@@ -87,8 +87,8 @@ public class UserDAO {
 		SqlSession session = factory.openSession();
 
 		try {
-			session.delete("deleteUser", username);
 			session.delete("deleteUserRole", username);
+			session.delete("deleteUser", username);
 			session.commit();
 		} finally {
 			
@@ -102,19 +102,26 @@ public class UserDAO {
 	 * @param person
 	 *            the instance to be persisted.
 	 */
-	public void update(User user) {
-		int id = -1;
-		SqlSessionFactory factory = SessionFactorySingleton.getInstance()
-				.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-
-		try {
-			id = session.update("User.update", user);
-
-		} finally {
-			session.commit();
-			session.close();
+	public User update(User user) 
+	{
+		if (user != null)
+		{
+			SqlSessionFactory factory = SessionFactorySingleton.getInstance().getSqlSessionFactory();
+			SqlSession session = factory.openSession();
+	
+			try 
+			{
+				session.update("updateUser", user);
+				
+				session.commit();
+			} 
+			finally 
+			{
+				session.close();
+			}
 		}
+		
+		return user;
 	}
 
 	/**
