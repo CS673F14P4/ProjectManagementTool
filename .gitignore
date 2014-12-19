@@ -5,7 +5,7 @@
 
 # Package Files #
 #*.jar - jars shouldn't be ignored blindly as we need them for third-party libraries.
-*.war
+#*.war
 *.ear
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml

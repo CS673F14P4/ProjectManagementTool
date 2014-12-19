@@ -126,7 +126,7 @@
 
       <Context docBase="ProManageREST" path="/ProManageREST" reloadable="true" source="org.eclipse.jst.jee.server:ProManageREST"/></Host>
 
-      <Realm className="org.apache.catalina.realm.JDBCRealm" connectionName="cs673_user" connectionPassword="cs673" connectionURL="jdbc:mysql://localhost/cs673" digest="SHA-512" driverName="com.mysql.jdbc.Driver" roleNameCol="rolename" userCredCol="password" userNameCol="username" userRoleTable="cs673.user_roles" userTable="cs673.user"/>
+      <Realm className="org.apache.catalina.realm.JDBCRealm" connectionName="cs673_user" connectionPassword="cs673" connectionURL="jdbc:mysql://manage2.csdw3zyugikr.us-west-2.rds.amazonaws.com:3306/cs673" digest="SHA-512" driverName="com.mysql.jdbc.Driver" roleNameCol="rolename" userCredCol="password" userNameCol="username" userRoleTable="cs673.user_roles" userTable="cs673.user"/>
       
     </Engine>
   </Service>
