@@ -35,7 +35,9 @@
 
 		<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
 		<!-- <jar jarfile="${dist}/lib/ProManageDAO-${DSTAMP}.jar" basedir="${build}" />-->
-		<jar jarfile="dist/ProManageDAO.jar" basedir="build" />
+		<jar jarfile="dist/ProManageDAO.jar" basedir="build">
+		     <fileset dir="resources"/>
+		</jar>
 	</target>
  
 	<target name="clean" description="clean up">
