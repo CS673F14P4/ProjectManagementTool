@@ -13,10 +13,14 @@
         <property name="username" value="${username}"/>
         <property name="password" value="${password}"/>
         -->
+        <property name="poolMaximumCheckoutTime" value="120000" />
+        <property name="poolTimeToWait" value="120000" />
+        
         <property name="driver" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://manage2.csdw3zyugikr.us-west-2.rds.amazonaws.com:3306/cs673"/>
         <property name="username" value="cs673_user"/>
         <property name="password" value="cs673"/>
+
       </dataSource>
     </environment>
   </environments>
